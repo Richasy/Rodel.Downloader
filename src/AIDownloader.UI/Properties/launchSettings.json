@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AIDownloader.UI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AIDownloader.UI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

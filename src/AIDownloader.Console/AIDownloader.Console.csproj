@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.48.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="System.Console" Static="true" />
+  </ItemGroup>
+
+  <Target Name="CopyAriaContent" AfterTargets="AfterBuild">
+    <ItemGroup>
+        <AriaFiles Include="$(SolutionDir)lib\**" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AriaFiles)" DestinationFolder="$(OutDir)lib\%(RecursiveDir)"/>
+  </Target>
+</Project>
