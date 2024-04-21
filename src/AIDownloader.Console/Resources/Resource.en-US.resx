@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AITypeSelection" xml:space="preserve">
+    <value>Select the AI host service</value>
+  </data>
   <data name="Aria2cCleaned" xml:space="preserve">
     <value>The remnants of the ARIA2C process have been cleaned up</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="ChooseDownloadFiles" xml:space="preserve">
     <value>Select the file you want to download</value>
+  </data>
+  <data name="CivitaiToken" xml:space="preserve">
+    <value>Please enter the Civitai access token:</value>
   </data>
   <data name="DownloadCompleted" xml:space="preserve">
     <value>All files are downloaded</value>
@@ -159,11 +165,20 @@
   <data name="HuggingFaceToken" xml:space="preserve">
     <value>Please enter the Hugging Face access token:</value>
   </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>The token is invalid</value>
+  </data>
   <data name="ModelIdInput" xml:space="preserve">
     <value>Please enter the model ID:</value>
   </data>
   <data name="ModelIdInputFailed" xml:space="preserve">
     <value>Please enter the correct model ID</value>
+  </data>
+  <data name="ModelIdOrLinkInput" xml:space="preserve">
+    <value>Please enter the model ID or page link:</value>
+  </data>
+  <data name="ModelNotFound" xml:space="preserve">
+    <value>No suitable model was found</value>
   </data>
   <data name="MoreFileOperationTip" xml:space="preserve">
     <value>Press the [blue]Space key[/] to toggle the file selection, and the [green]Enter key[/] submit</value>
@@ -177,7 +192,13 @@
   <data name="NoSelectedFolder" xml:space="preserve">
     <value>No folder selected</value>
   </data>
+  <data name="Optional" xml:space="preserve">
+    <value>Optional</value>
+  </data>
   <data name="SelectedFolder" xml:space="preserve">
     <value>Folder selected:</value>
+  </data>
+  <data name="SelectModelVersion" xml:space="preserve">
+    <value>Select the appropriate model version</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
+using AIDownloader.Core.Civitai;
 using AIDownloader.Core.Models;
 
 namespace AIDownloader.Core;
@@ -10,8 +11,18 @@ namespace AIDownloader.Core;
 public sealed class Downloader : IDisposable
 {
     private HuggingFaceUtils _hfUtils;
+    private CivitaiUtils _civitaiUtils;
     private string _hfSaveFolder;
+    private string _civitaiSaveFolder;
     private bool _disposedValue;
+
+    /// <summary>
+    /// 获取 Civitai 模型下载项.
+    /// </summary>
+    /// <param name="model">选中的模型.</param>
+    /// <returns>下载项列表.</returns>
+    public static List<DownloadItem> GetCivitaiModelDownloadItems(ModelItem model)
+        => CivitaiUtils.GetDownloads(model);
 
     /// <summary>
     /// 初始化 Hugging Face.
@@ -49,6 +60,25 @@ public sealed class Downloader : IDisposable
     }
 
     /// <summary>
+    /// 初始化 Civitai.
+    /// </summary>
+    /// <param name="accessToken">访问令牌（可选）.</param>
+    /// <param name="saveFolder">保存模型的文件夹.</param>
+    public void InitializeCivitai(string accessToken, string saveFolder)
+    {
+        if (_civitaiUtils != null)
+        {
+            _civitaiUtils.SetAccessToken(accessToken);
+        }
+        else
+        {
+            _civitaiUtils = new CivitaiUtils(accessToken);
+        }
+
+        _civitaiSaveFolder = saveFolder;
+    }
+
+    /// <summary>
     /// 获取 Hugging Face 模型仓库下载列表.
     /// </summary>
     /// <param name="modelId">模型标识符，类似 <c>author/model</c>.</param>
@@ -69,6 +99,19 @@ public sealed class Downloader : IDisposable
         return results;
     }
 
+    /// <summary>
+    /// 获取 Civitai 模型下载列表.
+    /// </summary>
+    /// <param name="id">模型 Id.</param>
+    /// <returns>模型不同版本的列表.</returns>
+    /// <exception cref="InvalidOperationException">在没有初始化 Civitai 的情况下进行了调用.</exception>
+    public async Task<List<ModelItem>> GetCivitaiModelAsync(string id)
+    {
+        return _civitaiUtils == null
+            ? throw new InvalidOperationException("Civitai 未初始化.")
+            : await _civitaiUtils.GetModelAsync(id);
+    }
+
     /// <inheritdoc/>
     public void Dispose()
     {
@@ -83,9 +126,11 @@ public sealed class Downloader : IDisposable
             if (disposing)
             {
                 _hfUtils?.Dispose();
+                _civitaiUtils?.Dispose();
             }
 
             _hfUtils = null;
+            _civitaiUtils = null;
             _disposedValue = true;
         }
     }

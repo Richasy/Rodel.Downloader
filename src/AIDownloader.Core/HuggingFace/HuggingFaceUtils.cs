@@ -87,6 +87,7 @@ internal sealed class HuggingFaceUtils : IDisposable
             }
 
             _httpClient = null;
+            _cancellationTokenSource = null;
             _disposedValue = true;
         }
     }

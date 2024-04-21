@@ -43,21 +43,21 @@ public partial class Program
         else
         {
             var config = JsonSerializer.Deserialize<Config>(File.ReadAllText(configFile));
-            token = string.IsNullOrEmpty(config.Token) ? AskHfToken() : config.Token;
+            token = string.IsNullOrEmpty(config.HuggingFaceToken) ? AskHfToken() : config.HuggingFaceToken;
             if (string.IsNullOrEmpty(token))
             {
                 return;
             }
 
-            folderPath = string.IsNullOrEmpty(config.SaveFolder) ? AskSaveFolderPath() : config.SaveFolder;
+            folderPath = string.IsNullOrEmpty(config.HuggingFaceSaveFolder) ? AskSaveFolderPath() : config.HuggingFaceSaveFolder;
             if (string.IsNullOrEmpty(folderPath))
             {
                 return;
             }
 
-            hfUriType = string.IsNullOrEmpty(config.UriType)
+            hfUriType = string.IsNullOrEmpty(config.HuggingFaceUriType)
                 ? AskHfUriType()
-                : config.UriType.ToLower() switch
+                : config.HuggingFaceUriType.ToLower() switch
                 {
                     "mirror" => HuggingFaceUriType.Mirror,
                     _ => HuggingFaceUriType.Official
@@ -98,21 +98,6 @@ public partial class Program
         }
 
         return token;
-    }
-
-    private static string AskSaveFolderPath()
-    {
-        var folderPath = AnsiConsole.Ask<string>(GetString("FolderPickerTip"));
-        if (string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath))
-        {
-            AnsiConsole.MarkupLine($"[red]{GetString("NoSelectedFolder")}[/]");
-        }
-        else
-        {
-            AnsiConsole.MarkupLine($"{GetString("SelectedFolder")}[green]{folderPath}[/]");
-        }
-
-        return folderPath;
     }
 
     private static HuggingFaceUriType AskHfUriType()

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AITypeSelection" xml:space="preserve">
+    <value>选择模型托管服务</value>
+  </data>
   <data name="Aria2cCleaned" xml:space="preserve">
     <value>已清理残余 aria2c 进程</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="ChooseDownloadFiles" xml:space="preserve">
     <value>选择要下载的文件</value>
+  </data>
+  <data name="CivitaiToken" xml:space="preserve">
+    <value>请输入 Civitai 访问令牌：</value>
   </data>
   <data name="DownloadCompleted" xml:space="preserve">
     <value>所有文件下载完成</value>
@@ -168,6 +174,12 @@
   <data name="ModelIdInputFailed" xml:space="preserve">
     <value>请输入正确的模型 ID</value>
   </data>
+  <data name="ModelIdOrLinkInput" xml:space="preserve">
+    <value>请输入模型 ID 或页面链接：</value>
+  </data>
+  <data name="ModelNotFound" xml:space="preserve">
+    <value>没有找到合适的模型</value>
+  </data>
   <data name="MoreFileOperationTip" xml:space="preserve">
     <value>按下 [blue]空格键[/] 来切换文件选择，[green]回车键[/] 提交</value>
   </data>
@@ -180,7 +192,13 @@
   <data name="NoSelectedFolder" xml:space="preserve">
     <value>未选择文件夹</value>
   </data>
+  <data name="Optional" xml:space="preserve">
+    <value>可选</value>
+  </data>
   <data name="SelectedFolder" xml:space="preserve">
     <value>已选择文件夹：</value>
+  </data>
+  <data name="SelectModelVersion" xml:space="preserve">
+    <value>选择合适的模型版本</value>
   </data>
 </root>

@@ -77,6 +77,21 @@ public partial class Program
         _downloader?.Dispose();
     }
 
+    private static string AskSaveFolderPath()
+    {
+        var folderPath = AnsiConsole.Ask<string>(GetString("FolderPickerTip"));
+        if (string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath))
+        {
+            AnsiConsole.MarkupLine($"[red]{GetString("NoSelectedFolder")}[/]");
+        }
+        else
+        {
+            AnsiConsole.MarkupLine($"{GetString("SelectedFolder")}[green]{folderPath}[/]");
+        }
+
+        return folderPath;
+    }
+
     private static void RenderFileList(List<DownloadItem> fileList)
     {
         var table = new Table();
@@ -110,7 +125,7 @@ public partial class Program
         return selectedFiles;
     }
 
-    private static async Task TryDownloadFilesAsync(List<DownloadItem> items, string accessToken)
+    private static async Task TryDownloadFilesAsync(List<DownloadItem> items, string accessToken = "")
     {
         if (_ariaClient == null)
         {
@@ -136,11 +151,15 @@ public partial class Program
                 {
                     var options = new Dictionary<string, object>
                     {
-                        { "header", $"Authorization: Bearer {accessToken}" },
                         { "out", item.FileName },
                         { "dir", item.TargetFolder },
                         { "config-path", $"\"{ariaConfigPath}\"" },
                     };
+
+                    if (!string.IsNullOrEmpty(accessToken))
+                    {
+                        options.Add("header", $"Authorization: Bearer {accessToken}");
+                    }
 
                     var gid = await _ariaClient.AddUriAsync([item.Link], options);
                     _currentLinks.Add(new LinkItem { Link = item.Link, Name = item.FileName, Gid = gid });
