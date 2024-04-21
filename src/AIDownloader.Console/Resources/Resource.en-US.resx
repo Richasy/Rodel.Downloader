@@ -153,6 +153,9 @@
   <data name="FileName" xml:space="preserve">
     <value>File name</value>
   </data>
+  <data name="FolderNotExist" xml:space="preserve">
+    <value>The selected folder does not exist</value>
+  </data>
   <data name="FolderPickerTip" xml:space="preserve">
     <value>Which folder do you want to save to?</value>
   </data>
@@ -186,6 +189,9 @@
   <data name="MoreFileTip" xml:space="preserve">
     <value>Move up or down to see more files</value>
   </data>
+  <data name="MoreFolderTip" xml:space="preserve">
+    <value>Move up or down to see more folders</value>
+  </data>
   <data name="NoAvailableDownloadLink" xml:space="preserve">
     <value>No available download link found</value>
   </data>
@@ -200,5 +206,8 @@
   </data>
   <data name="SelectModelVersion" xml:space="preserve">
     <value>Select the appropriate model version</value>
+  </data>
+  <data name="SelectSaveFolder" xml:space="preserve">
+    <value>Please select a folder to save your downloads</value>
   </data>
 </root>

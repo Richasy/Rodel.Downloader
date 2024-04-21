@@ -10,6 +10,9 @@ internal class Config
     [JsonPropertyName("hf_save_folder")]
     public string HuggingFaceSaveFolder { get; set; }
 
+    [JsonPropertyName("hf_backup_folders")]
+    public Dictionary<string, string> HuggingFaceBackupFolders { get; set; }
+
     [JsonPropertyName("hf_uri_type")]
     public string HuggingFaceUriType { get; set; }
 
@@ -18,4 +21,7 @@ internal class Config
 
     [JsonPropertyName("civitai_save_folder")]
     public string CivitaiSaveFolder { get; set; }
+
+    [JsonPropertyName("civitai_backup_folders")]
+    public Dictionary<string, string> CivitaiBackupFolders { get; set; }
 }

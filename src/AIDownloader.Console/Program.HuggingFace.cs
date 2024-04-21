@@ -11,7 +11,7 @@ public partial class Program
 {
     private static async Task RunHuggingFaceDownloadAsync(bool ignoreConfig = false)
     {
-        var configFile = Path.Combine(Environment.CurrentDirectory, "config.json");
+        var configFile = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "config.json");
         var isConfigFileExist = File.Exists(configFile);
 
         var modelId = AnsiConsole.Ask<string>(GetString("ModelIdInput"));
@@ -49,7 +49,7 @@ public partial class Program
                 return;
             }
 
-            folderPath = string.IsNullOrEmpty(config.HuggingFaceSaveFolder) ? AskSaveFolderPath() : config.HuggingFaceSaveFolder;
+            folderPath = ChooseSaveFolders(config.HuggingFaceSaveFolder, config.HuggingFaceBackupFolders);
             if (string.IsNullOrEmpty(folderPath))
             {
                 return;
@@ -65,7 +65,7 @@ public partial class Program
         }
 
         var savePath = Path.Combine(folderPath, modelId.Split('/').Last());
-        _downloader = new Downloader();
+        _downloader ??= new Downloader();
         _downloader.InitializeHuggingFace(hfUriType, token, savePath);
 
         try

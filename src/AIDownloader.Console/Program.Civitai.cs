@@ -13,7 +13,7 @@ public partial class Program
 {
     private static async Task RunCivitaiDownloadAsync(bool ignoreConfig = false)
     {
-        var configFile = Path.Combine(Environment.CurrentDirectory, "config.json");
+        var configFile = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "config.json");
         var isConfigFileExist = File.Exists(configFile);
 
         var modelId = AnsiConsole.Ask<string>(GetString("ModelIdOrLinkInput"));
@@ -57,14 +57,14 @@ public partial class Program
         {
             var config = JsonSerializer.Deserialize<Config>(File.ReadAllText(configFile));
             token = string.IsNullOrEmpty(config.CivitaiToken) ? AskCivitaiToken() : config.CivitaiToken;
-            folderPath = string.IsNullOrEmpty(config.CivitaiSaveFolder) ? AskSaveFolderPath() : config.CivitaiSaveFolder;
+            folderPath = ChooseSaveFolders(config.CivitaiSaveFolder, config.CivitaiBackupFolders);
             if (string.IsNullOrEmpty(folderPath))
             {
                 return;
             }
         }
 
-        _downloader = new Downloader();
+        _downloader ??= new Downloader();
         _downloader.InitializeCivitai(token, folderPath);
 
         try
@@ -91,7 +91,7 @@ public partial class Program
                 return;
             }
 
-            var downloadItems = Downloader.GetCivitaiModelDownloadItems(selectedVersion);
+            var downloadItems = _downloader.GetCivitaiModelDownloadItems(selectedVersion);
             if (downloadItems == null || downloadItems.Count == 0)
             {
                 AnsiConsole.MarkupLine($"[red]{GetString("NoAvailableDownloadLink")}[/]");
@@ -105,7 +105,7 @@ public partial class Program
             }
 
             RenderFileList(downloadItems);
-            await TryDownloadFilesAsync(downloadItems, string.Empty);
+            await TryDownloadFilesAsync(downloadItems);
         }
         catch (Exception ex)
         {

@@ -153,6 +153,9 @@
   <data name="FileName" xml:space="preserve">
     <value>文件名</value>
   </data>
+  <data name="FolderNotExist" xml:space="preserve">
+    <value>所选文件夹不存在</value>
+  </data>
   <data name="FolderPickerTip" xml:space="preserve">
     <value>你想保存到哪个文件夹？</value>
   </data>
@@ -186,6 +189,9 @@
   <data name="MoreFileTip" xml:space="preserve">
     <value>向上或向下移动以查看更多的文件</value>
   </data>
+  <data name="MoreFolderTip" xml:space="preserve">
+    <value>向上或向下移动以查看更多的文件夹</value>
+  </data>
   <data name="NoAvailableDownloadLink" xml:space="preserve">
     <value>未找到可用的下载链接</value>
   </data>
@@ -200,5 +206,8 @@
   </data>
   <data name="SelectModelVersion" xml:space="preserve">
     <value>选择合适的模型版本</value>
+  </data>
+  <data name="SelectSaveFolder" xml:space="preserve">
+    <value>请选择一个文件夹保存下载内容</value>
   </data>
 </root>
