@@ -30,7 +30,7 @@ internal sealed class HuggingFaceUtils : IDisposable
     {
         var request = GetRequest(modelId);
 
-        if(!_cancellationTokenSource.IsCancellationRequested)
+        if (_cancellationTokenSource != null && !_cancellationTokenSource.IsCancellationRequested)
         {
             await _cancellationTokenSource.CancelAsync();
         }

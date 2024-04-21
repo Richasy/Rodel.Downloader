@@ -6,21 +6,17 @@ namespace AIDownloader.Core.Models;
 public class HuggingFaceModels
 {
     public string _id { get; set; }
-    public string id { get; set; }
     public string modelId { get; set; }
     public string author { get; set; }
     public string sha { get; set; }
     public DateTimeOffset lastModified { get; set; }
-    public bool _private { get; set; }
     public bool disabled { get; set; }
-    public string gated { get; set; }
     public string pipeline_tag { get; set; }
     public string[] tags { get; set; }
     public int downloads { get; set; }
     public string library_name { get; set; }
     public Widget[] widgetData { get; set; }
     public int likes { get; set; }
-    public object modelindex { get; set; }
     public Config config { get; set; }
     public CardData cardData { get; set; }
     public TransformersInfo transformersInfo { get; set; }
@@ -41,7 +37,6 @@ public class TokenizerConfig
 {
     public string bos_token { get; set; }
     public string eos_token { get; set; }
-    public object pad_token { get; set; }
     public string unk_token { get; set; }
     public bool use_default_system_prompt { get; set; }
     public string chat_template { get; set; }

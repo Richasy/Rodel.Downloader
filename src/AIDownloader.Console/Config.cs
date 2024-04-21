@@ -9,4 +9,7 @@ internal class Config
 
     [JsonPropertyName("save_folder")]
     public string SaveFolder { get; set; }
+
+    [JsonPropertyName("uri_type")]
+    public string UriType { get; set; }
 }

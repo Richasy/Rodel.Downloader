@@ -115,7 +115,7 @@ internal class Requests : IDisposable
 
             if (requestError?.Error != null)
             {
-                return new Aria2Exception(requestError.Error.Code, requestError.Error.Message);
+                return new Aria2Exception(long.Parse(requestError.Error.Code), requestError.Error.Message);
             }
 
             return null;

@@ -25,13 +25,13 @@ public class DownloadStatusResult
     /// Completed length of the download in bytes.
     /// </summary>
     [JsonPropertyName("completedLength")]
-    public long CompletedLength { get; set; }
+    public string CompletedLength { get; set; }
 
     /// <summary>
     /// The number of peers/servers aria2 has connected to.
     /// </summary>
     [JsonPropertyName("connections")]
-    public long Connections { get; set; }
+    public string Connections { get; set; }
 
     /// <summary>
     /// Directory to save files.
@@ -43,7 +43,7 @@ public class DownloadStatusResult
     /// Download speed of this download measured in bytes/sec.
     /// </summary>
     [JsonPropertyName("downloadSpeed")]
-    public long DownloadSpeed { get; set; }
+    public string DownloadSpeed { get; set; }
 
     /// <summary>
     /// Returns the list of files. The elements of this list are the same structs used in aria2.getFiles() method.
@@ -67,25 +67,25 @@ public class DownloadStatusResult
     /// The number of pieces.
     /// </summary>
     [JsonPropertyName("numPieces")]
-    public long NumPieces { get; set; }
+    public string NumPieces { get; set; }
 
     /// <summary>
     /// The number of seeders aria2 has connected to. BitTorrent only.
     /// </summary>
     [JsonPropertyName("numSeeders")]
-    public long NumSeeders { get; set; }
+    public string NumSeeders { get; set; }
 
     /// <summary>
     /// Piece length in bytes.
     /// </summary>
     [JsonPropertyName("pieceLength")]
-    public long PieceLength { get; set; }
+    public string PieceLength { get; set; }
 
     /// <summary>
     /// true if the local endpoint is a seeder. Otherwise false. BitTorrent only.
     /// </summary>
     [JsonPropertyName("seeder")]
-    public bool Seeder { get; set; }
+    public string Seeder { get; set; }
 
     /// <summary>
     /// active for currently downloading/seeding downloads. waiting for downloads in the queue; download is not started.
@@ -99,19 +99,19 @@ public class DownloadStatusResult
     /// Total length of the download in bytes.
     /// </summary>
     [JsonPropertyName("totalLength")]
-    public long TotalLength { get; set; }
+    public string TotalLength { get; set; }
 
     /// <summary>
     /// Uploaded length of the download in bytes.
     /// </summary>
     [JsonPropertyName("uploadLength")]
-    public long UploadLength { get; set; }
+    public string UploadLength { get; set; }
 
     /// <summary>
     /// Upload speed of this download measured in bytes/sec.
     /// </summary>
     [JsonPropertyName("uploadSpeed")]
-    public long UploadSpeed { get; set; }
+    public string UploadSpeed { get; set; }
 
     /// <summary>
     /// The code of the last error for this item, if any. The value is a string. The error codes are defined in the EXIT
@@ -168,7 +168,7 @@ public class DownloadStatusBittorrent
     /// The creation time of the torrent. The value is an integer since the epoch, measured in seconds.
     /// </summary>
     [JsonPropertyName("creationDate")]
-    public long CreationDate { get; set; }
+    public string CreationDate { get; set; }
 
     /// <summary>
     /// Struct which contains data from Info dictionary. It contains following keys.
@@ -187,14 +187,14 @@ public class DownloadStatusBittorrent
     /// download is being hash checked.
     /// </summary>
     [JsonPropertyName("verifiedLength")]
-    public long VerifiedLength { get; set; }
+    public string VerifiedLength { get; set; }
 
     /// <summary>
     /// true if this download is waiting for the hash check in a queue. This key exists only when this download is in the
     /// queue.
     /// </summary>
     [JsonPropertyName("verifyIntegrityPending")]
-    public bool VerifyIntegrityPending { get; set; }
+    public string VerifyIntegrityPending { get; set; }
 }
 
 public class DownloadStatusBittorrentInfo
@@ -209,19 +209,19 @@ public class DownloadStatusBittorrentInfo
 public class DownloadStatusFile
 {
     [JsonPropertyName("completedLength")]
-    public long CompletedLength { get; set; }
+    public string CompletedLength { get; set; }
 
     [JsonPropertyName("index")]
-    public int Index { get; set; }
+    public string Index { get; set; }
 
     [JsonPropertyName("length")]
-    public long Length { get; set; }
+    public string Length { get; set; }
 
     [JsonPropertyName("path")]
     public string Path { get; set; } = null!;
 
     [JsonPropertyName("selected")]
-    public bool Selected { get; set; }
+    public string Selected { get; set; }
 
     [JsonPropertyName("uris")]
     public List<DownloadStatusFileUri> Uris { get; set; } = new List<DownloadStatusFileUri>();

@@ -8,7 +8,7 @@ namespace AIDownloader.Aria;
 public class RequestError
 {
     [JsonPropertyName("code")]
-    public long Code { get; set; }
+    public string Code { get; set; }
 
     [JsonPropertyName("message")]
     public string Message { get; set; }

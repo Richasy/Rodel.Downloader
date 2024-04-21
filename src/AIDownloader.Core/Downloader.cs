@@ -7,10 +7,11 @@ namespace AIDownloader.Core;
 /// <summary>
 /// 下载客户端.
 /// </summary>
-public sealed class Downloader
+public sealed class Downloader : IDisposable
 {
     private HuggingFaceUtils _hfUtils;
     private string _hfSaveFolder;
+    private bool _disposedValue;
 
     /// <summary>
     /// 初始化 Hugging Face.
@@ -54,6 +55,11 @@ public sealed class Downloader
     /// <returns>下载列表.</returns>
     public async Task<List<DownloadItem>> GetHuggingFaceModelAsync(string modelId)
     {
+        if (_hfUtils == null)
+        {
+            throw new InvalidOperationException("Hugging Face 未初始化.");
+        }
+
         var results = await _hfUtils.GetDownloadUrlsAsync(modelId);
         foreach (var item in results)
         {
@@ -61,5 +67,26 @@ public sealed class Downloader
         }
 
         return results;
+    }
+
+    /// <inheritdoc/>
+    public void Dispose()
+    {
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (!_disposedValue)
+        {
+            if (disposing)
+            {
+                _hfUtils?.Dispose();
+            }
+
+            _hfUtils = null;
+            _disposedValue = true;
+        }
     }
 }

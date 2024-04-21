@@ -61,7 +61,7 @@ public class AriaClient : IDisposable
     /// <param name="configPath">Aria config file path.</param>
     /// <param name="port">Port.</param>
     /// <param name="retryCount">Retry count.</param>
-    public AriaClient(string ariaPath, string configPath, int port = 9600, string? secret = null, int retryCount = 0)
+    public AriaClient(string ariaPath, string configPath, int port = 6800, string? secret = null, int retryCount = 0)
     {
         _ariaProcess = new Process
         {
@@ -349,7 +349,7 @@ public class AriaClient : IDisposable
     /// <param name="pos">The new position.</param>
     /// <param name="how">The method of setting the new position.</param>
     /// <returns>The new position of the download in the queue.</returns>
-    public async Task<int> ChangePositionAsync(string gid, int pos, ChangePositionHow how, CancellationToken cancellationToken = default)
+    public async Task<int> ChangePositionAsync(string gid, string pos, ChangePositionHow how, CancellationToken cancellationToken = default)
     {
         var howstring = how switch
         {
@@ -380,7 +380,7 @@ public class AriaClient : IDisposable
     /// the download before the last download, and so on. Downloads in the response are in reversed order then.
     /// </summary>
     /// <returns>Download status list.</returns>
-    public async Task<IList<DownloadStatusResult>> TellWaitingAsync(int offset, int num, CancellationToken cancellationToken = default)
+    public async Task<IList<DownloadStatusResult>> TellWaitingAsync(int offset, string num, CancellationToken cancellationToken = default)
     {
         return await _requests.GetRequestAsync<List<DownloadStatusResult>>("aria2.tellWaiting", cancellationToken, offset, num);
     }
@@ -392,7 +392,7 @@ public class AriaClient : IDisposable
     /// in the aria2.tellWaiting() method.
     /// </summary>
     /// <returns>Download status list.</returns>
-    public async Task<IList<DownloadStatusResult>> TellStoppedAsync(int offset, int num, CancellationToken cancellationToken = default)
+    public async Task<IList<DownloadStatusResult>> TellStoppedAsync(int offset, string num, CancellationToken cancellationToken = default)
     {
         return await _requests.GetRequestAsync<List<DownloadStatusResult>>("aria2.tellStopped", cancellationToken, offset, num);
     }
@@ -448,7 +448,7 @@ public class AriaClient : IDisposable
     /// <returns>Uris.</returns>
     public async Task<IList<string>> ChangeUriAsync(
         string gid,
-        int fileIndex,
+        string fileIndex,
         IList<string> delUris,
         IList<string> addUris,
         int? position = null,
@@ -566,6 +566,9 @@ public class AriaClient : IDisposable
     public async Task<IList<string>> SaveSessionAsync(CancellationToken cancellationToken = default)
         => await _requests.GetRequestAsync<List<string>>("aria2.saveSession", cancellationToken);
 
+    /// <summary>
+    /// Dispose the client.
+    /// </summary>
     protected virtual void Dispose(bool disposing)
     {
         if (!_disposedValue)

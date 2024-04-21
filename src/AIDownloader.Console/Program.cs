@@ -1,3 +1,13 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
-Console.WriteLine("Hello, World!");
+ConfigureConsole();
+
+var ignoreConfig = args.Contains("--ignore-config");
+var shouldCleanUp = args.Contains("--clean-up");
+
+if (shouldCleanUp)
+{
+    KillAllAria2Process();
+}
+
+await RunHuggingFaceDownloadAsync(ignoreConfig);

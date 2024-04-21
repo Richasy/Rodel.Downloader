@@ -11,16 +11,16 @@ public class GlobalStatResult
     public decimal DownloadSpeed { get; set; }
 
     [JsonPropertyName("numActive")]
-    public int NumActive { get; set; }
+    public string NumActive { get; set; }
 
     [JsonPropertyName("numStopped")]
-    public int NumStopped { get; set; }
+    public string NumStopped { get; set; }
 
     [JsonPropertyName("numStoppedTotal")]
-    public int NumStoppedTotal { get; set; }
+    public string NumStoppedTotal { get; set; }
 
     [JsonPropertyName("numWaiting")]
-    public int NumWaiting { get; set; }
+    public string NumWaiting { get; set; }
 
     [JsonPropertyName("uploadSpeed")]
     public decimal UploadSpeed { get; set; }

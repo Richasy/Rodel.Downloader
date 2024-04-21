@@ -14,19 +14,19 @@ public class FileResult
     /// completed pieces.
     /// </summary>
     [JsonPropertyName("completedLength")]
-    public long CompletedLength { get; set; }
+    public string CompletedLength { get; set; }
 
     /// <summary>
     /// Index of the file, starting at 1, in the same order as files appear in the multi-file torrent.
     /// </summary>
     [JsonPropertyName("index")]
-    public int Index { get; set; }
+    public long Index { get; set; }
 
     /// <summary>
     /// File size in bytes.
     /// </summary>
     [JsonPropertyName("length")]
-    public long Length { get; set; }
+    public string Length { get; set; }
 
     /// <summary>
     /// File path.
@@ -39,7 +39,7 @@ public class FileResult
     /// torrent or not a torrent download at all, this value is always true. Otherwise false.
     /// </summary>
     [JsonPropertyName("selected")]
-    public bool Selected { get; set; }
+    public string Selected { get; set; }
 
     /// <summary>
     /// Returns a list of URIs for this file. The element type is the same struct used in the aria2.getUris() method.

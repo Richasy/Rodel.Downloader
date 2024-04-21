@@ -11,7 +11,7 @@ public class PeerResult
     /// true if aria2 is choking the peer. Otherwise false.
     /// </summary>
     [JsonPropertyName("amChoking")]
-    public bool AmChoking { get; set; }
+    public string AmChoking { get; set; }
 
     /// <summary>
     /// Hexadecimal representation of the download progress of the peer. The highest bit corresponds to the piece at index
@@ -37,7 +37,7 @@ public class PeerResult
     /// true if the peer is choking aria2. Otherwise false.
     /// </summary>
     [JsonPropertyName("peerChoking")]
-    public bool PeerChoking { get; set; }
+    public string PeerChoking { get; set; }
 
     /// <summary>
     /// Percent-encoded peer ID.
@@ -49,13 +49,13 @@ public class PeerResult
     /// Port number of the peer.
     /// </summary>
     [JsonPropertyName("port")]
-    public int Port { get; set; }
+    public string Port { get; set; }
 
     /// <summary>
     /// true if this peer is a seeder. Otherwise false.
     /// </summary>
     [JsonPropertyName("seeder")]
-    public bool Seeder { get; set; }
+    public string Seeder { get; set; }
 
     /// <summary>
     /// Upload speed(byte/sec) that this client uploads to the peer.

@@ -27,4 +27,7 @@ public class DownloadItem(string fileName, string link)
 
     /// <inheritdoc/>
     public override int GetHashCode() => HashCode.Combine(Link);
+
+    /// <inheritdoc/>
+    public override string ToString() => FileName;
 }
