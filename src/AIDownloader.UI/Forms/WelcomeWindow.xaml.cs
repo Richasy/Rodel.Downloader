@@ -1,6 +1,7 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
 using AIDownloader.UI.Pages;
+using AIDownloader.UI.ViewModels;
 
 namespace AIDownloader.UI.Forms;
 
@@ -24,6 +25,13 @@ public sealed partial class WelcomeWindow : WindowBase, ITipWindow
         this.CenterOnScreen();
         _ = MainFrame.Navigate(typeof(WelcomePage));
     }
+
+    /// <summary>
+    /// 视图模型.
+    /// </summary>
+#pragma warning disable CA1822 // 将成员标记为 static
+    public WelcomePageViewModel ViewModel => WelcomePageViewModel.Instance;
+#pragma warning restore CA1822 // 将成员标记为 static
 
     /// <inheritdoc/>
     public async Task ShowTipAsync(UIElement element, double delaySeconds)

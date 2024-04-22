@@ -1,6 +1,6 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
-using AIDownloader.UI.ViewModels.AppViewModel;
+using AIDownloader.UI.ViewModels;
 
 namespace AIDownloader.UI.Pages;
 

@@ -2,7 +2,7 @@
 
 using AIDownloader.UI.Models.Constants;
 using AIDownloader.UI.Toolkits;
-using AIDownloader.UI.ViewModels.AppViewModel;
+using AIDownloader.UI.ViewModels;
 
 namespace AIDownloader.UI.Forms;
 

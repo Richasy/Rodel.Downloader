@@ -4,7 +4,7 @@ using AIDownloader.UI.Controls;
 using AIDownloader.UI.Models.Args;
 using AIDownloader.UI.Models.Constants;
 using AIDownloader.UI.Toolkits;
-using AIDownloader.UI.ViewModels.AppViewModel;
+using AIDownloader.UI.ViewModels;
 using Microsoft.UI.Windowing;
 using Windows.ApplicationModel.Activation;
 

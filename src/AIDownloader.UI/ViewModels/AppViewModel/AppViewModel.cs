@@ -4,7 +4,7 @@ using AIDownloader.UI.Models.Args;
 using AIDownloader.UI.Models.Constants;
 using AIDownloader.UI.Toolkits;
 
-namespace AIDownloader.UI.ViewModels.AppViewModel;
+namespace AIDownloader.UI.ViewModels;
 
 /// <summary>
 /// 应用视图模型.

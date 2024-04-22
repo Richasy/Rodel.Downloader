@@ -2,7 +2,7 @@
 
 using System.ComponentModel;
 using AIDownloader.UI.Toolkits;
-using AIDownloader.UI.ViewModels.AppViewModel;
+using AIDownloader.UI.ViewModels;
 using Microsoft.UI.Input;
 using Microsoft.UI.Windowing;
 

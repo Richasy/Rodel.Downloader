@@ -1,12 +1,79 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Page
+<local:WelcomePageBase
     x:Class="AIDownloader.UI.Pages.WelcomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:animations="using:CommunityToolkit.WinUI.Animations"
+    xmlns:controls="using:AI.Downloader.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="using:AIDownloader.UI.Extensions"
     xmlns:local="using:AIDownloader.UI.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid />
-</Page>
+    <Page.Resources>
+        <Style
+            x:Key="DescriptionTextStyle"
+            BasedOn="{StaticResource BodyTextBlockStyle}"
+            TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style
+            x:Key="HolderIconStyle"
+            BasedOn="{StaticResource DefaultImageExStyle}"
+            TargetType="controls:ImageEx">
+            <Setter Property="Width" Value="180" />
+            <Setter Property="PlaceholderStretch" Value="Uniform" />
+            <Setter Property="Stretch" Value="Uniform" />
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid VerticalAlignment="Center">
+            <controls:ImageEx
+                Width="200"
+                Source="ms-appx:///Assets/big_logo.png"
+                Style="{StaticResource HolderIconStyle}"
+                Visibility="{x:Bind ViewModel.IsFREStep, Mode=OneWay}" />
+            <controls:ImageEx
+                Source="ms-appx:///Assets/hf-logo.png"
+                Style="{StaticResource HolderIconStyle}"
+                Visibility="{x:Bind ViewModel.IsHuggingFaceStep, Mode=OneWay}" />
+            <controls:ImageEx
+                Source="ms-appx:///Assets/civitai-logo.png"
+                Style="{StaticResource HolderIconStyle}"
+                Visibility="{x:Bind ViewModel.IsCivitaiStep, Mode=OneWay}" />
+            <controls:ImageEx
+                Source="ms-appx:///Assets/party_popper_3d.png"
+                Style="{StaticResource HolderIconStyle}"
+                Visibility="{x:Bind ViewModel.IsLastStep, Mode=OneWay}" />
+        </Grid>
+
+        <Grid Grid.Column="1" VerticalAlignment="Center">
+            <!--  初始  -->
+            <StackPanel
+                Margin="0,0,32,0"
+                Spacing="20"
+                Visibility="{x:Bind ViewModel.IsFREStep, Mode=OneWay}">
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{ext:Locale Name=WelcomeTitle}" />
+                <TextBlock Style="{StaticResource DescriptionTextStyle}" Text="{ext:Locale Name=WelcomeDescription}" />
+
+                <animations:Implicit.ShowAnimations>
+                    <animations:TranslationAnimation
+                        From="0, 20, 0"
+                        To="0,0,0"
+                        Duration="0:0:0.5" />
+                    <animations:OpacityAnimation
+                        From="0"
+                        To="1.0"
+                        Duration="0:0:0.5" />
+                </animations:Implicit.ShowAnimations>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</local:WelcomePageBase>

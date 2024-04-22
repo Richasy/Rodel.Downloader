@@ -1,11 +1,13 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
+using AIDownloader.UI.ViewModels;
+
 namespace AIDownloader.UI.Pages;
 
 /// <summary>
 /// 欢迎页.
 /// </summary>
-public sealed partial class WelcomePage : Page
+public sealed partial class WelcomePage : WelcomePageBase
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="WelcomePage"/> class.
@@ -13,5 +15,13 @@ public sealed partial class WelcomePage : Page
     public WelcomePage()
     {
         InitializeComponent();
+        ViewModel = WelcomePageViewModel.Instance;
     }
+}
+
+/// <summary>
+/// <see cref="WelcomePage"/> 的基类.
+/// </summary>
+public abstract class WelcomePageBase : PageBase<WelcomePageViewModel>
+{
 }

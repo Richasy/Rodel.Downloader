@@ -123,4 +123,19 @@
   <data name="Back" xml:space="preserve">
     <value>返回</value>
   </data>
+  <data name="LaunchApp" xml:space="preserve">
+    <value>启动应用</value>
+  </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="PrevStep" xml:space="preserve">
+    <value>上一步</value>
+  </data>
+  <data name="WelcomeDescription" xml:space="preserve">
+    <value>在开始使用前，请跟随我做一些简单的配置吧！</value>
+  </data>
+  <data name="WelcomeTitle" xml:space="preserve">
+    <value>欢迎使用 AI 下载器</value>
+  </data>
 </root>

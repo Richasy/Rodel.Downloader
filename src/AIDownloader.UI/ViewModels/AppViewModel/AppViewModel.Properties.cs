@@ -2,7 +2,7 @@
 
 using AIDownloader.UI.Models.Args;
 
-namespace AIDownloader.UI.ViewModels.AppViewModel;
+namespace AIDownloader.UI.ViewModels;
 
 /// <summary>
 /// 应用视图模型.
