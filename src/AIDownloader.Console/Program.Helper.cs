@@ -3,6 +3,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Resources;
+using System.Text;
 using AIDownloader.Aria;
 using AIDownloader.Aria.Models;
 using AIDownloader.Core;
@@ -92,6 +93,62 @@ public partial class Program
         return folderPath;
     }
 
+    private static string ChooseSaveFolders(string preferFolder, Dictionary<string, string> backupFolders)
+    {
+        if (!string.IsNullOrEmpty(preferFolder) && Directory.Exists(preferFolder))
+        {
+            return preferFolder;
+        }
+
+        var selectedFolder = string.Empty;
+        if (backupFolders != null && backupFolders.Count > 0)
+        {
+            if (backupFolders.Count > 1)
+            {
+                var folderIndex = AnsiConsole.Prompt(
+                       new SelectionPrompt<int>()
+                          .Title(GetString("SelectSaveFolder"))
+                          .PageSize(10)
+                          .MoreChoicesText(GetString("MoreFolderTip"))
+                          .UseConverter(ConvertFolderToString)
+                          .AddChoices(Enumerable.Range(0, backupFolders.Count)));
+                selectedFolder = backupFolders.ElementAt(folderIndex).Value;
+            }
+            else
+            {
+                selectedFolder = backupFolders.First().Value;
+            }
+
+            if (!Directory.Exists(selectedFolder))
+            {
+                AnsiConsole.MarkupLine($"[red]{GetString("FolderNotExist")}[/]");
+                selectedFolder = string.Empty;
+            }
+        }
+
+        if (string.IsNullOrEmpty(selectedFolder))
+        {
+            selectedFolder = AskSaveFolderPath();
+        }
+
+        if (!Directory.Exists(selectedFolder))
+        {
+            AnsiConsole.MarkupLine($"[red]{GetString("FolderNotExist")}[/]");
+            selectedFolder = string.Empty;
+        }
+
+        return selectedFolder;
+
+        string ConvertFolderToString(int index)
+        {
+            var folder = backupFolders.ElementAt(index);
+            var sb = new StringBuilder();
+            sb.AppendLine($"[bold]{folder.Key}[/]");
+            sb.AppendLine(folder.Value);
+            return sb.ToString();
+        }
+    }
+
     private static void RenderFileList(List<DownloadItem> fileList)
     {
         var table = new Table();
@@ -127,10 +184,11 @@ public partial class Program
 
     private static async Task TryDownloadFilesAsync(List<DownloadItem> items, string accessToken = "")
     {
+        var processFolder = Path.GetDirectoryName(Environment.ProcessPath);
         if (_ariaClient == null)
         {
-            var ariaFilePath = Path.Combine(Environment.CurrentDirectory, "lib", "aria2c.exe");
-            var ariaConfigPath = Path.Combine(Environment.CurrentDirectory, "lib", "aria2.conf");
+            var ariaFilePath = Path.Combine(processFolder, "lib", "aria2c.exe");
+            var ariaConfigPath = Path.Combine(processFolder, "lib", "aria2.conf");
             _ariaClient = new AriaClient(ariaFilePath, ariaConfigPath, 9600, retryCount: 3);
             AnsiConsole.MarkupLine($"[gray]{GetString("Aria2cInitialized")}[yellow]9600[/][/]");
         }
@@ -146,7 +204,7 @@ public partial class Program
             .Cropping(VerticalOverflowCropping.Top)
             .StartAsync(async ctx =>
             {
-                var ariaConfigPath = Path.Combine(Environment.CurrentDirectory, "lib", "aria2.conf");
+                var ariaConfigPath = Path.Combine(processFolder, "lib", "aria2.conf");
                 foreach (var item in items)
                 {
                     var options = new Dictionary<string, object>
@@ -224,7 +282,7 @@ public partial class Program
                         {
                             if (status.Status == "error")
                             {
-                                AnsiConsole.MarkupLine($"[red]{string.Format(GetString("DownloadError"), item.Value.Description)}[/]");
+                                AnsiConsole.MarkupLine($"[red]{string.Format(GetString("DownloadError"), item.Value.Description)}\n{status.ErrorCode}: {status.ErrorMessage}[/]");
                                 item.Value.StopTask();
                             }
 

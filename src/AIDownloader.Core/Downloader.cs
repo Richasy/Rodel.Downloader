@@ -17,14 +17,6 @@ public sealed class Downloader : IDisposable
     private bool _disposedValue;
 
     /// <summary>
-    /// 获取 Civitai 模型下载项.
-    /// </summary>
-    /// <param name="model">选中的模型.</param>
-    /// <returns>下载项列表.</returns>
-    public static List<DownloadItem> GetCivitaiModelDownloadItems(ModelItem model)
-        => CivitaiUtils.GetDownloads(model);
-
-    /// <summary>
     /// 初始化 Hugging Face.
     /// </summary>
     /// <param name="uriType">使用的 BaseUri 类型.</param>
@@ -110,6 +102,22 @@ public sealed class Downloader : IDisposable
         return _civitaiUtils == null
             ? throw new InvalidOperationException("Civitai 未初始化.")
             : await _civitaiUtils.GetModelAsync(id);
+    }
+
+    /// <summary>
+    /// 获取 Civitai 模型下载项.
+    /// </summary>
+    /// <param name="model">选中的模型.</param>
+    /// <returns>下载项列表.</returns>
+    public List<DownloadItem> GetCivitaiModelDownloadItems(ModelItem model)
+    {
+        var results = _civitaiUtils.GetDownloads(model);
+        foreach (var item in results)
+        {
+            item.TargetFolder = _civitaiSaveFolder;
+        }
+
+        return results;
     }
 
     /// <inheritdoc/>

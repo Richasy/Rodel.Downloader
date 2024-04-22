@@ -19,28 +19,6 @@ internal sealed class CivitaiUtils : IDisposable
         _httpClient = new HttpClient();
     }
 
-    /// <summary>
-    /// 从模型中获取下载项.
-    /// </summary>
-    /// <param name="model">选中的模型.</param>
-    /// <returns>下载列表.</returns>
-    public static List<DownloadItem> GetDownloads(ModelItem model)
-    {
-        var version = model.AttachObject as CivitaiModelVersion;
-        if (version == null)
-        {
-            return default;
-        }
-
-        var results = new List<DownloadItem>();
-        foreach (var file in version.files)
-        {
-            results.Add(new DownloadItem(file.name, file.downloadUrl));
-        }
-
-        return results;
-    }
-
     public void SetAccessToken(string accessToken)
         => _accessToken = accessToken;
 
@@ -74,6 +52,29 @@ internal sealed class CivitaiUtils : IDisposable
         }
 
         return modelList;
+    }
+
+    /// <summary>
+    /// 从模型中获取下载项.
+    /// </summary>
+    /// <param name="model">选中的模型.</param>
+    /// <returns>下载列表.</returns>
+    public List<DownloadItem> GetDownloads(ModelItem model)
+    {
+        var version = model.AttachObject as CivitaiModelVersion;
+        if (version == null)
+        {
+            return default;
+        }
+
+        var results = new List<DownloadItem>();
+        foreach (var file in version.files)
+        {
+            var url = string.IsNullOrEmpty(_accessToken) ? file.downloadUrl : file.downloadUrl + $"?token={_accessToken}";
+            results.Add(new DownloadItem(file.name, url));
+        }
+
+        return results;
     }
 
     public void Dispose()
