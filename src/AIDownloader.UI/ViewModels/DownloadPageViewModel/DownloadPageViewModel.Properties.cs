@@ -1,5 +1,7 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
+using AIDownloader.Aria;
+using AIDownloader.Core;
 using AIDownloader.UI.Models.Constants;
 
 namespace AIDownloader.UI.ViewModels;
@@ -9,6 +11,9 @@ namespace AIDownloader.UI.ViewModels;
 /// </summary>
 public sealed partial class DownloadPageViewModel
 {
+    private AriaClient _ariaClient;
+    private Downloader _downloader;
+
     [ObservableProperty]
     private DownloadSource _selectedSource;
 

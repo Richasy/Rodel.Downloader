@@ -19,6 +19,7 @@
     <None Remove="Controls\Components\AppTitleBar.xaml" />
     <None Remove="Controls\Components\FolderItemControl.xaml" />
     <None Remove="Controls\Components\FolderListPanel.xaml" />
+    <None Remove="Controls\HuggingFaceDownloadDialog.xaml" />
     <None Remove="Controls\StatusTip.xaml" />
     <None Remove="Controls\TipPopup.xaml" />
     <None Remove="Forms\WelcomeWindow.xaml" />
@@ -105,6 +106,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\Components\FolderItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\HuggingFaceDownloadDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="NLog.config">

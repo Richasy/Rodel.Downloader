@@ -1,5 +1,6 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
+using AIDownloader.UI.Forms;
 using AIDownloader.UI.Models.Args;
 using AIDownloader.UI.Models.Constants;
 using AIDownloader.UI.Toolkits;
@@ -17,7 +18,11 @@ public sealed partial class AppViewModel : ViewModelBase
     /// <returns><see cref="Task"/>.</returns>
     public Task BeforeExitAsync()
     {
-        _ = this;
+        if (ActivatedWindow is MainWindow)
+        {
+            DownloadPageViewModel.Instance.CleanCommand.Execute(default);
+        }
+
         return Task.CompletedTask;
     }
 

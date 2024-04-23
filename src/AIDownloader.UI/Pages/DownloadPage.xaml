@@ -28,6 +28,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 AutomationProperties.Name="{ext:Locale Name=DownloadModel}"
+                Click="OnDownloadButtonClick"
                 Content="{ext:Locale Name=DownloadModel}"
                 Style="{StaticResource AccentButtonStyle}" />
 

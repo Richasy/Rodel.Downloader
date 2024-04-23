@@ -35,6 +35,19 @@ public sealed partial class DownloadPage : DownloadPageBase
 
         ViewModel.SelectedSource = (DownloadSource)index;
     }
+
+    private void OnDownloadButtonClick(object sender, RoutedEventArgs e)
+    {
+        ViewModel.InitializeCommand.Execute(default);
+        if (ViewModel.SelectedSource == DownloadSource.HuggingFace)
+        {
+            // Show hugging face download dialog.
+        }
+        else
+        {
+            // Show civitai download dialog.
+        }
+    }
 }
 
 /// <summary>

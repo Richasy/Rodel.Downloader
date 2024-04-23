@@ -138,6 +138,12 @@
   <data name="CivitaiConfiguration" xml:space="preserve">
     <value>Civitai 配置</value>
   </data>
+  <data name="CivitaiDownload" xml:space="preserve">
+    <value>Civitai 模型下载</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
   <data name="DownloadModel" xml:space="preserve">
     <value>下载模型</value>
   </data>
@@ -153,8 +159,26 @@
   <data name="HuggingFaceConfiguration" xml:space="preserve">
     <value>Hugging Face 配置</value>
   </data>
+  <data name="HuggingFaceDownload" xml:space="preserve">
+    <value>Hugging Face 模型下载</value>
+  </data>
+  <data name="InvalidModelId" xml:space="preserve">
+    <value>无效的模型 ID</value>
+  </data>
   <data name="LaunchApp" xml:space="preserve">
     <value>启动应用</value>
+  </data>
+  <data name="Mirror" xml:space="preserve">
+    <value>镜像源</value>
+  </data>
+  <data name="ModelId" xml:space="preserve">
+    <value>模型 ID</value>
+  </data>
+  <data name="ModelIdOrLink" xml:space="preserve">
+    <value>模型 ID 或页面链接</value>
+  </data>
+  <data name="ModelIdPlaceholder" xml:space="preserve">
+    <value>作者/模型</value>
   </data>
   <data name="ModifyName" xml:space="preserve">
     <value>修改名称</value>
@@ -164,6 +188,9 @@
   </data>
   <data name="NextStep" xml:space="preserve">
     <value>下一步</value>
+  </data>
+  <data name="Official" xml:space="preserve">
+    <value>官方源</value>
   </data>
   <data name="PrevStep" xml:space="preserve">
     <value>上一步</value>

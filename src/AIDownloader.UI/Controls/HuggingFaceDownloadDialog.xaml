@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentDialog
+    x:Class="AIDownloader.UI.Controls.HuggingFaceDownloadDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:community="using:CommunityToolkit.WinUI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="using:AIDownloader.UI.Extensions"
+    xmlns:local="using:AIDownloader.UI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{ext:Locale Name=HuggingFaceDownload}"
+    CloseButtonText="{ext:Locale Name=Cancel}"
+    PrimaryButtonClick="OnPrimaryButtonClickAsync"
+    PrimaryButtonText="{ext:Locale Name=Confirm}"
+    Style="{StaticResource DefaultContentDialogStyle}"
+    mc:Ignorable="d">
+
+    <Grid MinWidth="280" MaxWidth="400">
+        <StackPanel x:Name="InputContainer" Spacing="12">
+            <community:Segmented x:Name="TypeSelector" SelectionChanged="OnTypeSelectionChanged">
+                <community:SegmentedItem Content="{ext:Locale Name=Official}" />
+                <community:SegmentedItem Content="{ext:Locale Name=Mirror}" />
+            </community:Segmented>
+            <TextBox
+                x:Name="ModelIdBox"
+                HorizontalAlignment="Stretch"
+                Header="{ext:Locale Name=ModelId}"
+                HeaderTemplate="{StaticResource InputHeaderTemplate}"
+                PlaceholderText="{ext:Locale Name=ModelIdPlaceholder}" />
+        </StackPanel>
+    </Grid>
+</ContentDialog>
