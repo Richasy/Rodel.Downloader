@@ -20,6 +20,8 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
         StepCount = 4;
         CurrentStep = 0;
         CheckStep();
+        CheckHuggingFaceSaveFolderEmpty();
+        CheckCivitaiSaveFolderEmpty();
     }
 
     [RelayCommand]
@@ -60,6 +62,42 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
     private void GoPrev()
         => CurrentStep--;
 
+    [RelayCommand]
+    private async Task AddHuggingFaceSaveFolderAsync()
+    {
+        var folder = await FileToolkit.PickFolderAsync(AppViewModel.Instance.ActivatedWindow);
+        if (folder != null && !HuggingFaceSaveFolders.Any(p => p.Path == folder.Path))
+        {
+            HuggingFaceSaveFolders.Add(new FolderItemViewModel(folder.Path, RemoveHuggingFaceSaveFolder));
+        }
+
+        CheckHuggingFaceSaveFolderEmpty();
+    }
+
+    [RelayCommand]
+    private async Task AddCivitaiSaveFolderAsync()
+    {
+        var folder = await FileToolkit.PickFolderAsync(AppViewModel.Instance.ActivatedWindow);
+        if (folder != null && !CivitaiSaveFolders.Any(p => p.Path == folder.Path))
+        {
+            CivitaiSaveFolders.Add(new FolderItemViewModel(folder.Path, RemoveCivitaiSaveFolder));
+        }
+
+        CheckCivitaiSaveFolderEmpty();
+    }
+
+    private void RemoveHuggingFaceSaveFolder(FolderItemViewModel folder)
+    {
+        HuggingFaceSaveFolders.Remove(folder);
+        CheckHuggingFaceSaveFolderEmpty();
+    }
+
+    private void RemoveCivitaiSaveFolder(FolderItemViewModel folder)
+    {
+        CivitaiSaveFolders.Remove(folder);
+        CheckCivitaiSaveFolderEmpty();
+    }
+
     private void WriteSettings()
     {
         SettingsToolkit.WriteLocalSetting(SettingNames.HuggingFaceToken, HuggingFaceToken ?? string.Empty);
@@ -70,6 +108,12 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
         var cvFolderList = CivitaiSaveFolders.Select(p => p.GetData()).ToList();
         SettingsToolkit.WriteLocalSetting(SettingNames.CivitaiSaveFolders, JsonSerializer.Serialize(cvFolderList));
     }
+
+    private void CheckHuggingFaceSaveFolderEmpty()
+        => IsHuggingFaceFoldersEmpty = HuggingFaceSaveFolders.Count == 0;
+
+    private void CheckCivitaiSaveFolderEmpty()
+        => IsCivitaiFoldersEmpty = CivitaiSaveFolders.Count == 0;
 
     private void CheckStep()
     {

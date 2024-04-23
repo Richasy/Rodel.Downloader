@@ -16,6 +16,8 @@
     <None Remove="Assets\logo.ico" />
     <None Remove="Assets\party_popper_3d.png" />
     <None Remove="Controls\Components\AppTitleBar.xaml" />
+    <None Remove="Controls\Components\FolderItemControl.xaml" />
+    <None Remove="Controls\Components\FolderListPanel.xaml" />
     <None Remove="Controls\StatusTip.xaml" />
     <None Remove="Controls\TipPopup.xaml" />
     <None Remove="Forms\WelcomeWindow.xaml" />
@@ -94,6 +96,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\Components\AppTitleBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\Components\FolderListPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\Components\FolderItemControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="NLog.config">

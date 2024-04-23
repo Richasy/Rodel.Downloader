@@ -1,6 +1,9 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
 using AIDownloader.UI.Models;
+using AIDownloader.UI.Models.Constants;
+using AIDownloader.UI.Toolkits;
+using Windows.System;
 
 namespace AIDownloader.UI.ViewModels;
 
@@ -9,19 +12,25 @@ namespace AIDownloader.UI.ViewModels;
 /// </summary>
 public sealed partial class FolderItemViewModel : ViewModelBase
 {
+    private readonly Action<FolderItemViewModel> _removeAction;
+
     [ObservableProperty]
     private string _name;
 
     [ObservableProperty]
     private string _path;
 
+    [ObservableProperty]
+    private bool _isEditing;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="FolderItemViewModel"/> class.
     /// </summary>
-    public FolderItemViewModel(string path)
+    public FolderItemViewModel(string path, Action<FolderItemViewModel> removeAction)
     {
         Path = path;
         Name = System.IO.Path.GetFileName(path);
+        _removeAction = removeAction;
     }
 
     /// <inheritdoc/>
@@ -40,4 +49,32 @@ public sealed partial class FolderItemViewModel : ViewModelBase
 
     /// <inheritdoc/>
     public override int GetHashCode() => HashCode.Combine(Path);
+
+    [RelayCommand]
+    private void Edit() => IsEditing = true;
+
+    [RelayCommand]
+    private void ExitEdit() => IsEditing = false;
+
+    [RelayCommand]
+    private void Remove()
+        => _removeAction?.Invoke(this);
+
+    [RelayCommand]
+    private async Task OpenFolderAsync()
+    {
+        if (IsEditing)
+        {
+            return;
+        }
+
+        try
+        {
+            await Launcher.LaunchFolderPathAsync(Path);
+        }
+        catch (Exception)
+        {
+            AppViewModel.Instance.ShowTip(ResourceToolkit.GetLocalizedString(StringNames.FolderOpenFailed), InfoType.Error);
+        }
+    }
 }

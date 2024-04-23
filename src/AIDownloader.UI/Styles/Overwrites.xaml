@@ -31,7 +31,7 @@
     <DataTemplate x:Key="InputHeaderTemplate">
         <TextBlock
             HorizontalAlignment="Left"
-            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
             Style="{StaticResource CaptionTextBlockStyle}"
             Text="{Binding}" />
     </DataTemplate>

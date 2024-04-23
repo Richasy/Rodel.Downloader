@@ -34,6 +34,12 @@ public sealed partial class WelcomePageViewModel
     [ObservableProperty]
     private string _civitaiToken;
 
+    [ObservableProperty]
+    private bool _isHuggingFaceFoldersEmpty;
+
+    [ObservableProperty]
+    private bool _isCivitaiFoldersEmpty;
+
     /// <summary>
     /// 实例.
     /// </summary>

@@ -117,20 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccessToken" xml:space="preserve">
+    <value>访问令牌</value>
+  </data>
+  <data name="AccessTokenTip" xml:space="preserve">
+    <value>请输入访问令牌（Access Token）</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>AI 下载器</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>返回</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="CivitaiConfiguration" xml:space="preserve">
+    <value>Civitai 配置</value>
+  </data>
+  <data name="FinishDescription" xml:space="preserve">
+    <value>下载器将基于你提供的配置信息为您下载 AI 模型，您随时可以在应用设置中修改它们，祝您使用愉快</value>
+  </data>
+  <data name="FinishTitle" xml:space="preserve">
+    <value>你完成了所有配置！</value>
+  </data>
+  <data name="FolderOpenFailed" xml:space="preserve">
+    <value>无法打开该文件夹</value>
+  </data>
+  <data name="HuggingFaceConfiguration" xml:space="preserve">
+    <value>Hugging Face 配置</value>
+  </data>
   <data name="LaunchApp" xml:space="preserve">
     <value>启动应用</value>
+  </data>
+  <data name="ModifyName" xml:space="preserve">
+    <value>修改名称</value>
+  </data>
+  <data name="NeedAddSaveFolder" xml:space="preserve">
+    <value>请添加一个文件夹用来保存模型</value>
   </data>
   <data name="NextStep" xml:space="preserve">
     <value>下一步</value>
   </data>
   <data name="PrevStep" xml:space="preserve">
     <value>上一步</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="SaveFolderList" xml:space="preserve">
+    <value>存储文件夹列表</value>
   </data>
   <data name="WelcomeDescription" xml:space="preserve">
     <value>在开始使用前，请跟随我做一些简单的配置吧！</value>
