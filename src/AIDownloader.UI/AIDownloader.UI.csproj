@@ -14,12 +14,16 @@
     <AriaDependencyRootDir>..\lib\</AriaDependencyRootDir>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\FluentIcon.ttf" />
     <None Remove="Assets\logo.ico" />
     <None Remove="Assets\party_popper_3d.png" />
     <None Remove="Controls\Components\AppTitleBar.xaml" />
+    <None Remove="Controls\Components\DownloadItemControl.xaml" />
     <None Remove="Controls\Components\FolderItemControl.xaml" />
     <None Remove="Controls\Components\FolderListPanel.xaml" />
+    <None Remove="Controls\EmptyHolder.xaml" />
     <None Remove="Controls\HuggingFaceDownloadDialog.xaml" />
+    <None Remove="Controls\LoadingOverlapper.xaml" />
     <None Remove="Controls\StatusTip.xaml" />
     <None Remove="Controls\TipPopup.xaml" />
     <None Remove="Forms\WelcomeWindow.xaml" />
@@ -109,6 +113,15 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\HuggingFaceDownloadDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\EmptyHolder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\LoadingOverlapper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\Components\DownloadItemControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="NLog.config">

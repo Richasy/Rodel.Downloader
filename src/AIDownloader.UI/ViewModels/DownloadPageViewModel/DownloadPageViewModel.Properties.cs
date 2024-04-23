@@ -3,6 +3,7 @@
 using AIDownloader.Aria;
 using AIDownloader.Core;
 using AIDownloader.UI.Models.Constants;
+using Microsoft.UI.Dispatching;
 
 namespace AIDownloader.UI.ViewModels;
 
@@ -11,6 +12,8 @@ namespace AIDownloader.UI.ViewModels;
 /// </summary>
 public sealed partial class DownloadPageViewModel
 {
+    private readonly DispatcherQueue _dispatcherQueue;
+    private readonly DispatcherTimer _timer;
     private AriaClient _ariaClient;
     private Downloader _downloader;
 
@@ -32,8 +35,19 @@ public sealed partial class DownloadPageViewModel
     [ObservableProperty]
     private bool _hasSpeed;
 
+    [ObservableProperty]
+    private bool _isHuggingFaceDownloadEnabled;
+
+    [ObservableProperty]
+    private bool _isCivitaiDownloadEnabled;
+
     /// <summary>
     /// 实例.
     /// </summary>
     public static DownloadPageViewModel Instance { get; } = new DownloadPageViewModel();
+
+    /// <summary>
+    /// 下载列表.
+    /// </summary>
+    public ObservableCollection<DownloadItemViewModel> Items { get; } = new();
 }

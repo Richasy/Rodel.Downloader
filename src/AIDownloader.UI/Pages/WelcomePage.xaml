@@ -37,7 +37,6 @@
         </Grid.ColumnDefinitions>
         <Grid VerticalAlignment="Center">
             <controls:ImageEx
-                Width="200"
                 Source="ms-appx:///Assets/big_logo.png"
                 Style="{StaticResource HolderIconStyle}"
                 Visibility="{x:Bind ViewModel.IsFREStep, Mode=OneWay}" />

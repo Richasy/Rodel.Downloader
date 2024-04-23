@@ -135,6 +135,12 @@
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="ChooseOther" xml:space="preserve">
+    <value>选择其它</value>
+  </data>
+  <data name="ChooseSaveFolder" xml:space="preserve">
+    <value>选择存储文件夹</value>
+  </data>
   <data name="CivitaiConfiguration" xml:space="preserve">
     <value>Civitai 配置</value>
   </data>
@@ -144,8 +150,23 @@
   <data name="Confirm" xml:space="preserve">
     <value>确认</value>
   </data>
+  <data name="DeselectAll" xml:space="preserve">
+    <value>取消全选</value>
+  </data>
+  <data name="DownloadListEmptyDescription" xml:space="preserve">
+    <value>这次想下载哪个模型？</value>
+  </data>
+  <data name="DownloadListEmptyTitle" xml:space="preserve">
+    <value>空空如也</value>
+  </data>
   <data name="DownloadModel" xml:space="preserve">
     <value>下载模型</value>
+  </data>
+  <data name="DownloadProgressTipTemplate" xml:space="preserve">
+    <value>共计 {0} 个任务，已完成 {1} 个</value>
+  </data>
+  <data name="FileList" xml:space="preserve">
+    <value>文件列表</value>
   </data>
   <data name="FinishDescription" xml:space="preserve">
     <value>下载器将基于你提供的配置信息为您下载 AI 模型，您随时可以在应用设置中修改它们，祝您使用愉快</value>
@@ -164,6 +185,9 @@
   </data>
   <data name="InvalidModelId" xml:space="preserve">
     <value>无效的模型 ID</value>
+  </data>
+  <data name="InvalidSavePath" xml:space="preserve">
+    <value>无效的保存路径</value>
   </data>
   <data name="LaunchApp" xml:space="preserve">
     <value>启动应用</value>
@@ -189,6 +213,12 @@
   <data name="NextStep" xml:space="preserve">
     <value>下一步</value>
   </data>
+  <data name="NoAvailableDownloadItems" xml:space="preserve">
+    <value>没有找到可用的下载项</value>
+  </data>
+  <data name="NoItemSelected" xml:space="preserve">
+    <value>没有选中条目</value>
+  </data>
   <data name="Official" xml:space="preserve">
     <value>官方源</value>
   </data>
@@ -200,6 +230,9 @@
   </data>
   <data name="SaveFolderList" xml:space="preserve">
     <value>存储文件夹列表</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全选</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>设置</value>

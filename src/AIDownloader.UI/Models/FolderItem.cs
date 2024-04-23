@@ -23,4 +23,10 @@ public sealed class FolderItem
     /// <returns>是否存在.</returns>
     public bool IsAvailable()
         => !string.IsNullOrEmpty(Path) && Directory.Exists(Path);
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj) => obj is FolderItem item && Path == item.Path;
+
+    /// <inheritdoc/>
+    public override int GetHashCode() => HashCode.Combine(Path);
 }

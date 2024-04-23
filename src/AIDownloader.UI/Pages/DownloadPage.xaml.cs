@@ -1,5 +1,6 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
+using AIDownloader.UI.Controls;
 using AIDownloader.UI.Models.Constants;
 using AIDownloader.UI.ViewModels;
 
@@ -22,6 +23,7 @@ public sealed partial class DownloadPage : DownloadPageBase
     /// <inheritdoc/>
     protected override void OnPageLoaded()
     {
+        ViewModel.CheckDownloadEnabledCommand.Execute(default);
         DownloadTypeSelector.SelectedIndex = (int)ViewModel.SelectedSource;
     }
 
@@ -36,12 +38,15 @@ public sealed partial class DownloadPage : DownloadPageBase
         ViewModel.SelectedSource = (DownloadSource)index;
     }
 
-    private void OnDownloadButtonClick(object sender, RoutedEventArgs e)
+    private async void OnDownloadButtonClickAsync(object sender, RoutedEventArgs e)
     {
         ViewModel.InitializeCommand.Execute(default);
         if (ViewModel.SelectedSource == DownloadSource.HuggingFace)
         {
             // Show hugging face download dialog.
+            var dialog = new HuggingFaceDownloadDialog(ViewModel);
+            dialog.XamlRoot = XamlRoot;
+            await dialog.ShowAsync();
         }
         else
         {

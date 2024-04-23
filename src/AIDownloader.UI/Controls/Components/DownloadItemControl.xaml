@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:DownloadItemControlBase
+    x:Class="AIDownloader.UI.Controls.Components.DownloadItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AI.Downloader.UI.Controls"
+    xmlns:controls1="using:AIDownloader.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="using:AIDownloader.UI.Extensions"
+    xmlns:local="using:AIDownloader.UI.Controls.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <controls:CardPanel IsEnableCheck="False">
+        <Grid>
+            <Grid Margin="16,12,16,16" ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Spacing="2">
+                    <TextBlock
+                        x:Name="TitleBlock"
+                        FontWeight="Bold"
+                        Text="{x:Bind ViewModel.Name, Mode=OneWay}"
+                        TextTrimming="CharacterEllipsis">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="{x:Bind ViewModel.Name, Mode=OneWay}" IsEnabled="{x:Bind TitleBlock.IsTextTrimmed, Mode=OneWay}" />
+                        </ToolTipService.ToolTip>
+                    </TextBlock>
+                    <TextBlock
+                        x:Name="PathBlock"
+                        Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        Text="{x:Bind ViewModel.SavePath, Mode=OneWay}"
+                        TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+                <Grid Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        Text="{x:Bind ViewModel.Speed, Mode=OneWay, Converter={StaticResource SpeedToStringConverter}}"
+                        Visibility="{x:Bind ViewModel.IsCompleted, Mode=OneWay, Converter={StaticResource BoolToVisibilityReverseConverter}}" />
+                    <controls1:FluentIcon
+                        Margin="0,0,8,0"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Foreground="{ThemeResource SystemFillColorSuccessBrush}"
+                        Symbol="CheckmarkCircle"
+                        Visibility="{x:Bind ViewModel.IsCompleted, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    <controls1:FluentIcon
+                        Margin="0,0,8,0"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                        Symbol="DismissCircleFilled"
+                        Visibility="{x:Bind ViewModel.IsError, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                </Grid>
+            </Grid>
+            <ProgressBar
+                Height="2"
+                MinHeight="2"
+                Margin="4,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom"
+                IsIndeterminate="{x:Bind ViewModel.IsFetching, Mode=OneWay}"
+                Maximum="{x:Bind ViewModel.MaxLength, Mode=OneWay}"
+                ShowError="{x:Bind ViewModel.IsError, Mode=OneWay}"
+                ShowPaused="{x:Bind ViewModel.IsPaused, Mode=OneWay}"
+                Visibility="{x:Bind ViewModel.IsCompleted, Mode=OneWay, Converter={StaticResource BoolToVisibilityReverseConverter}}"
+                Value="{x:Bind ViewModel.DownloadedLength, Mode=OneWay}" />
+        </Grid>
+    </controls:CardPanel>
+</local:DownloadItemControlBase>
