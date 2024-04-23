@@ -3,6 +3,7 @@
 using AIDownloader.UI.Controls;
 using AIDownloader.UI.Models.Args;
 using AIDownloader.UI.Models.Constants;
+using AIDownloader.UI.Pages;
 using AIDownloader.UI.Toolkits;
 using AIDownloader.UI.ViewModels;
 using Microsoft.UI.Windowing;
@@ -29,15 +30,16 @@ public sealed partial class MainWindow : WindowBase, ITipWindow
         Activated += OnWindowActivated;
 
         MinWidth = 600;
-        MinHeight = 440;
+        MinHeight = 400;
 
         var lastWidth = SettingsToolkit.ReadLocalSetting(SettingNames.LastWindowWidth, 800d);
-        var lastHeight = SettingsToolkit.ReadLocalSetting(SettingNames.LastWindowHeight, 600d);
+        var lastHeight = SettingsToolkit.ReadLocalSetting(SettingNames.LastWindowHeight, 500d);
         Width = lastWidth;
         Height = lastHeight;
 
         this.CenterOnScreen();
 
+        MainFrame.Navigate(typeof(DownloadPage));
         AppViewModel.Instance.RequestShowTip += OnAppViewModelRequestShowTip;
     }
 

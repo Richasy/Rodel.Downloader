@@ -11,7 +11,7 @@
     mc:Ignorable="d">
 
     <Grid
-        Height="28"
+        Height="32"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
@@ -34,12 +34,12 @@
         </Button>
         <StackPanel
             Grid.Column="1"
-            Margin="16,0,0,0"
+            Margin="12,0,0,0"
             VerticalAlignment="Center"
             Orientation="Horizontal"
             Spacing="12">
             <Image
-                Height="22"
+                Height="18"
                 VerticalAlignment="Center"
                 Source="ms-appx:///Assets/logo.png"
                 Stretch="Uniform" />

@@ -21,6 +21,7 @@
             <converters:ObjectToBoolConverter x:Key="ObjectToBoolReverseConverter" IsReverse="True" />
             <converters:ObjectToVisibilityConverter x:Key="ObjectToVisibilityConverter" />
             <converters:ObjectToVisibilityConverter x:Key="ObjectToVisibilityReverseConverter" IsReverse="True" />
+            <converters:SpeedToStringConverter x:Key="SpeedToStringConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -138,6 +138,9 @@
   <data name="CivitaiConfiguration" xml:space="preserve">
     <value>Civitai 配置</value>
   </data>
+  <data name="DownloadModel" xml:space="preserve">
+    <value>下载模型</value>
+  </data>
   <data name="FinishDescription" xml:space="preserve">
     <value>下载器将基于你提供的配置信息为您下载 AI 模型，您随时可以在应用设置中修改它们，祝您使用愉快</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="SaveFolderList" xml:space="preserve">
     <value>存储文件夹列表</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
   </data>
   <data name="WelcomeDescription" xml:space="preserve">
     <value>在开始使用前，请跟随我做一些简单的配置吧！</value>
