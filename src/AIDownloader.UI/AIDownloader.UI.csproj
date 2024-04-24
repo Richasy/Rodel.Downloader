@@ -27,11 +27,13 @@
     <None Remove="Controls\EmptyHolder.xaml" />
     <None Remove="Controls\HuggingFaceDownloadDialog.xaml" />
     <None Remove="Controls\LoadingOverlapper.xaml" />
+    <None Remove="Controls\ModelScopeDownloadDialog.xaml" />
     <None Remove="Controls\Settings\AboutSettingSection.xaml" />
     <None Remove="Controls\Settings\AppLogSettingSection.xaml" />
     <None Remove="Controls\Settings\AppThemeSettingSection.xaml" />
     <None Remove="Controls\Settings\CivitaiSettingSection.xaml" />
     <None Remove="Controls\Settings\HuggingFaceSettingSection.xaml" />
+    <None Remove="Controls\Settings\ModelScopeSettingSection.xaml" />
     <None Remove="Controls\StatusTip.xaml" />
     <None Remove="Controls\TipPopup.xaml" />
     <None Remove="Forms\WelcomeWindow.xaml" />
@@ -142,6 +144,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\CivitaiDownloadDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\Settings\ModelScopeSettingSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\ModelScopeDownloadDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="NLog.config">

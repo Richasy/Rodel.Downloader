@@ -19,6 +19,12 @@
                         <controls1:FluentIcon Symbol="Copy" />
                     </MenuFlyoutItem.Icon>
                 </MenuFlyoutItem>
+                <MenuFlyoutItem Command="{x:Bind ViewModel.OpenFolderCommand, Mode=OneWay}" Text="{ext:Locale Name=OpenFileLocation}">
+                    <MenuFlyoutItem.Icon>
+                        <controls1:FluentIcon Symbol="FolderOpen" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutSeparator />
                 <MenuFlyoutItem Command="{x:Bind ViewModel.RemoveCommand, Mode=OneWay}" Text="{ext:Locale Name=RemoveFromDownloadList}">
                     <MenuFlyoutItem.Icon>
                         <controls1:FluentIcon Foreground="{ThemeResource SystemFillColorCriticalBrush}" Symbol="Dismiss" />

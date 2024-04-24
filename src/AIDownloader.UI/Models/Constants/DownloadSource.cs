@@ -16,4 +16,9 @@ public enum DownloadSource
     /// Civitai.
     /// </summary>
     Civitai,
+
+    /// <summary>
+    /// 魔搭.
+    /// </summary>
+    ModelScope,
 }

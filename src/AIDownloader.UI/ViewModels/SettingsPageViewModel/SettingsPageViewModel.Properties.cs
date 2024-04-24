@@ -28,10 +28,16 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
     private string _civitaiToken;
 
     [ObservableProperty]
+    private string _modelScopeToken;
+
+    [ObservableProperty]
     private bool _isHuggingFaceFoldersEmpty;
 
     [ObservableProperty]
     private bool _isCivitaiFoldersEmpty;
+
+    [ObservableProperty]
+    private bool _isModelScopeFoldersEmpty;
 
     /// <summary>
     /// 实例.
@@ -47,4 +53,9 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
     /// Civitai 保存文件夹.
     /// </summary>
     public ObservableCollection<FolderItemViewModel> CivitaiSaveFolders { get; } = new();
+
+    /// <summary>
+    /// Civitai 保存文件夹.
+    /// </summary>
+    public ObservableCollection<FolderItemViewModel> ModelScopeSaveFolders { get; } = new();
 }

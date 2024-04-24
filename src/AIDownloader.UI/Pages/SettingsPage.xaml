@@ -46,6 +46,7 @@
                     Text="{ext:Locale Name=Services}" />
                 <settings:HuggingFaceSettingSection />
                 <settings:CivitaiSettingSection />
+                <settings:ModelScopeSettingSection />
 
                 <TextBlock
                     Margin="0,8,0,4"

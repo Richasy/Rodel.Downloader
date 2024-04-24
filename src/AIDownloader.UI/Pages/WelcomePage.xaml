@@ -49,6 +49,10 @@
                 Style="{StaticResource HolderIconStyle}"
                 Visibility="{x:Bind ViewModel.IsCivitaiStep, Mode=OneWay}" />
             <controls:ImageEx
+                Source="ms-appx:///Assets/ms-logo.png"
+                Style="{StaticResource HolderIconStyle}"
+                Visibility="{x:Bind ViewModel.IsModelScopeStep, Mode=OneWay}" />
+            <controls:ImageEx
                 Source="ms-appx:///Assets/party_popper_3d.png"
                 Style="{StaticResource HolderIconStyle}"
                 Visibility="{x:Bind ViewModel.IsLastStep, Mode=OneWay}" />
@@ -135,6 +139,43 @@
                         AddCommand="{x:Bind ViewModel.AddCivitaiSaveFolderCommand}"
                         IsEmptyShown="{x:Bind ViewModel.IsCivitaiFoldersEmpty, Mode=OneWay}"
                         ItemsSource="{x:Bind ViewModel.CivitaiSaveFolders}" />
+                </StackPanel>
+
+                <animations:Implicit.ShowAnimations>
+                    <animations:TranslationAnimation
+                        From="20, 0, 0"
+                        To="0,0,0"
+                        Duration="0:0:0.5" />
+                    <animations:OpacityAnimation
+                        From="0"
+                        To="1.0"
+                        Duration="0:0:0.5" />
+                </animations:Implicit.ShowAnimations>
+            </ScrollViewer>
+
+            <!--  Model Scope 配置  -->
+            <ScrollViewer
+                Height="260"
+                Margin="0,20,0,0"
+                Padding="0,0,32,0"
+                Style="{StaticResource PageScrollViewerStyle}"
+                Visibility="{x:Bind ViewModel.IsModelScopeStep, Mode=OneWay}">
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource SubtitleTextBlockStyle}"
+                        Text="{ext:Locale Name=ModelScopeConfiguration}"
+                        TextWrapping="Wrap" />
+                    <PasswordBox
+                        HorizontalAlignment="Stretch"
+                        Header="{ext:Locale Name=AccessToken}"
+                        HeaderTemplate="{StaticResource InputHeaderTemplate}"
+                        Password="{x:Bind ViewModel.ModelScopeToken, Mode=TwoWay}"
+                        PlaceholderText="{ext:Locale Name=AccessTokenTip}" />
+                    <components:FolderListPanel
+                        AddCommand="{x:Bind ViewModel.AddModelScopeSaveFolderCommand}"
+                        IsEmptyShown="{x:Bind ViewModel.IsModelScopeFoldersEmpty, Mode=OneWay}"
+                        ItemsSource="{x:Bind ViewModel.ModelScopeSaveFolders}" />
                 </StackPanel>
 
                 <animations:Implicit.ShowAnimations>

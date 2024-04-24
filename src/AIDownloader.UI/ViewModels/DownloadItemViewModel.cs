@@ -120,6 +120,13 @@ public sealed partial class DownloadItemViewModel : ViewModelBase
         _resumeAction?.Invoke(this);
     }
 
+    [RelayCommand]
+    private async Task OpenFolderAsync()
+    {
+        var folder = Path.GetDirectoryName(SavePath);
+        await Launcher.LaunchFolderPathAsync(folder);
+    }
+
     private void CheckStatus()
     {
         IsFetching = Status == DownloadStatus.Fetching;

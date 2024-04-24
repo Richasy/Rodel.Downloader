@@ -183,6 +183,12 @@
   <data name="ModelNotFound" xml:space="preserve">
     <value>No suitable model was found</value>
   </data>
+  <data name="ModelScope" xml:space="preserve">
+    <value>Model Scope</value>
+  </data>
+  <data name="ModelScopeToken" xml:space="preserve">
+    <value>Please enter the Model Scope access token:</value>
+  </data>
   <data name="MoreFileOperationTip" xml:space="preserve">
     <value>Press the [blue]Space key[/] to toggle the file selection, and the [green]Enter key[/] submit</value>
   </data>

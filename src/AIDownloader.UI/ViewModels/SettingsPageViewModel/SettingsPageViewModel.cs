@@ -27,8 +27,10 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
         Copyright = string.Format(copyrightTemplate, BuildYear);
         HuggingFaceToken = SettingsToolkit.ReadLocalSetting(SettingNames.HuggingFaceToken, string.Empty);
         CivitaiToken = SettingsToolkit.ReadLocalSetting(SettingNames.CivitaiToken, string.Empty);
+        ModelScopeToken = SettingsToolkit.ReadLocalSetting(SettingNames.ModelScopeToken, string.Empty);
         LoadHuggingFaceSaveFolders();
         LoadCivitaiSaveFolders();
+        LoadModelScopeSaveFolders();
     }
 
     [RelayCommand]
@@ -38,6 +40,8 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
         SettingsToolkit.WriteLocalSetting(SettingNames.HuggingFaceSaveFolders, JsonSerializer.Serialize(hfFolderList));
         var cvFolderList = CivitaiSaveFolders.Select(p => p.GetData()).ToList();
         SettingsToolkit.WriteLocalSetting(SettingNames.CivitaiSaveFolders, JsonSerializer.Serialize(cvFolderList));
+        var msFolderList = ModelScopeSaveFolders.Select(p => p.GetData()).ToList();
+        SettingsToolkit.WriteLocalSetting(SettingNames.ModelScopeSaveFolders, JsonSerializer.Serialize(msFolderList));
     }
 
     [RelayCommand]
@@ -64,6 +68,18 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
         CheckCivitaiSaveFolderEmpty();
     }
 
+    [RelayCommand]
+    private async Task AddModelScopeSaveFolderAsync()
+    {
+        var folder = await FileToolkit.PickFolderAsync(AppViewModel.Instance.ActivatedWindow);
+        if (folder != null && !ModelScopeSaveFolders.Any(p => p.Path == folder.Path))
+        {
+            ModelScopeSaveFolders.Add(new FolderItemViewModel(folder.Path, RemoveModelScopeSaveFolder));
+        }
+
+        CheckModelScopeSaveFolderEmpty();
+    }
+
     private void LoadHuggingFaceSaveFolders()
     {
         HuggingFaceSaveFolders.Clear();
@@ -88,11 +104,26 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
         CheckCivitaiSaveFolderEmpty();
     }
 
+    private void LoadModelScopeSaveFolders()
+    {
+        ModelScopeSaveFolders.Clear();
+        var folders = JsonSerializer.Deserialize<List<FolderItem>>(SettingsToolkit.ReadLocalSetting(SettingNames.ModelScopeSaveFolders, "[]"));
+        foreach (var folder in folders)
+        {
+            ModelScopeSaveFolders.Add(new FolderItemViewModel(folder, RemoveModelScopeSaveFolder));
+        }
+
+        CheckModelScopeSaveFolderEmpty();
+    }
+
     private void CheckHuggingFaceSaveFolderEmpty()
         => IsHuggingFaceFoldersEmpty = HuggingFaceSaveFolders.Count == 0;
 
     private void CheckCivitaiSaveFolderEmpty()
         => IsCivitaiFoldersEmpty = CivitaiSaveFolders.Count == 0;
+
+    private void CheckModelScopeSaveFolderEmpty()
+        => IsModelScopeFoldersEmpty = ModelScopeSaveFolders.Count == 0;
 
     private void RemoveHuggingFaceSaveFolder(FolderItemViewModel folder)
     {
@@ -106,9 +137,21 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
         CheckCivitaiSaveFolderEmpty();
     }
 
+    private void RemoveModelScopeSaveFolder(FolderItemViewModel folder)
+    {
+        ModelScopeSaveFolders.Remove(folder);
+        CheckModelScopeSaveFolderEmpty();
+    }
+
     partial void OnHuggingFaceTokenChanged(string value)
         => SettingsToolkit.WriteLocalSetting(SettingNames.HuggingFaceToken, value);
 
     partial void OnCivitaiTokenChanged(string value)
         => SettingsToolkit.WriteLocalSetting(SettingNames.CivitaiToken, value);
+
+    partial void OnModelScopeTokenChanged(string value)
+        => SettingsToolkit.WriteLocalSetting(SettingNames.ModelScopeToken, value);
+
+    partial void OnAppThemeChanged(ElementTheme value)
+        => SettingsToolkit.WriteLocalSetting(SettingNames.AppTheme, value);
 }

@@ -2,6 +2,7 @@
 
 using AIDownloader.Core.Civitai;
 using AIDownloader.Core.Models;
+using AIDownloader.Core.ModelScope;
 
 namespace AIDownloader.Core;
 
@@ -12,8 +13,10 @@ public sealed class Downloader : IDisposable
 {
     private HuggingFaceUtils _hfUtils;
     private CivitaiUtils _civitaiUtils;
+    private ModelScopeUtils _modelScopeUtils;
     private string _hfSaveFolder;
     private string _civitaiSaveFolder;
+    private string _modelScopeSaveFolder;
     private bool _disposedValue;
 
     /// <summary>
@@ -71,6 +74,25 @@ public sealed class Downloader : IDisposable
     }
 
     /// <summary>
+    /// 初始化魔搭.
+    /// </summary>
+    /// <param name="accessToken">访问令牌.</param>
+    /// <param name="saveFolder">保存文件夹.</param>
+    public void InitializeModelScope(string accessToken, string saveFolder)
+    {
+        if (_modelScopeUtils != null)
+        {
+            _modelScopeUtils.SetAccessToken(accessToken);
+        }
+        else
+        {
+            _modelScopeUtils = new ModelScopeUtils(accessToken);
+        }
+
+        _modelScopeSaveFolder = saveFolder;
+    }
+
+    /// <summary>
     /// 获取 Hugging Face 模型仓库下载列表.
     /// </summary>
     /// <param name="modelId">模型标识符，类似 <c>author/model</c>.</param>
@@ -86,6 +108,27 @@ public sealed class Downloader : IDisposable
         foreach (var item in results)
         {
             item.TargetFolder = _hfSaveFolder;
+        }
+
+        return results;
+    }
+
+    /// <summary>
+    /// 获取魔搭模型仓库下载列表.
+    /// </summary>
+    /// <param name="modelId">模型标识符，类似 <c>author/model</c>.</param>
+    /// <returns>下载列表.</returns>
+    public async Task<List<DownloadItem>> GetModelScopeModelAsync(string modelId)
+    {
+        if (_modelScopeUtils == null)
+        {
+            throw new InvalidOperationException("魔搭未初始化.");
+        }
+
+        var results = await _modelScopeUtils.GetDownloadUrlsAsync(modelId);
+        foreach (var item in results)
+        {
+            item.TargetFolder = _modelScopeSaveFolder;
         }
 
         return results;
@@ -135,10 +178,12 @@ public sealed class Downloader : IDisposable
             {
                 _hfUtils?.Dispose();
                 _civitaiUtils?.Dispose();
+                _modelScopeUtils?.Dispose();
             }
 
             _hfUtils = null;
             _civitaiUtils = null;
+            _modelScopeUtils = null;
             _disposedValue = true;
         }
     }

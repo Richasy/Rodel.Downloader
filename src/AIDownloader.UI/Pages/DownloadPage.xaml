@@ -33,6 +33,7 @@
                     AutomationProperties.Name="{ext:Locale Name=DownloadModel}"
                     Click="OnDownloadButtonClickAsync"
                     Content="{ext:Locale Name=DownloadModel}"
+                    IsEnabled="{x:Bind ViewModel.IsDownloadEnabled, Mode=OneWay}"
                     Style="{StaticResource AccentButtonStyle}" />
                 <HyperlinkButton
                     VerticalAlignment="Center"
@@ -63,6 +64,7 @@
                 <community:Segmented x:Name="DownloadTypeSelector" SelectionChanged="OnDownloadTypeSelectionChanged">
                     <community:SegmentedItem Content="Hugging Face" />
                     <community:SegmentedItem Content="Civitai" />
+                    <community:SegmentedItem Content="{ext:Locale Name=ModelScope}" />
                 </community:Segmented>
             </StackPanel>
         </Grid>

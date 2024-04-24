@@ -50,6 +50,12 @@ public sealed partial class HuggingFaceDownloadDialog : ContentDialog
             SaveFolderBox.SelectedItem = selectedFolderItem;
         }
 
+        var lastModelId = SettingsToolkit.ReadLocalSetting(SettingNames.HuggingFaceLastModelId, string.Empty);
+        if (!string.IsNullOrEmpty(lastModelId))
+        {
+            ModelIdBox.Text = lastModelId;
+        }
+
         CheckSelectAllContent();
     }
 
@@ -123,6 +129,7 @@ public sealed partial class HuggingFaceDownloadDialog : ContentDialog
                 return;
             }
 
+            SettingsToolkit.WriteLocalSetting(SettingNames.HuggingFaceLastModelId, _modelId);
             _pageVM.AddDownloadItemsCommand.Execute(selectedItems);
             Hide();
         }

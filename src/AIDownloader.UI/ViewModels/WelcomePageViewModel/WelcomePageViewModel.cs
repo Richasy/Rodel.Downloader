@@ -17,11 +17,12 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
     /// </summary>
     public WelcomePageViewModel()
     {
-        StepCount = 4;
+        StepCount = 5;
         CurrentStep = 0;
         CheckStep();
         CheckHuggingFaceSaveFolderEmpty();
         CheckCivitaiSaveFolderEmpty();
+        CheckModelScopeSaveFoldersEmpty();
     }
 
     [RelayCommand]
@@ -86,6 +87,18 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
         CheckCivitaiSaveFolderEmpty();
     }
 
+    [RelayCommand]
+    private async Task AddModelScopeSaveFolderAsync()
+    {
+        var folder = await FileToolkit.PickFolderAsync(AppViewModel.Instance.ActivatedWindow);
+        if (folder != null && !ModelScopeSaveFolders.Any(p => p.Path == folder.Path))
+        {
+            ModelScopeSaveFolders.Add(new FolderItemViewModel(folder.Path, RemoveModelScopeSaveFolder));
+        }
+
+        CheckModelScopeSaveFoldersEmpty();
+    }
+
     private void RemoveHuggingFaceSaveFolder(FolderItemViewModel folder)
     {
         HuggingFaceSaveFolders.Remove(folder);
@@ -98,15 +111,24 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
         CheckCivitaiSaveFolderEmpty();
     }
 
+    private void RemoveModelScopeSaveFolder(FolderItemViewModel folder)
+    {
+        ModelScopeSaveFolders.Remove(folder);
+        CheckModelScopeSaveFoldersEmpty();
+    }
+
     private void WriteSettings()
     {
         SettingsToolkit.WriteLocalSetting(SettingNames.HuggingFaceToken, HuggingFaceToken ?? string.Empty);
         SettingsToolkit.WriteLocalSetting(SettingNames.CivitaiToken, CivitaiToken ?? string.Empty);
+        SettingsToolkit.WriteLocalSetting(SettingNames.ModelScopeToken, ModelScopeToken ?? string.Empty);
 
         var hfFolderList = HuggingFaceSaveFolders.Select(p => p.GetData()).ToList();
         SettingsToolkit.WriteLocalSetting(SettingNames.HuggingFaceSaveFolders, JsonSerializer.Serialize(hfFolderList));
         var cvFolderList = CivitaiSaveFolders.Select(p => p.GetData()).ToList();
         SettingsToolkit.WriteLocalSetting(SettingNames.CivitaiSaveFolders, JsonSerializer.Serialize(cvFolderList));
+        var msFolderList = ModelScopeSaveFolders.Select(p => p.GetData()).ToList();
+        SettingsToolkit.WriteLocalSetting(SettingNames.ModelScopeSaveFolders, JsonSerializer.Serialize(msFolderList));
     }
 
     private void CheckHuggingFaceSaveFolderEmpty()
@@ -115,11 +137,15 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
     private void CheckCivitaiSaveFolderEmpty()
         => IsCivitaiFoldersEmpty = CivitaiSaveFolders.Count == 0;
 
+    private void CheckModelScopeSaveFoldersEmpty()
+        => IsModelScopeFoldersEmpty = ModelScopeSaveFolders.Count == 0;
+
     private void CheckStep()
     {
         IsFREStep = CurrentStep == 0;
         IsHuggingFaceStep = CurrentStep == 1;
         IsCivitaiStep = CurrentStep == 2;
+        IsModelScopeStep = CurrentStep == 3;
         IsLastStep = CurrentStep == StepCount - 1;
         IsPreviousStepShown = CurrentStep > 1 && !IsLastStep;
     }

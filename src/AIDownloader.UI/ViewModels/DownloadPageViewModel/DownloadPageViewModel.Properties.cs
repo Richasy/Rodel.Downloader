@@ -36,10 +36,7 @@ public sealed partial class DownloadPageViewModel
     private bool _hasSpeed;
 
     [ObservableProperty]
-    private bool _isHuggingFaceDownloadEnabled;
-
-    [ObservableProperty]
-    private bool _isCivitaiDownloadEnabled;
+    private bool _isDownloadEnabled;
 
     [ObservableProperty]
     private bool _isPreparingDownload;

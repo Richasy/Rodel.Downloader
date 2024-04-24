@@ -68,8 +68,9 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
     [RelayCommand]
     private void CheckDownloadEnabled()
     {
-        IsHuggingFaceDownloadEnabled = !string.IsNullOrEmpty(SettingsToolkit.ReadLocalSetting(SettingNames.HuggingFaceToken, string.Empty));
-        IsCivitaiDownloadEnabled = !string.IsNullOrEmpty(SettingsToolkit.ReadLocalSetting(SettingNames.CivitaiToken, string.Empty));
+        IsDownloadEnabled = SelectedSource == DownloadSource.HuggingFace
+            ? !string.IsNullOrEmpty(SettingsToolkit.ReadLocalSetting(SettingNames.HuggingFaceToken, string.Empty))
+            : true;
     }
 
     [RelayCommand]
@@ -96,9 +97,9 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
                         { "config-path", $"\"{ariaConfigPath}\"" },
                     };
 
-                if (!string.IsNullOrEmpty(token) && SelectedSource == DownloadSource.HuggingFace)
+                if (!string.IsNullOrEmpty(token))
                 {
-                    if (SelectedSource == DownloadSource.HuggingFace)
+                    if (SelectedSource == DownloadSource.HuggingFace || SelectedSource == DownloadSource.ModelScope)
                     {
                         options.Add("header", $"Authorization: Bearer {token}");
                     }

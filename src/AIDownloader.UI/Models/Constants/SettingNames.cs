@@ -22,6 +22,10 @@ public enum SettingNames
     HuggingFaceSaveFolders,
     HuggingFaceLastSaveFolder,
     HuggingFaceLastModelId,
+    ModelScopeToken,
+    ModelScopeSaveFolders,
+    ModelScopeLastSaveFolder,
+    ModelScopeLastModelId,
 
     SkipWelcome,
     LastDonwloadType,

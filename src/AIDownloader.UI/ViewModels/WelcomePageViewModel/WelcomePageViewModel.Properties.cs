@@ -23,6 +23,9 @@ public sealed partial class WelcomePageViewModel
     private bool _isCivitaiStep;
 
     [ObservableProperty]
+    private bool _isModelScopeStep;
+
+    [ObservableProperty]
     private bool _isLastStep;
 
     [ObservableProperty]
@@ -35,10 +38,16 @@ public sealed partial class WelcomePageViewModel
     private string _civitaiToken;
 
     [ObservableProperty]
+    private string _modelScopeToken;
+
+    [ObservableProperty]
     private bool _isHuggingFaceFoldersEmpty;
 
     [ObservableProperty]
     private bool _isCivitaiFoldersEmpty;
+
+    [ObservableProperty]
+    private bool _isModelScopeFoldersEmpty;
 
     /// <summary>
     /// 实例.
@@ -54,4 +63,9 @@ public sealed partial class WelcomePageViewModel
     /// Civitai 保存文件夹.
     /// </summary>
     public ObservableCollection<FolderItemViewModel> CivitaiSaveFolders { get; } = new();
+
+    /// <summary>
+    /// 魔搭保存文件夹.
+    /// </summary>
+    public ObservableCollection<FolderItemViewModel> ModelScopeSaveFolders { get; } = new();
 }

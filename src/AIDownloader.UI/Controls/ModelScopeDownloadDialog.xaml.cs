@@ -1,7 +1,6 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
 using System.Text.Json;
-using AIDownloader.Core.Models;
 using AIDownloader.UI.Models;
 using AIDownloader.UI.Models.Constants;
 using AIDownloader.UI.Toolkits;
@@ -11,33 +10,31 @@ using NLog;
 namespace AIDownloader.UI.Controls;
 
 /// <summary>
-/// Civitai 下载对话框.
+/// ModelScope 下载对话框.
 /// </summary>
-public sealed partial class CivitaiDownloadDialog : ContentDialog
+public sealed partial class ModelScopeDownloadDialog : ContentDialog
 {
     private readonly DownloadPageViewModel _pageVM;
     private readonly ObservableCollection<FolderItem> _folders = new();
-    private readonly ObservableCollection<ModelItem> _models = new();
     private readonly ObservableCollection<FileItemViewModel> _files = new();
     private string _modelId;
-    private ModelItem _modelVersion;
     private string _savePath;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="CivitaiDownloadDialog"/> class.
+    /// Initializes a new instance of the <see cref="ModelScopeDownloadDialog"/> class.
     /// </summary>
-    public CivitaiDownloadDialog(DownloadPageViewModel pageVM)
+    public ModelScopeDownloadDialog(DownloadPageViewModel pageVM)
     {
         InitializeComponent();
         _pageVM = pageVM;
-        var saveFolders = SettingsToolkit.ReadLocalSetting(SettingNames.CivitaiSaveFolders, "[]");
+        var saveFolders = SettingsToolkit.ReadLocalSetting(SettingNames.ModelScopeSaveFolders, "[]");
         var folders = JsonSerializer.Deserialize<List<FolderItem>>(saveFolders);
         foreach (var item in folders)
         {
             _folders.Add(item);
         }
 
-        var lastFolder = SettingsToolkit.ReadLocalSetting(SettingNames.HuggingFaceLastSaveFolder, string.Empty);
+        var lastFolder = SettingsToolkit.ReadLocalSetting(SettingNames.ModelScopeLastSaveFolder, string.Empty);
         if (string.IsNullOrEmpty(lastFolder) || !_folders.Any(p => p.Path.Equals(lastFolder)))
         {
             lastFolder = _folders.FirstOrDefault()?.Path;
@@ -49,7 +46,7 @@ public sealed partial class CivitaiDownloadDialog : ContentDialog
             SaveFolderBox.SelectedItem = selectedFolderItem;
         }
 
-        var lastModelId = SettingsToolkit.ReadLocalSetting(SettingNames.CivitaiLastModelId, string.Empty);
+        var lastModelId = SettingsToolkit.ReadLocalSetting(SettingNames.ModelScopeLastModelId, string.Empty);
         if (!string.IsNullOrEmpty(lastModelId))
         {
             ModelIdBox.Text = lastModelId;
@@ -68,21 +65,19 @@ public sealed partial class CivitaiDownloadDialog : ContentDialog
             _files.Clear();
             FetchRing.IsActive = true;
             var downloader = _pageVM.GetDownloader();
-            var token = SettingsToolkit.ReadLocalSetting(SettingNames.CivitaiToken, string.Empty);
-            downloader.InitializeCivitai(token, _savePath);
-            var models = await downloader.GetCivitaiModelAsync(_modelId);
-            if (models is null || models.Count == 0)
+            var token = SettingsToolkit.ReadLocalSetting(SettingNames.ModelScopeToken, string.Empty);
+            downloader.InitializeModelScope(token, Path.Combine(_savePath, _modelId.Split('/').Last()));
+            var fileItems = await downloader.GetModelScopeModelAsync(_modelId);
+            if (fileItems is null || fileItems.Count == 0)
             {
                 AppViewModel.Instance.ShowTip(ResourceToolkit.GetLocalizedString(StringNames.NoAvailableDownloadItems), InfoType.Error);
             }
             else
             {
-                foreach (var item in models)
+                foreach (var item in fileItems)
                 {
-                    _models.Add(item);
+                    _files.Add(new FileItemViewModel(item));
                 }
-
-                VersionSelection.SelectedIndex = 0;
             }
         }
         catch (Exception ex)
@@ -103,26 +98,7 @@ public sealed partial class CivitaiDownloadDialog : ContentDialog
         if (InputContainer.Visibility == Visibility.Visible)
         {
             var id = ModelIdBox.Text;
-            if (string.IsNullOrEmpty(id))
-            {
-                AppViewModel.Instance.ShowTip(StringNames.InvalidModelId, InfoType.Error);
-                return;
-            }
-
-            if (id.Contains('/'))
-            {
-                var split = id.Split('/');
-                foreach (var s in split)
-                {
-                    if (long.TryParse(s, out var mid))
-                    {
-                        id = mid.ToString();
-                        break;
-                    }
-                }
-            }
-
-            if (!long.TryParse(id, out _))
+            if (string.IsNullOrEmpty(id) || !id.Contains('/'))
             {
                 AppViewModel.Instance.ShowTip(StringNames.InvalidModelId, InfoType.Error);
                 return;
@@ -137,7 +113,7 @@ public sealed partial class CivitaiDownloadDialog : ContentDialog
             }
 
             _savePath = saveFolder.Path;
-            SettingsToolkit.WriteLocalSetting(SettingNames.HuggingFaceLastSaveFolder, _savePath);
+            SettingsToolkit.WriteLocalSetting(SettingNames.ModelScopeLastSaveFolder, _savePath);
             await FetchModelAsync();
         }
         else if (DetailContainer.Visibility == Visibility.Visible)
@@ -149,7 +125,7 @@ public sealed partial class CivitaiDownloadDialog : ContentDialog
                 return;
             }
 
-            SettingsToolkit.WriteLocalSetting(SettingNames.CivitaiLastModelId, _modelId);
+            SettingsToolkit.WriteLocalSetting(SettingNames.ModelScopeLastModelId, _modelId);
             _pageVM.AddDownloadItemsCommand.Execute(selectedItems);
             Hide();
         }
@@ -210,23 +186,4 @@ public sealed partial class CivitaiDownloadDialog : ContentDialog
 
     private void OnFileItemClick(object sender, RoutedEventArgs e)
         => CheckSelectAllContent();
-
-    private void OnVersionSelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        _files.Clear();
-        _modelVersion = default;
-        if (VersionSelection.SelectedItem is not ModelItem model)
-        {
-            return;
-        }
-
-        _modelVersion = model;
-        var items = _pageVM.GetDownloader().GetCivitaiModelDownloadItems(model);
-        foreach (var item in items)
-        {
-            _files.Add(new FileItemViewModel(item));
-        }
-
-        CheckSelectAllContent();
-    }
 }

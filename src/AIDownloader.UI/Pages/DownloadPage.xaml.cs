@@ -48,10 +48,17 @@ public sealed partial class DownloadPage : DownloadPageBase
             dialog.XamlRoot = XamlRoot;
             await dialog.ShowAsync();
         }
-        else
+        else if (ViewModel.SelectedSource == DownloadSource.Civitai)
         {
             // Show civitai download dialog.
             var dialog = new CivitaiDownloadDialog(ViewModel);
+            dialog.XamlRoot = XamlRoot;
+            await dialog.ShowAsync();
+        }
+        else if (ViewModel.SelectedSource == DownloadSource.ModelScope)
+        {
+            // Show civitai download dialog.
+            var dialog = new ModelScopeDownloadDialog(ViewModel);
             dialog.XamlRoot = XamlRoot;
             await dialog.ShowAsync();
         }
