@@ -4,7 +4,7 @@
 
 <img height="160" src="./assets/logo.png">
 
-<h1 align="center">AI 下载器</h1>
+<h1 align="center">模型易取</h1>
 
 一个专用的AI模型文件下载器，可以稳定可靠地从 [Hugging Face](https://huggingface.co) 和 [Civitai](https://civitai.com) 中下载你喜欢的模型。它支持命令行和用户界面，目前只在 Windows 上可用。
 
@@ -38,9 +38,14 @@
 - [🛠️ 命令行说明书](#️-命令行说明书)
     - [`1` 下载及安装](#1-下载及安装)
     - [`2` 下载 Hugging Face 模型](#2-下载-hugging-face-模型)
-    - [`3` 下载 Civitai 模型](#3-下载-civitai-模型)
-    - [`4` 恢复下载](#4-恢复下载)
-    - [`5` 配置文件](#5-配置文件)
+    - [`3` 下载魔搭社区模型](#3-下载魔搭社区模型)
+    - [`4` 下载 Civitai 模型](#4-下载-civitai-模型)
+    - [`5` 断点续传](#5-断点续传)
+    - [`6` 配置文件](#6-配置文件)
+- [🪄 应用说明书](#-应用说明书)
+    - [`1` 下载及安装](#1-下载及安装-1)
+    - [`2` 配置](#2-配置)
+    - [`3` 下载模型](#3-下载模型)
 - [🔗 链接](#-链接)
 
 ####
@@ -62,7 +67,17 @@
 
 > \[!TIP]
 >
-> 用户界面基于 Windows App SDK，要求你的系统版本为 Windows 10 19043 及以上。强烈建议从Microsoft Store 下载和安装。
+> 用户界面基于 Windows App SDK，要求你的系统版本为 Windows 10 19043 及以上。强烈建议从 Microsoft Store 下载和安装。
+
+<p align="left">
+  <a title="从 Microsoft Store 中获取" href="https://www.microsoft.com/store/apps/9PJDBLQ239JB?launch=true&mode=full" target="_blank">
+    <picture>
+      <source srcset="https://get.microsoft.com/images/zh-CN%20light.svg" media="(prefers-color-scheme: dark)" />
+      <source srcset="https://get.microsoft.com/images/zh-CN%20dark.svg" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" />
+      <img src="https://get.microsoft.com/images/zh-CN%20dark.svg" width=144 />
+    </picture>
+  </a>
+</p>
 
 ### `2` 内置 Aria2
 
@@ -70,14 +85,14 @@
 
 我的技术能力比较一般，[aria2](https://github.com/aria2/aria2) 在过去给我留下了很好的印象，所以我选择基于它构建一个简单的下载工具。
 
-下载具有以下特性：
+项目具有以下特性：
 
 1. 可定制的下载目录
 2. 支持断点续传
 3. 完整的进度显示
 4. 能够对单个项目进行操作，暂停/恢复/取消 **（仅限应用程序）**
 
-无论是 CLI 还是 APP，都内置了`1.3.7`版本的**aria2c.exe**，无需额外下载，尽可能地做到即插即用。
+无论是 CLI 还是 APP，都内置了 `1.3.7` 版本的 **aria2c.exe** ，无需额外下载，尽可能地做到即插即用。
 
 ## 🎛️ 环境支持
 
@@ -129,7 +144,15 @@
 
 *在下载过程中，你可以随时按 `Ctrl` + `C` 停止下载。*
 
-#### `3` 下载 Civitai 模型
+#### `3` 下载魔搭社区模型
+
+[魔搭（Model Scope）](https://www.modelscope.cn/) 是中国新兴的模型社区，对标 Hugging Face，所以它的下载方式和 Hugging Face 基本一致。
+
+> \[!TIP]
+>
+> 魔搭的访问令牌不是必须的，但如果你要访问有权限保护的模型仓库，那么你需要提供 [访问令牌](https://www.modelscope.cn/my/myaccesstoken)。
+
+#### `4` 下载 Civitai 模型
 
 > \[!TIP]
 >
@@ -152,7 +175,7 @@
 
 接下来，按 `Enter` 键等待下载完成！
 
-#### `4` 恢复下载
+#### `5` 断点续传
 
 该应用程序基于 aria2，因此具有断点续传的能力。下载进度的管理和恢复由 aria2 控制。
 
@@ -168,7 +191,7 @@
 > 
 > 如果相应的文件被删除，你需要重新下载。
 
-#### `5` 配置文件
+#### `6` 配置文件
 
 每次重复输入可能会相当麻烦。CLI 支持使用配置文件来固定可选参数，简化每次调用时的输入。
 
@@ -189,16 +212,76 @@
   "civitai_backup_folders": {
     "folder1": "path1",
     "folder2": "path2"
+  },
+
+  "ms_token": "",
+  "ms_save_folder": "",
+  "ms_backup_folders": {
+    "folder1": "path1",
+    "folder2": "path2"
   }
 }
 ```
 
 1. `*_token`  
-   这是对应服务的访问令牌。
+   这是对应服务的访问令牌。其中，`hf` 指 Hugging Face，`ms` 指魔搭（Model Scope）
 2. `*_save_folder` 和 `*_backup_folders`  
    这是一对互斥的属性，应用优先使用 `*_save_folder`。  
    - 如果你下载的模型只会保存在某个特定的文件夹中，那么填写 `*_save_folder`，CLI 会将对应服务的模型下载到这个文件夹。
    - 如果你有多个可选的位置，比如下载 SD-WebUI 所需的模型（check point，lora...），你可以将对应的路径填写到 `*_backup_folders` 中，其中 `key` 是文件夹路径的可读名称，`value` 是其绝对路径。运行 CLI 时，你可以从定义的文件夹列表中选择。
+
+## 🪄 应用说明书
+
+#### `1` 下载及安装
+
+强烈建议从微软应用商店安装，后续可以自动更新。
+
+<p align="left">
+  <a title="从 Microsoft Store 中获取" href="https://www.microsoft.com/store/apps/9PJDBLQ239JB?launch=true&mode=full" target="_blank">
+    <picture>
+      <source srcset="https://get.microsoft.com/images/zh-CN%20light.svg" media="(prefers-color-scheme: dark)" />
+      <source srcset="https://get.microsoft.com/images/zh-CN%20dark.svg" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" />
+      <img src="https://get.microsoft.com/images/zh-CN%20dark.svg" width=144 />
+    </picture>
+  </a>
+</p>
+
+你也可以使用侧加载的方式手动安装：
+
+1. 打开系统设置，依次选择 `系统` -> `开发者选项`，打开 `开发人员模式`。滚动到页面底部，展开 `PowerShell` 区块，开启 `更改执行策略...` 选项
+2. 打开 [Release](https://github.com/Richasy/AIDownloader/releases) 页面
+3. 在最新版本的 **Assets** 中找到应用包下载。命名格式为：`AIDownloader_{version}_{arch}.zip`
+4. 下载应用包后解压，右键单击文件夹中的 `install.ps1` 脚本，选择 `使用 PowerShell 运行`
+
+#### `2` 配置
+
+在第一次启动应用时，应用会引导你进行一些配置，包括填写 `Hugging Face`, `Civitai`, `魔搭` 等服务的令牌，以及对应服务的保存文件夹等。
+
+如果你不需要对应的服务，直接点击下一步跳过配置即可。
+
+所有的初始配置，后续都可以在应用设置页面更改。
+
+#### `3` 下载模型
+
+打开应用后，你可以在顶部右侧的导航栏中切换不同的模型托管服务。
+
+点击 `下载模型` 按钮，将会弹出对应服务的下载对话框。
+
+根据提示，输入模型的 Id，并选择保存文件夹。你也可以点击 `选择其它` 来临时选择一个文件夹存放。
+
+之后，就可以查看对应仓库的文件列表，选择需要下载的文件，点击下载即可。
+
+应用会逐个添加下载任务，你可以在界面上实时观察到下载进度及下载速度。
+
+你可以随时暂停或恢复某个任务。
+
+> \[!WARNING]
+>
+> 和一般下载器不同的是，应用不会保留你的历史记录。
+
+> 如果你因为某种原因关闭了正在下载的任务，别担心，你仍然可以恢复下载进度，只是需要重新创建一个相同的下载任务（相同的服务，相同的模型 ID，相同的保存路径）。
+> 
+> 在这一点上，应用是有记录的，当你再次创建下载任务时，应用会沿用你上一次的下载配置。
 
 ## 🔗 链接
 
@@ -210,6 +293,7 @@
 - [Hugging Face](https://huggingface.co)
 - [Hugging Face Mirror](https://hf-mirror.com)
 - [Civitai](https://civitai.com)
+- [魔搭](https://www.modelscope.cn)
 
 <!-- LINK GROUP -->
 [github-contributors-link]: https://github.com/Richasy/AIDownloader/graphs/contributors

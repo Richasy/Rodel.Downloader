@@ -38,9 +38,14 @@ English · [简体中文](./README.zh-CN.md)
 - [🛠️ CLI Instruction Manual](#️-cli-instruction-manual)
     - [`1` Install](#1-install)
     - [`2` Download Hugging Face Model](#2-download-hugging-face-model)
-    - [`3` Download Civitai Model](#3-download-civitai-model)
-    - [`4` Resume Download](#4-resume-download)
-    - [`5` Configuration](#5-configuration)
+    - [`3` Download Model Scope Community Model](#3-download-model-scope-community-model)
+    - [`4` Download Civitai Model](#4-download-civitai-model)
+    - [`5` Resume Download](#5-resume-download)
+    - [`6` Configuration](#6-configuration)
+- [🪄 Application Manual](#-application-manual)
+    - [`1` Download and Installation](#1-download-and-installation)
+    - [`2` Configuration](#2-configuration)
+    - [`3` Download Model](#3-download-model)
 - [🔗 Links](#-links)
 
 ####
@@ -63,6 +68,16 @@ Both the command line and UI have simple localization support (supporting `en-US
 > \[!TIP]
 >
 > The UI is based on the Windows App SDK, which requires your system version to be Windows 10 19043 and above. It is highly recommended to download and install from the Microsoft Store.
+
+<p align="left">
+  <a title="Get it from Microsoft Store" href="https://www.microsoft.com/store/apps/9PJDBLQ239JB?launch=true&mode=full" target="_blank">
+    <picture>
+      <source srcset="https://get.microsoft.com/images/en-US%20light.svg" media="(prefers-color-scheme: dark)" />
+      <source srcset="https://get.microsoft.com/images/en-US%20dark.svg" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" />
+      <img src="https://get.microsoft.com/images/en-US%20dark.svg" width=144 />
+    </picture>
+  </a>
+</p>
 
 ### `2` Built-in Aria2
 
@@ -129,7 +144,15 @@ Then... hit `Enter` and wait for the download.
 
 *During the download process, you can press `Ctrl` + `C` at any time to stop the download.*
 
-#### `3` Download Civitai Model
+#### `3` Download Model Scope Community Model
+
+[Model Scope](https://www.modelscope.cn/) is an emerging model community in China, which is comparable to Hugging Face, hence its download method is basically the same as Hugging Face.
+
+> \[!TIP]
+>
+> The access token for Model Scope is not mandatory, but if you need to access protected model repositories, you need to provide an [access token](https://www.modelscope.cn/my/myaccesstoken).
+
+#### `4` Download Civitai Model
 
 > \[!TIP]
 >
@@ -152,7 +175,7 @@ If the number of downloadable files for the specified version is more than 1, th
 
 Next, press `Enter` and wait for the download to complete!
 
-#### `4` Resume Download
+#### `5` Resume Download
 
 The application is based on aria2, so it has the ability to resume interrupted downloads. The management and recovery of download progress are controlled by aria2.
 
@@ -168,7 +191,7 @@ Make sure your model ID and save path are the same as before.
 > 
 > If the corresponding file is deleted, you need to download it again.
 
-#### `5` Configuration
+#### `6` Configuration
 
 Repeating input each time can be rather cumbersome. CLI supports the use of configuration files to fix optional parameters, simplifying the input each time it is called.
 
@@ -189,16 +212,76 @@ You can create a config.json file in the CLI directory and paste the following c
   "civitai_backup_folders": {
     "folder1": "path1",
     "folder2": "path2"
+  },
+
+  "ms_token": "",
+  "ms_save_folder": "",
+  "ms_backup_folders": {
+    "folder1": "path1",
+    "folder2": "path2"
   }
 }
 ```
 
 1. `*_token`  
-   This is the access token for the corresponding service.
+   This is the access token for the corresponding service. In this context, `hf` refers to Hugging Face, while `ms` refers to Model Scope.
 2. `*_save_folder` and `*_backup_folders`  
    These are a pair of mutually exclusive attributes.  
    - If the model you download will only be saved in a certain folder, then fill in `*_save_folder`, and the CLI will download the model of the corresponding service to this folder.
    - If you have multiple optional locations, such as downloading the model required for SD-WebUI (checkpoint, lora...), you can fill in the corresponding path into `*_backup_folders`, where the `key` is the readable name of the folder path, and the `value` is its absolute path. When running the CLI, you can choose from the defined folder list.
+
+## 🪄 Application Manual
+
+#### `1` Download and Installation
+
+Strongly recommend installing from the Microsoft App Store, which can be automatically updated later.
+
+<p align="left">
+  <a title="Get it from Microsoft Store" href="https://www.microsoft.com/store/apps/9PJDBLQ239JB?launch=true&mode=full" target="_blank">
+    <picture>
+      <source srcset="https://get.microsoft.com/images/en-US%20light.svg" media="(prefers-color-scheme: dark)" />
+      <source srcset="https://get.microsoft.com/images/en-US%20dark.svg" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" />
+      <img src="https://get.microsoft.com/images/en-US%20dark.svg" width=144 />
+    </picture>
+  </a>
+</p>
+
+You can also manually install using sideloading:
+
+1. Open system settings, select `System` -> `For Developers` in turn, turn on `Developer Mode`. Scroll to the bottom of the page, expand the `PowerShell` block, and turn on the `Change Execution Policy...` option
+2. Open the [Release](https://github.com/Richasy/AIDownloader/releases) page
+3. Find the application package to download in the **Assets** of the latest version. The naming format is: `AIDownloader_{version}_{arch}.zip`
+4. After downloading the application package and decompressing it, right-click on the `install.ps1` script in the folder and select `Run with PowerShell`.
+
+#### `2` Configuration
+
+The first time you start the application, the application will guide you to do some configurations, including filling in the tokens of services such as `Hugging Face`, `Civitai`, `Model Scope` and the corresponding service save folders, etc.
+
+If you don't need the corresponding service, just click `Next` to skip the configuration.
+
+All initial configurations can be changed later on the application settings page.
+
+#### `3` Download Model
+
+After opening the application, you can switch different model hosting services in the navigation bar on the top right.
+
+Click the `Download Model` button to pop up the download dialog box of the corresponding service.
+
+Follow the prompts to enter the model's Id and select the save folder. You can also click `Select Others` to temporarily select a folder for storage.
+
+Afterwards, you can view the file list of the corresponding repository, select the files you need to download, and click download.
+
+The application will add download tasks one by one, and you can observe the download progress and download speed in real time on the interface.
+
+You can pause or resume a task at any time.
+
+> \[!WARNING]
+>
+> Unlike regular downloaders, the application does not keep your history.
+
+> If you close a downloading task for some reason, don't worry, you can still resume the download progress, but you need to recreate the same download task (the same service, the same model ID, the same save path).
+> 
+> On this point, the application does have a record, when you create a download task again, the application will use your last download configuration.
 
 ## 🔗 Links
 
@@ -210,6 +293,7 @@ You can create a config.json file in the CLI directory and paste the following c
 - [Hugging Face](https://huggingface.co)
 - [Hugging Face Mirror](https://hf-mirror.com)
 - [Civitai](https://civitai.com)
+- [Model Scope](https://www.modelscope.cn)
 
 <!-- LINK GROUP -->
 [github-contributors-link]: https://github.com/Richasy/AIDownloader/graphs/contributors
