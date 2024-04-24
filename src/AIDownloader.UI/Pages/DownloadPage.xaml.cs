@@ -51,6 +51,9 @@ public sealed partial class DownloadPage : DownloadPageBase
         else
         {
             // Show civitai download dialog.
+            var dialog = new CivitaiDownloadDialog(ViewModel);
+            dialog.XamlRoot = XamlRoot;
+            await dialog.ShowAsync();
         }
     }
 

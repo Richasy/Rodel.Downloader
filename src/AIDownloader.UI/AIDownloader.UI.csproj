@@ -19,6 +19,7 @@
     <None Remove="Assets\hf-logo.ico" />
     <None Remove="Assets\logo.ico" />
     <None Remove="Assets\party_popper_3d.png" />
+    <None Remove="Controls\CivitaiDownloadDialog.xaml" />
     <None Remove="Controls\Components\AppTitleBar.xaml" />
     <None Remove="Controls\Components\DownloadItemControl.xaml" />
     <None Remove="Controls\Components\FolderItemControl.xaml" />
@@ -38,19 +39,15 @@
     <None Remove="Pages\WelcomePage.xaml" />
     <None Remove="Controls\CardPanel\CardPanel.xaml" />
     <None Remove="Controls\ImageEx\ImageEx.xaml" />
-    <None Remove="Controls\Markdown\MarkdownTextBlock.xaml" />
     <None Remove="Styles\Overwrites.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ColorCode.WinUI" Version="2.0.15" />
     <PackageReference Include="CommunityToolkit.Labs.WinUI.Shimmer" Version="0.1.231204-build.1603" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="CommunityToolkit.WinUI.Animations" Version="8.0.240109" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.Segmented" Version="8.0.240109" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.240109" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.60" />
-    <PackageReference Include="Markdig" Version="0.37.0" />
     <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.49-beta">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -108,9 +105,6 @@
     <Page Update="Controls\ImageEx\ImageEx.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Controls\Markdown\MarkdownTextBlock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Update="Controls\Components\AppTitleBar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +139,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\Settings\AboutSettingSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\CivitaiDownloadDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="NLog.config">

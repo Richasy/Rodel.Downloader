@@ -129,7 +129,7 @@ public partial class Program
     {
         var sb = new StringBuilder();
         sb.AppendLine($"[bold]{item.Name}[/]");
-        sb.AppendLine($"[grey]{item.Description}[/]");
+        sb.AppendLine($"[grey]{item.Description.Replace("[", "{").Replace("]", "}").Replace("\n", string.Empty)[..18]}[/]");
         return sb.ToString();
     }
 }
