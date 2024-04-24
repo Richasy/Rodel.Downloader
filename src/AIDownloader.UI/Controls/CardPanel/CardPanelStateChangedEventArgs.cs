@@ -1,6 +1,6 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
-namespace AI.Downloader.UI.Controls;
+namespace AIDownloader.UI.Controls;
 
 /// <summary>
 /// 卡片面板状态更改事件参数.

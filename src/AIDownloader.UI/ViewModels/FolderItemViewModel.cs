@@ -33,6 +33,16 @@ public sealed partial class FolderItemViewModel : ViewModelBase
         _removeAction = removeAction;
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FolderItemViewModel"/> class.
+    /// </summary>
+    public FolderItemViewModel(FolderItem item, Action<FolderItemViewModel> removeAction)
+    {
+        Path = item.Path;
+        Name = item.Name;
+        _removeAction = removeAction;
+    }
+
     /// <inheritdoc/>
     public override bool Equals(object obj) => obj is FolderItemViewModel model && Path == model.Path;
 

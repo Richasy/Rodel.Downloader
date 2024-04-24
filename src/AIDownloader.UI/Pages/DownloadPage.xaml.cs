@@ -53,6 +53,9 @@ public sealed partial class DownloadPage : DownloadPageBase
             // Show civitai download dialog.
         }
     }
+
+    private void OnSettingsButtonClick(object sender, RoutedEventArgs e)
+        => CoreViewModel.Navigate(typeof(SettingsPage));
 }
 
 /// <summary>

@@ -1,6 +1,6 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
-namespace AI.Downloader.UI.Controls;
+namespace AIDownloader.UI.Controls;
 
 /// <summary>
 /// A delegate for <see cref="ImageEx"/> failed.

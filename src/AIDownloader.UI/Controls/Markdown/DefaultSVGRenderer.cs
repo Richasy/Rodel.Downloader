@@ -3,7 +3,7 @@
 
 using Microsoft.UI.Xaml.Media.Imaging;
 
-namespace AI.Downloader.UI.Controls.Markdown;
+namespace AIDownloader.UI.Controls.Markdown;
 
 internal class DefaultSVGRenderer : ISVGRenderer
 {

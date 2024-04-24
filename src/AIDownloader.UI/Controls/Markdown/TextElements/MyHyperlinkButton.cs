@@ -5,7 +5,7 @@ using HtmlAgilityPack;
 using Markdig.Syntax.Inlines;
 using Microsoft.UI.Xaml.Documents;
 
-namespace AI.Downloader.UI.Controls.Markdown.TextElements;
+namespace AIDownloader.UI.Controls.Markdown.TextElements;
 
 internal class MyHyperlinkButton : IAddChild
 {

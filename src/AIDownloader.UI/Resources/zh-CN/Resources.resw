@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutThisApp" xml:space="preserve">
+    <value>关于此应用</value>
+  </data>
   <data name="AccessToken" xml:space="preserve">
     <value>访问令牌</value>
   </data>
@@ -131,6 +134,12 @@
   </data>
   <data name="AppName" xml:space="preserve">
     <value>AI 下载器</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>应用程序主题</value>
+  </data>
+  <data name="AppThemeDescription" xml:space="preserve">
+    <value>选择要显示的应用主题</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>返回</value>
@@ -150,6 +159,9 @@
   <data name="CivitaiDownload" xml:space="preserve">
     <value>Civitai 模型下载</value>
   </data>
+  <data name="CivitaiSettingDescription" xml:space="preserve">
+    <value>配置 Civitai 模型下载所需的令牌，文件夹等</value>
+  </data>
   <data name="Completed" xml:space="preserve">
     <value>已完成</value>
   </data>
@@ -161,6 +173,12 @@
   </data>
   <data name="CopyLink" xml:space="preserve">
     <value>复制链接</value>
+  </data>
+  <data name="CopyrightTemplate" xml:space="preserve">
+    <value>© {0} Richasy。保留所有权利。</value>
+  </data>
+  <data name="DarkTheme" xml:space="preserve">
+    <value>深色</value>
   </data>
   <data name="DeselectAll" xml:space="preserve">
     <value>取消全选</value>
@@ -189,11 +207,17 @@
   <data name="FolderOpenFailed" xml:space="preserve">
     <value>无法打开该文件夹</value>
   </data>
+  <data name="Generic" xml:space="preserve">
+    <value>通用</value>
+  </data>
   <data name="HuggingFaceConfiguration" xml:space="preserve">
     <value>Hugging Face 配置</value>
   </data>
   <data name="HuggingFaceDownload" xml:space="preserve">
     <value>Hugging Face 模型下载</value>
+  </data>
+  <data name="HuggingFaceSettingDescription" xml:space="preserve">
+    <value>配置 Hugging Face 模型下载所需的令牌，文件夹等</value>
   </data>
   <data name="InvalidModelId" xml:space="preserve">
     <value>无效的模型 ID</value>
@@ -203,6 +227,15 @@
   </data>
   <data name="LaunchApp" xml:space="preserve">
     <value>启动应用</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>浅色</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>日志记录</value>
+  </data>
+  <data name="LogDescription" xml:space="preserve">
+    <value>查看应用日志或清除日志记录</value>
   </data>
   <data name="Mirror" xml:space="preserve">
     <value>镜像源</value>
@@ -234,6 +267,12 @@
   <data name="Official" xml:space="preserve">
     <value>官方源</value>
   </data>
+  <data name="OpenLogFolder" xml:space="preserve">
+    <value>打开日志文件夹</value>
+  </data>
+  <data name="OtherProjects" xml:space="preserve">
+    <value>开发者的其他项目</value>
+  </data>
   <data name="Pause" xml:space="preserve">
     <value>暂停</value>
   </data>
@@ -243,11 +282,17 @@
   <data name="PrevStep" xml:space="preserve">
     <value>上一步</value>
   </data>
+  <data name="ProjectHomePage" xml:space="preserve">
+    <value>项目主页</value>
+  </data>
   <data name="Remove" xml:space="preserve">
     <value>移除</value>
   </data>
   <data name="RemoveFromDownloadList" xml:space="preserve">
     <value>从下载列表中移除</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>开源仓库</value>
   </data>
   <data name="Resume" xml:space="preserve">
     <value>继续</value>
@@ -264,8 +309,17 @@
   <data name="SelectAll" xml:space="preserve">
     <value>全选</value>
   </data>
+  <data name="SendFeedback" xml:space="preserve">
+    <value>发送反馈</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>服务</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>设置</value>
+  </data>
+  <data name="SystemDefault" xml:space="preserve">
+    <value>使用系统设置</value>
   </data>
   <data name="WelcomeDescription" xml:space="preserve">
     <value>在开始使用前，请跟随我做一些简单的配置吧！</value>

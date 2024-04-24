@@ -5,7 +5,7 @@ using Microsoft.UI.Xaml.Media;
 using FontWeight = Windows.UI.Text.FontWeight;
 using FontWeights = Microsoft.UI.Text.FontWeights;
 
-namespace AI.Downloader.UI.Controls.Markdown;
+namespace AIDownloader.UI.Controls.Markdown;
 
 public sealed class MarkdownThemes : DependencyObject
 {

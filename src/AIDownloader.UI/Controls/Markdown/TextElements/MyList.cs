@@ -6,7 +6,7 @@ using Markdig.Syntax;
 using Microsoft.UI.Xaml.Documents;
 using RomanNumerals;
 
-namespace AI.Downloader.UI.Controls.Markdown.TextElements;
+namespace AIDownloader.UI.Controls.Markdown.TextElements;
 
 internal class MyList : IAddChild
 {

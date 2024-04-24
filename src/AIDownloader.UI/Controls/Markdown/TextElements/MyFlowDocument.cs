@@ -7,7 +7,7 @@ using Microsoft.UI.Xaml.Documents;
 using Block = Microsoft.UI.Xaml.Documents.Block;
 using Inline = Microsoft.UI.Xaml.Documents.Inline;
 
-namespace AI.Downloader.UI.Controls.Markdown.TextElements;
+namespace AIDownloader.UI.Controls.Markdown.TextElements;
 
 public class MyFlowDocument : IAddChild
 {

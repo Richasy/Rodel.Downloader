@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:animations="using:CommunityToolkit.WinUI.Animations"
     xmlns:components="using:AIDownloader.UI.Controls.Components"
-    xmlns:controls="using:AI.Downloader.UI.Controls"
+    xmlns:controls="using:AIDownloader.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ext="using:AIDownloader.UI.Extensions"
     xmlns:local="using:AIDownloader.UI.Pages"
@@ -88,12 +88,12 @@
                         Style="{StaticResource SubtitleTextBlockStyle}"
                         Text="{ext:Locale Name=HuggingFaceConfiguration}"
                         TextWrapping="Wrap" />
-                    <TextBox
+                    <PasswordBox
                         HorizontalAlignment="Stretch"
                         Header="{ext:Locale Name=AccessToken}"
                         HeaderTemplate="{StaticResource InputHeaderTemplate}"
-                        PlaceholderText="{ext:Locale Name=AccessTokenTip}"
-                        Text="{x:Bind ViewModel.HuggingFaceToken, Mode=TwoWay}" />
+                        Password="{x:Bind ViewModel.HuggingFaceToken, Mode=TwoWay}"
+                        PlaceholderText="{ext:Locale Name=AccessTokenTip}" />
                     <components:FolderListPanel
                         AddCommand="{x:Bind ViewModel.AddHuggingFaceSaveFolderCommand}"
                         IsEmptyShown="{x:Bind ViewModel.IsHuggingFaceFoldersEmpty, Mode=OneWay}"
@@ -125,12 +125,12 @@
                         Style="{StaticResource SubtitleTextBlockStyle}"
                         Text="{ext:Locale Name=CivitaiConfiguration}"
                         TextWrapping="Wrap" />
-                    <TextBox
+                    <PasswordBox
                         HorizontalAlignment="Stretch"
                         Header="{ext:Locale Name=AccessToken}"
                         HeaderTemplate="{StaticResource InputHeaderTemplate}"
-                        PlaceholderText="{ext:Locale Name=AccessTokenTip}"
-                        Text="{x:Bind ViewModel.CivitaiToken, Mode=TwoWay}" />
+                        Password="{x:Bind ViewModel.CivitaiToken, Mode=TwoWay}"
+                        PlaceholderText="{ext:Locale Name=AccessTokenTip}" />
                     <components:FolderListPanel
                         AddCommand="{x:Bind ViewModel.AddCivitaiSaveFolderCommand}"
                         IsEmptyShown="{x:Bind ViewModel.IsCivitaiFoldersEmpty, Mode=OneWay}"

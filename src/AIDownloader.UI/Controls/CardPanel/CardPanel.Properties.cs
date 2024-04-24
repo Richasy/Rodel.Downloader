@@ -2,7 +2,7 @@
 
 using Microsoft.UI.Xaml.Media;
 
-namespace AI.Downloader.UI.Controls;
+namespace AIDownloader.UI.Controls;
 
 /// <summary>
 /// 卡片面板.

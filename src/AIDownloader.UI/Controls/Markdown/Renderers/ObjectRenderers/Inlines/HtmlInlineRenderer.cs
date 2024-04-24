@@ -4,7 +4,7 @@
 using HtmlAgilityPack;
 using Markdig.Syntax.Inlines;
 
-namespace AI.Downloader.UI.Controls.Markdown.Renderers.ObjectRenderers.Inlines;
+namespace AIDownloader.UI.Controls.Markdown.Renderers.ObjectRenderers.Inlines;
 
 internal class HtmlInlineRenderer : WinUIObjectRenderer<HtmlInline>
 {

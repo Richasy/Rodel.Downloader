@@ -1,6 +1,6 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
-namespace AI.Downloader.UI.Controls;
+namespace AIDownloader.UI.Controls;
 
 /// <summary>
 /// The ImageEx control extends the default Image platform control improving the performance and responsiveness of your Apps.

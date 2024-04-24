@@ -4,7 +4,7 @@
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 
-namespace AI.Downloader.UI.Controls.Markdown.TextElements;
+namespace AIDownloader.UI.Controls.Markdown.TextElements;
 
 internal class MyTableUIElement : Panel
 {

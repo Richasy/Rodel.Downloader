@@ -12,10 +12,10 @@ using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
-using AI.Downloader.UI.Controls.Markdown.TextElements;
+using AIDownloader.UI.Controls.Markdown.TextElements;
 using Windows.UI.ViewManagement;
 
-namespace AI.Downloader.UI.Controls.Markdown;
+namespace AIDownloader.UI.Controls.Markdown;
 
 public static class Extensions
 {

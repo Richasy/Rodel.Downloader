@@ -24,6 +24,7 @@
             Height="NaN"
             VerticalAlignment="Stretch"
             AutomationProperties.Name="{ext:Locale Name=Back}"
+            Click="OnBackButtonClick"
             Style="{StaticResource IconButtonStyle}"
             ToolTipService.ToolTip="{ext:Locale Name=Back}"
             Visibility="{x:Bind ViewModel.IsBackButtonShown, Mode=OneWay}">

@@ -4,7 +4,7 @@ using System.Threading;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 
-namespace AI.Downloader.UI.Controls;
+namespace AIDownloader.UI.Controls;
 
 /// <summary>
 /// Base code for ImageEx.

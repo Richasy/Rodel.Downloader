@@ -4,7 +4,7 @@
 using HtmlAgilityPack;
 using Microsoft.UI.Xaml.Documents;
 
-namespace AI.Downloader.UI.Controls.Markdown.TextElements.Html;
+namespace AIDownloader.UI.Controls.Markdown.TextElements.Html;
 
 internal class MyInline : IAddChild
 {

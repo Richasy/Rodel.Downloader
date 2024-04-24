@@ -5,7 +5,7 @@ using HtmlAgilityPack;
 using Microsoft.UI.Xaml.Documents;
 using Windows.UI.Text;
 
-namespace AI.Downloader.UI.Controls.Markdown.TextElements.Html;
+namespace AIDownloader.UI.Controls.Markdown.TextElements.Html;
 
 internal class MyBlock : IAddChild
 {

@@ -2,7 +2,7 @@
 
 using Microsoft.UI.Xaml.Media;
 
-namespace AI.Downloader.UI.Controls;
+namespace AIDownloader.UI.Controls;
 
 /// <summary>
 /// Base code for ImageEx.

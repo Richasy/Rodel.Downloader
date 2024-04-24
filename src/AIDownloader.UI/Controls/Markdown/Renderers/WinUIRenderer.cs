@@ -4,12 +4,12 @@
 using Markdig.Helpers;
 using Markdig.Renderers;
 using Markdig.Syntax;
-using AI.Downloader.UI.Controls.Markdown.Renderers.ObjectRenderers;
-using AI.Downloader.UI.Controls.Markdown.Renderers.ObjectRenderers.Extensions;
-using AI.Downloader.UI.Controls.Markdown.Renderers.ObjectRenderers.Inlines;
-using AI.Downloader.UI.Controls.Markdown.TextElements;
+using AIDownloader.UI.Controls.Markdown.Renderers.ObjectRenderers;
+using AIDownloader.UI.Controls.Markdown.Renderers.ObjectRenderers.Extensions;
+using AIDownloader.UI.Controls.Markdown.Renderers.ObjectRenderers.Inlines;
+using AIDownloader.UI.Controls.Markdown.TextElements;
 
-namespace AI.Downloader.UI.Controls.Markdown.Renderers;
+namespace AIDownloader.UI.Controls.Markdown.Renderers;
 
 public class WinUIRenderer : RendererBase
 {

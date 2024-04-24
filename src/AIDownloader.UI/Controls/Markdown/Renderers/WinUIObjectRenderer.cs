@@ -4,7 +4,7 @@
 using Markdig.Renderers;
 using Markdig.Syntax;
 
-namespace AI.Downloader.UI.Controls.Markdown.Renderers;
+namespace AIDownloader.UI.Controls.Markdown.Renderers;
 
 public abstract class WinUIObjectRenderer<TObject> : MarkdownObjectRenderer<WinUIRenderer, TObject>
 where TObject : MarkdownObject

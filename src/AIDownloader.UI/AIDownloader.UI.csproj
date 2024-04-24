@@ -14,7 +14,9 @@
     <AriaDependencyRootDir>..\lib\</AriaDependencyRootDir>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\civitai-logo.ico" />
     <None Remove="Assets\FluentIcon.ttf" />
+    <None Remove="Assets\hf-logo.ico" />
     <None Remove="Assets\logo.ico" />
     <None Remove="Assets\party_popper_3d.png" />
     <None Remove="Controls\Components\AppTitleBar.xaml" />
@@ -24,9 +26,15 @@
     <None Remove="Controls\EmptyHolder.xaml" />
     <None Remove="Controls\HuggingFaceDownloadDialog.xaml" />
     <None Remove="Controls\LoadingOverlapper.xaml" />
+    <None Remove="Controls\Settings\AboutSettingSection.xaml" />
+    <None Remove="Controls\Settings\AppLogSettingSection.xaml" />
+    <None Remove="Controls\Settings\AppThemeSettingSection.xaml" />
+    <None Remove="Controls\Settings\CivitaiSettingSection.xaml" />
+    <None Remove="Controls\Settings\HuggingFaceSettingSection.xaml" />
     <None Remove="Controls\StatusTip.xaml" />
     <None Remove="Controls\TipPopup.xaml" />
     <None Remove="Forms\WelcomeWindow.xaml" />
+    <None Remove="Pages\SettingsPage.xaml" />
     <None Remove="Pages\WelcomePage.xaml" />
     <None Remove="Controls\CardPanel\CardPanel.xaml" />
     <None Remove="Controls\ImageEx\ImageEx.xaml" />
@@ -124,9 +132,27 @@
     <Page Update="Controls\Components\DownloadItemControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Update="Controls\Settings\AppThemeSettingSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\Settings\AppLogSettingSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\Settings\HuggingFaceSettingSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\Settings\CivitaiSettingSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\Settings\AboutSettingSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Update="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Pages\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Styles\Overwrites.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

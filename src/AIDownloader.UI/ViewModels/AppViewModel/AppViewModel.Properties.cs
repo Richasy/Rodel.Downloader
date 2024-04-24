@@ -21,6 +21,11 @@ public sealed partial class AppViewModel
     public event EventHandler<AppTipNotification> RequestShowTip;
 
     /// <summary>
+    /// 在有导航请求时触发.
+    /// </summary>
+    public event EventHandler<AppNavigateEventArgs> RequestNavigate;
+
+    /// <summary>
     /// 实例.
     /// </summary>
     public static AppViewModel Instance { get; } = new();

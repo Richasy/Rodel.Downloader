@@ -55,6 +55,7 @@
                     Height="32"
                     VerticalAlignment="Center"
                     AutomationProperties.Name="{ext:Locale Name=Settings}"
+                    Click="OnSettingsButtonClick"
                     Style="{StaticResource IconButtonStyle}"
                     ToolTipService.ToolTip="{ext:Locale Name=Settings}">
                     <controls:FluentIcon FontSize="16" Symbol="Settings" />

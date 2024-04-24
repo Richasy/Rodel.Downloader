@@ -1,6 +1,7 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
 using System.ComponentModel;
+using AIDownloader.UI.Pages;
 using AIDownloader.UI.Toolkits;
 using AIDownloader.UI.ViewModels;
 using Microsoft.UI.Input;
@@ -58,6 +59,9 @@ public sealed partial class AppTitleBar : AppTitleBarBase
         var nonClientInputSrc = InputNonClientPointerSource.GetForWindowId(Win32Interop.GetWindowIdFromWindow(currentWindow.GetWindowHandle()));
         nonClientInputSrc.SetRegionRects(NonClientRegionKind.Passthrough, [backButtonRect]);
     }
+
+    private void OnBackButtonClick(object sender, RoutedEventArgs e)
+        => ViewModel.Navigate(typeof(DownloadPage));
 }
 
 /// <summary>

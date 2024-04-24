@@ -2,7 +2,7 @@
 
 using Microsoft.UI.Xaml.Automation.Peers;
 
-namespace AI.Downloader.UI.Controls;
+namespace AIDownloader.UI.Controls;
 
 /// <summary>
 /// <see cref="CardPanel"/>的自动化公开属性.

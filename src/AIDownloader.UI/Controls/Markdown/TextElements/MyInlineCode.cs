@@ -5,7 +5,7 @@ using Markdig.Syntax.Inlines;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media.Media3D;
 
-namespace AI.Downloader.UI.Controls.Markdown.TextElements;
+namespace AIDownloader.UI.Controls.Markdown.TextElements;
 
 internal class MyInlineCode : IAddChild
 {

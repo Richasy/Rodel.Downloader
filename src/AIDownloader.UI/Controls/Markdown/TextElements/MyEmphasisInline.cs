@@ -6,7 +6,7 @@ using Microsoft.UI.Text;
 using Microsoft.UI.Xaml.Documents;
 using Windows.UI.Text;
 
-namespace AI.Downloader.UI.Controls.Markdown.TextElements;
+namespace AIDownloader.UI.Controls.Markdown.TextElements;
 
 internal class MyEmphasisInline : IAddChild
 {

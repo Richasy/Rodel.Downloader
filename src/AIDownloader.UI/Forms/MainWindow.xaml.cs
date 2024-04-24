@@ -41,6 +41,7 @@ public sealed partial class MainWindow : WindowBase, ITipWindow
 
         MainFrame.Navigate(typeof(DownloadPage));
         AppViewModel.Instance.RequestShowTip += OnAppViewModelRequestShowTip;
+        AppViewModel.Instance.RequestNavigate += OnAppViewModelRequestNavigate;
     }
 
     /// <inheritdoc/>
@@ -78,6 +79,16 @@ public sealed partial class MainWindow : WindowBase, ITipWindow
         {
             new TipPopup(e.Message, window).ShowAsync(e.Type);
         }
+    }
+
+    private void OnAppViewModelRequestNavigate(object sender, AppNavigateEventArgs e)
+    {
+        if (MainFrame.Content is not null && MainFrame.Content.GetType() == e.PageType)
+        {
+            return;
+        }
+
+        MainFrame.Navigate(e.PageType, e.Parameter);
     }
 
     private async void OnClosedAsync(object sender, WindowEventArgs args)

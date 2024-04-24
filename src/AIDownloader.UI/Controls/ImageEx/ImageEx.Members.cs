@@ -3,7 +3,7 @@
 using Microsoft.UI.Composition;
 using Windows.Media.Casting;
 
-namespace AI.Downloader.UI.Controls;
+namespace AIDownloader.UI.Controls;
 
 /// <summary>
 /// The ImageEx control extends the default Image platform control improving the performance and responsiveness of your Apps.

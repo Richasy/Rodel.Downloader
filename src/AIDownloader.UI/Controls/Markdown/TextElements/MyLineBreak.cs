@@ -3,7 +3,7 @@
 
 using Microsoft.UI.Xaml.Documents;
 
-namespace AI.Downloader.UI.Controls.Markdown.TextElements;
+namespace AIDownloader.UI.Controls.Markdown.TextElements;
 
 internal class MyLineBreak : IAddChild
 {

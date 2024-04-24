@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Markdig.Syntax;
 
-namespace AI.Downloader.UI.Controls.Markdown.Renderers.ObjectRenderers;
+namespace AIDownloader.UI.Controls.Markdown.Renderers.ObjectRenderers;
 
 internal class HtmlBlockRenderer : WinUIObjectRenderer<HtmlBlock>
 {

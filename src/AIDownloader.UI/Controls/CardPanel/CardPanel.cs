@@ -2,7 +2,7 @@
 
 using Microsoft.UI.Xaml.Automation.Peers;
 
-namespace AI.Downloader.UI.Controls;
+namespace AIDownloader.UI.Controls;
 
 /// <summary>
 /// 卡片面板.

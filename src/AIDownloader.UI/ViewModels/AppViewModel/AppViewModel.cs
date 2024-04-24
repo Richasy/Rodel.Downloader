@@ -67,4 +67,12 @@ public sealed partial class AppViewModel : ViewModelBase
             ActivatedWindow.AppWindow.TitleBar.ButtonForegroundColor = default;
         }
     }
+
+    /// <summary>
+    /// 导航到指定页面.
+    /// </summary>
+    /// <param name="page">页面类型.</param>
+    /// <param name="parameter">参数.</param>
+    public void Navigate(Type page, object parameter = null)
+        => RequestNavigate?.Invoke(this, new AppNavigateEventArgs(page, parameter));
 }
