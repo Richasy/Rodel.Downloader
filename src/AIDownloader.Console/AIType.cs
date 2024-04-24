@@ -4,4 +4,5 @@ internal enum AIType
 {
     HuggingFace,
     Civitai,
+    ModelScope,
 }

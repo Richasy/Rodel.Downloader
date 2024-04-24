@@ -183,6 +183,12 @@
   <data name="ModelNotFound" xml:space="preserve">
     <value>没有找到合适的模型</value>
   </data>
+  <data name="ModelScope" xml:space="preserve">
+    <value>魔搭</value>
+  </data>
+  <data name="ModelScopeToken" xml:space="preserve">
+    <value>请输入魔搭访问令牌：</value>
+  </data>
   <data name="MoreFileOperationTip" xml:space="preserve">
     <value>按下 [blue]空格键[/] 来切换文件选择，[green]回车键[/] 提交</value>
   </data>

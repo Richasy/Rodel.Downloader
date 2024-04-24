@@ -1,6 +1,13 @@
 ﻿// Copyright (c) AI Downloader. All rights reserved.
 
-using Microsoft.UI.Xaml;
+using AIDownloader.UI.Forms;
+using AIDownloader.UI.Models.Constants;
+using AIDownloader.UI.Toolkits;
+using Microsoft.UI.Dispatching;
+using Microsoft.Windows.AppLifecycle;
+using NLog;
+using Windows.ApplicationModel.Activation;
+using Windows.Storage;
 
 namespace AIDownloader.UI;
 
@@ -9,7 +16,12 @@ namespace AIDownloader.UI;
 /// </summary>
 public partial class App : Application
 {
-    private Window _window;
+    /// <summary>
+    /// 应用标识符.
+    /// </summary>
+    public const string Id = "266C91A4-EF29-499D-9AC3-64A9659FBF15";
+    private DispatcherQueue _dispatcherQueue;
+    private WindowBase _window;
 
     /// <summary>
     /// Initializes the singleton application object.  This is the first line of authored code
@@ -18,15 +30,119 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
+        var mainAppInstance = AppInstance.FindOrRegisterForKey(Id);
+        mainAppInstance.Activated += OnAppInstanceActivated;
+        UnhandledException += OnUnhandledException;
     }
 
     /// <summary>
     /// Invoked when the application is launched.
     /// </summary>
     /// <param name="args">Details about the launch request and process.</param>
-    protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+    protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
-        _window = new MainWindow();
-        _window.Activate();
+        var instance = AppInstance.FindOrRegisterForKey(Id);
+        if (instance.IsCurrent)
+        {
+            _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+            var rootFolder = ApplicationData.Current.LocalFolder;
+            var fullPath = $"{rootFolder.Path}\\Logger\\";
+            GlobalDiagnosticsContext.Set("LogPath", fullPath);
+        }
+
+        var eventArgs = instance.GetActivatedEventArgs();
+        var data = eventArgs.Data is IActivatedEventArgs
+            ? eventArgs.Data as IActivatedEventArgs
+            : args.UWPLaunchActivatedEventArgs;
+        await LaunchWindowAsync(data);
     }
+
+    /// <summary>
+    /// Try activating the window and bringing it to the foreground.
+    /// </summary>
+    private void ActivateWindow(AppActivationArguments arguments = default)
+    {
+        _ = _dispatcherQueue.TryEnqueue(async () =>
+        {
+            var needWelcome = !SettingsToolkit.ReadLocalSetting(SettingNames.SkipWelcome, false);
+            if (needWelcome)
+            {
+                return;
+            }
+
+            if (_window == null)
+            {
+                await LaunchWindowAsync();
+            }
+            else if (_window.Visible && arguments?.Data == null)
+            {
+                _ = _window.Hide();
+            }
+            else
+            {
+                _window.Activate();
+                _ = _window.SetForegroundWindow();
+            }
+
+            try
+            {
+                if (arguments?.Data is IActivatedEventArgs args)
+                {
+                    ((MainWindow)_window).ActivateArguments(args);
+                }
+            }
+            catch (Exception)
+            {
+            }
+        });
+    }
+
+    private async Task LaunchWindowAsync(IActivatedEventArgs args = default)
+    {
+        if (args is IProtocolActivatedEventArgs protocolArgs
+            && !string.IsNullOrEmpty(protocolArgs.Uri.Host))
+        {
+            // TODO: Handle protocol activation
+        }
+        else
+        {
+            var instance = AppInstance.FindOrRegisterForKey(Id);
+
+            // If the current instance is not the previously registered instance
+            if (!instance.IsCurrent)
+            {
+                var activatedArgs = AppInstance.GetCurrent().GetActivatedEventArgs();
+
+                // Redirect to the existing instance
+                await instance.RedirectActivationToAsync(activatedArgs);
+
+                // Kill the current instance
+                Current.Exit();
+                return;
+            }
+
+            var needWelcome = !SettingsToolkit.ReadLocalSetting(SettingNames.SkipWelcome, false);
+
+            if (needWelcome)
+            {
+                var window = new WelcomeWindow();
+                window.Activate();
+            }
+            else
+            {
+                _window = new MainWindow(args);
+                _window.Activate();
+            }
+        }
+    }
+
+    private void OnUnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+    {
+        var logger = LogManager.GetCurrentClassLogger();
+        logger.Error(e.Exception, "An exception occurred while the application was running");
+        e.Handled = true;
+    }
+
+    private void OnAppInstanceActivated(object sender, AppActivationArguments e)
+        => ActivateWindow(e);
 }

@@ -8,7 +8,7 @@ namespace AIDownloader.Aria;
 public class GlobalStatResult
 {
     [JsonPropertyName("downloadSpeed")]
-    public decimal DownloadSpeed { get; set; }
+    public string DownloadSpeed { get; set; }
 
     [JsonPropertyName("numActive")]
     public string NumActive { get; set; }
@@ -23,5 +23,5 @@ public class GlobalStatResult
     public string NumWaiting { get; set; }
 
     [JsonPropertyName("uploadSpeed")]
-    public decimal UploadSpeed { get; set; }
+    public string UploadSpeed { get; set; }
 }

@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutThisApp" xml:space="preserve">
+    <value>关于此应用</value>
+  </data>
+  <data name="AccessToken" xml:space="preserve">
+    <value>访问令牌</value>
+  </data>
+  <data name="AccessTokenTip" xml:space="preserve">
+    <value>请输入访问令牌</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="AddingDownloadItems" xml:space="preserve">
+    <value>正在添加下载项</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>模型易取</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>应用程序主题</value>
+  </data>
+  <data name="AppThemeDescription" xml:space="preserve">
+    <value>选择要显示的应用主题</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ChooseOther" xml:space="preserve">
+    <value>选择其它</value>
+  </data>
+  <data name="ChooseSaveFolder" xml:space="preserve">
+    <value>选择存储文件夹</value>
+  </data>
+  <data name="CivitaiConfiguration" xml:space="preserve">
+    <value>Civitai 配置</value>
+  </data>
+  <data name="CivitaiDownload" xml:space="preserve">
+    <value>Civitai 模型下载</value>
+  </data>
+  <data name="CivitaiSettingDescription" xml:space="preserve">
+    <value>配置 Civitai 模型下载所需的令牌，文件夹等</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>已复制</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>复制链接</value>
+  </data>
+  <data name="CopyrightTemplate" xml:space="preserve">
+    <value>© {0} Richasy。保留所有权利。</value>
+  </data>
+  <data name="DarkTheme" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="DeselectAll" xml:space="preserve">
+    <value>取消全选</value>
+  </data>
+  <data name="DownloadListEmptyDescription" xml:space="preserve">
+    <value>这次想下载哪个模型？</value>
+  </data>
+  <data name="DownloadListEmptyTitle" xml:space="preserve">
+    <value>空空如也</value>
+  </data>
+  <data name="DownloadModel" xml:space="preserve">
+    <value>下载模型</value>
+  </data>
+  <data name="DownloadProgressTipTemplate" xml:space="preserve">
+    <value>共计 {0} 个任务，已完成 {1} 个</value>
+  </data>
+  <data name="FileList" xml:space="preserve">
+    <value>文件列表</value>
+  </data>
+  <data name="FinishDescription" xml:space="preserve">
+    <value>下载器将基于你提供的配置信息为您下载 AI 模型，您随时可以在应用设置中修改它们，祝您使用愉快</value>
+  </data>
+  <data name="FinishTitle" xml:space="preserve">
+    <value>你完成了所有配置！</value>
+  </data>
+  <data name="FolderOpenFailed" xml:space="preserve">
+    <value>无法打开该文件夹</value>
+  </data>
+  <data name="Generic" xml:space="preserve">
+    <value>通用</value>
+  </data>
+  <data name="HuggingFaceConfiguration" xml:space="preserve">
+    <value>Hugging Face 配置</value>
+  </data>
+  <data name="HuggingFaceDownload" xml:space="preserve">
+    <value>Hugging Face 模型下载</value>
+  </data>
+  <data name="HuggingFaceSettingDescription" xml:space="preserve">
+    <value>配置 Hugging Face 模型下载所需的令牌，文件夹等</value>
+  </data>
+  <data name="InvalidModelId" xml:space="preserve">
+    <value>无效的模型 ID</value>
+  </data>
+  <data name="InvalidSavePath" xml:space="preserve">
+    <value>无效的保存路径</value>
+  </data>
+  <data name="LaunchApp" xml:space="preserve">
+    <value>启动应用</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>浅色</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>日志记录</value>
+  </data>
+  <data name="LogDescription" xml:space="preserve">
+    <value>查看应用日志或清除日志记录</value>
+  </data>
+  <data name="Mirror" xml:space="preserve">
+    <value>镜像源</value>
+  </data>
+  <data name="ModelId" xml:space="preserve">
+    <value>模型 ID</value>
+  </data>
+  <data name="ModelIdOrLink" xml:space="preserve">
+    <value>模型 ID 或页面链接</value>
+  </data>
+  <data name="ModelIdPlaceholder" xml:space="preserve">
+    <value>作者/模型</value>
+  </data>
+  <data name="ModelScope" xml:space="preserve">
+    <value>魔搭</value>
+  </data>
+  <data name="ModelScopeConfiguration" xml:space="preserve">
+    <value>魔搭模型配置</value>
+  </data>
+  <data name="ModelScopeDownload" xml:space="preserve">
+    <value>魔搭模型下载</value>
+  </data>
+  <data name="ModelScopeSettingDescription" xml:space="preserve">
+    <value>配置魔搭社区模型下载所需的令牌，文件夹等</value>
+  </data>
+  <data name="ModifyName" xml:space="preserve">
+    <value>修改名称</value>
+  </data>
+  <data name="NeedAddSaveFolder" xml:space="preserve">
+    <value>请添加一个文件夹用来保存模型</value>
+  </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="NoAvailableDownloadItems" xml:space="preserve">
+    <value>没有找到可用的下载项</value>
+  </data>
+  <data name="NoItemSelected" xml:space="preserve">
+    <value>没有选中条目</value>
+  </data>
+  <data name="Official" xml:space="preserve">
+    <value>官方源</value>
+  </data>
+  <data name="OpenFileLocation" xml:space="preserve">
+    <value>打开文件位置</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>打开文件夹</value>
+  </data>
+  <data name="OpenLogFolder" xml:space="preserve">
+    <value>打开日志文件夹</value>
+  </data>
+  <data name="OtherProjects" xml:space="preserve">
+    <value>开发者的其他项目</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="PauseAll" xml:space="preserve">
+    <value>全部暂停</value>
+  </data>
+  <data name="PrevStep" xml:space="preserve">
+    <value>上一步</value>
+  </data>
+  <data name="ProjectHomePage" xml:space="preserve">
+    <value>项目主页</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="RemoveFromDownloadList" xml:space="preserve">
+    <value>从下载列表中移除</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>开源仓库</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>继续</value>
+  </data>
+  <data name="ResumeAll" xml:space="preserve">
+    <value>全部恢复</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="SaveFolderList" xml:space="preserve">
+    <value>存储文件夹列表</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="SendFeedback" xml:space="preserve">
+    <value>发送反馈</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>服务</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SystemDefault" xml:space="preserve">
+    <value>使用系统设置</value>
+  </data>
+  <data name="WelcomeDescription" xml:space="preserve">
+    <value>在开始使用前，请跟随我做一些简单的配置吧！</value>
+  </data>
+  <data name="WelcomeTitle" xml:space="preserve">
+    <value>欢迎使用 模型易取</value>
+  </data>
+</root>

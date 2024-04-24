@@ -24,4 +24,13 @@ internal class Config
 
     [JsonPropertyName("civitai_backup_folders")]
     public Dictionary<string, string> CivitaiBackupFolders { get; set; }
+
+    [JsonPropertyName("ms_token")]
+    public string ModelScopeToken { get; set; }
+
+    [JsonPropertyName("ms_save_folder")]
+    public string ModelScopeSaveFolder { get; set; }
+
+    [JsonPropertyName("ms_backup_folders")]
+    public Dictionary<string, string> ModelScopeBackupFolders { get; set; }
 }

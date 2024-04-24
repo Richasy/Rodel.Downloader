@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:AppTitleBarBase
+    x:Class="AIDownloader.UI.Controls.Components.AppTitleBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AIDownloader.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="using:AIDownloader.UI.Extensions"
+    xmlns:local="using:AIDownloader.UI.Controls.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        Height="32"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="128" />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Height="NaN"
+            VerticalAlignment="Stretch"
+            AutomationProperties.Name="{ext:Locale Name=Back}"
+            Click="OnBackButtonClick"
+            Style="{StaticResource IconButtonStyle}"
+            ToolTipService.ToolTip="{ext:Locale Name=Back}"
+            Visibility="{x:Bind ViewModel.IsBackButtonShown, Mode=OneWay}">
+            <controls:FluentIcon FontSize="14" Symbol="ArrowLeft" />
+            <Button.KeyboardAccelerators>
+                <KeyboardAccelerator Key="Back" IsEnabled="True" />
+            </Button.KeyboardAccelerators>
+        </Button>
+        <StackPanel
+            Grid.Column="1"
+            Margin="12,0,0,0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal"
+            Spacing="12">
+            <Image
+                Height="18"
+                VerticalAlignment="Center"
+                Source="ms-appx:///Assets/logo.png"
+                Stretch="Uniform" />
+            <TextBlock
+                VerticalAlignment="Center"
+                Style="{StaticResource CaptionTextBlockStyle}"
+                Text="{ext:Locale Name=AppName}" />
+        </StackPanel>
+    </Grid>
+</local:AppTitleBarBase>

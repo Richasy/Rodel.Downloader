@@ -20,7 +20,7 @@ public class FileResult
     /// Index of the file, starting at 1, in the same order as files appear in the multi-file torrent.
     /// </summary>
     [JsonPropertyName("index")]
-    public long Index { get; set; }
+    public string Index { get; set; }
 
     /// <summary>
     /// File size in bytes.

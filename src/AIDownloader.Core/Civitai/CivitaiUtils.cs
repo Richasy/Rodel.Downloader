@@ -2,6 +2,7 @@
 
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Text.RegularExpressions;
 using AIDownloader.Core.Models;
 
 namespace AIDownloader.Core.Civitai;
@@ -46,7 +47,7 @@ internal sealed class CivitaiUtils : IDisposable
             var item = new ModelItem();
             item.Id = version.id.ToString();
             item.Name = version.name;
-            item.Description = version.description ?? version.baseModel ?? version.publishedAt.ToString("yyyy/MM/dd");
+            item.Description = TrimHtmlTag(version.description ?? version.baseModel ?? version.publishedAt.ToString("yyyy/MM/dd"));
             item.AttachObject = version;
             modelList.Add(item);
         }
@@ -81,6 +82,19 @@ internal sealed class CivitaiUtils : IDisposable
     {
         Dispose(disposing: true);
         GC.SuppressFinalize(this);
+    }
+
+    private static string TrimHtmlTag(string html)
+    {
+        if (string.IsNullOrEmpty(html))
+        {
+            return string.Empty;
+        }
+
+        var htmlWithLineBreaks = Regex.Replace(html, @"</p>", "\n", RegexOptions.IgnoreCase);
+        var textOnly = Regex.Replace(htmlWithLineBreaks, @"<[^>]*>", string.Empty);
+
+        return textOnly;
     }
 
     private HttpRequestMessage GetRequest(string modelId)
