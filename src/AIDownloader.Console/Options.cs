@@ -10,6 +10,9 @@ internal class Options
     [Option("clean-up", Required = false, Default = false, HelpText = "Kill all aria2c processes before starting the download.")]
     public bool ShouldCleanUp { get; set; }
 
+    [Option("edit-config", Required = false, Default = false, HelpText = "Edit the configuration file.")]
+    public bool EditConfig { get; set; }
+
     [Option('n', "no-interaction", Required = false, Default = false, HelpText = "Disable interaction and use the command-line parameters.")]
     public bool DisabledInteraction { get; set; }
 

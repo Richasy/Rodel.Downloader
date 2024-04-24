@@ -12,9 +12,16 @@ if (parseResult.Errors.Any())
 }
 
 var options = parseResult.Value;
+
 if (options.ShouldCleanUp)
 {
     KillAllAria2Process();
+}
+
+if (options.EditConfig)
+{
+    EditOrCreateConfig();
+    return;
 }
 
 var ignoreConfig = options.IgnoreConfig;

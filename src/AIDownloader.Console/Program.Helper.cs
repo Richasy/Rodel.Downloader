@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Resources;
 using System.Text;
+using System.Text.Json;
 using AIDownloader.Aria;
 using AIDownloader.Aria.Models;
 using AIDownloader.Core;
@@ -313,5 +314,34 @@ public partial class Program
                     await Task.Delay(1000);
                 }
             });
+    }
+
+    private static string GetConfigPath()
+        => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+
+    private static void EditOrCreateConfig()
+    {
+        var configPath = GetConfigPath();
+        if (!File.Exists(configPath))
+        {
+            File.Create(configPath).Close();
+            var config = new DownloaderConfig
+            {
+                HuggingFaceToken = string.Empty,
+                HuggingFaceSaveFolder = string.Empty,
+                HuggingFaceBackupFolders = new Dictionary<string, string>(),
+                HuggingFaceUriType = "official",
+                CivitaiToken = string.Empty,
+                CivitaiSaveFolder = string.Empty,
+                CivitaiBackupFolders = new Dictionary<string, string>(),
+                ModelScopeToken = string.Empty,
+                ModelScopeSaveFolder = string.Empty,
+                ModelScopeBackupFolders = new Dictionary<string, string>(),
+            };
+            var json = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(configPath, json);
+        }
+
+        Process.Start(new ProcessStartInfo(configPath) { UseShellExecute = true });
     }
 }

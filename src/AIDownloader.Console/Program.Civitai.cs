@@ -13,7 +13,7 @@ public partial class Program
 {
     private static async Task RunCivitaiDownloadAsync(bool ignoreConfig = false)
     {
-        var configFile = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "config.json");
+        var configFile = GetConfigPath();
         var isConfigFileExist = File.Exists(configFile);
 
         var modelId = AnsiConsole.Ask<string>(GetString("ModelIdOrLinkInput"));

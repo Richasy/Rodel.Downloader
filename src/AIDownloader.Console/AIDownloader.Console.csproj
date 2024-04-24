@@ -68,12 +68,6 @@
     <Using Include="System.Console" Static="true" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
   <Target Name="CopyAriaContent" AfterTargets="AfterBuild">
     <ItemGroup>
         <AriaFiles Include="$(SolutionDir)lib\**" />
