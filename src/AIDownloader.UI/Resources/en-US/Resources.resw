@@ -118,231 +118,231 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutThisApp" xml:space="preserve">
-    <value>关于此应用</value>
+    <value>About this app</value>
   </data>
   <data name="AccessToken" xml:space="preserve">
-    <value>访问令牌</value>
+    <value>Access token</value>
   </data>
   <data name="AccessTokenTip" xml:space="preserve">
-    <value>请输入访问令牌</value>
+    <value>Please enter access token</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>添加</value>
+    <value>Add</value>
   </data>
   <data name="AddingDownloadItems" xml:space="preserve">
-    <value>正在添加下载项</value>
+    <value>Adding download items</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>模型易取</value>
+    <value>AI Downloader</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>应用程序主题</value>
+    <value>App Theme</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>选择要显示的应用主题</value>
+    <value>Select the theme for the application to display.</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>返回</value>
+    <value>Back</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancel</value>
   </data>
   <data name="ChooseOther" xml:space="preserve">
-    <value>选择其它</value>
+    <value>Select others</value>
   </data>
   <data name="ChooseSaveFolder" xml:space="preserve">
-    <value>选择存储文件夹</value>
+    <value>Select storage folder</value>
   </data>
   <data name="CivitaiConfiguration" xml:space="preserve">
-    <value>Civitai 配置</value>
+    <value>Civitai Configuration</value>
   </data>
   <data name="CivitaiDownload" xml:space="preserve">
-    <value>Civitai 模型下载</value>
+    <value>Civitai Model Download</value>
   </data>
   <data name="CivitaiSettingDescription" xml:space="preserve">
-    <value>配置 Civitai 模型下载所需的令牌，文件夹等</value>
+    <value>Configure the tokens, folders, etc. required for Civitai model download</value>
   </data>
   <data name="Completed" xml:space="preserve">
-    <value>已完成</value>
+    <value>Completed</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>确认</value>
+    <value>Confirm</value>
   </data>
   <data name="Copied" xml:space="preserve">
-    <value>已复制</value>
+    <value>Copied</value>
   </data>
   <data name="CopyLink" xml:space="preserve">
-    <value>复制链接</value>
+    <value>Copy link</value>
   </data>
   <data name="CopyrightTemplate" xml:space="preserve">
-    <value>© {0} Richasy。保留所有权利。</value>
+    <value>© {0} Richasy. All rights reserved.</value>
   </data>
   <data name="DarkTheme" xml:space="preserve">
-    <value>深色</value>
+    <value>Dark</value>
   </data>
   <data name="DeselectAll" xml:space="preserve">
-    <value>取消全选</value>
+    <value>Deselect all</value>
   </data>
   <data name="DownloadListEmptyDescription" xml:space="preserve">
-    <value>这次想下载哪个模型？</value>
+    <value>Which model would you like to download this time?</value>
   </data>
   <data name="DownloadListEmptyTitle" xml:space="preserve">
-    <value>空空如也</value>
+    <value>Empty</value>
   </data>
   <data name="DownloadModel" xml:space="preserve">
-    <value>下载模型</value>
+    <value>Download model</value>
   </data>
   <data name="DownloadProgressTipTemplate" xml:space="preserve">
-    <value>共计 {0} 个任务，已完成 {1} 个</value>
+    <value>A total of {0} tasks, {1} completed</value>
   </data>
   <data name="FileList" xml:space="preserve">
-    <value>文件列表</value>
+    <value>File list</value>
   </data>
   <data name="FinishDescription" xml:space="preserve">
-    <value>下载器将基于你提供的配置信息为您下载 AI 模型，您随时可以在应用设置中修改它们，祝您使用愉快</value>
+    <value>The downloader will download the AI model for you based on the configuration information you provide. You can modify them in the application settings at any time. Enjoy your use.</value>
   </data>
   <data name="FinishTitle" xml:space="preserve">
-    <value>你完成了所有配置！</value>
+    <value>You have completed all the configurations!</value>
   </data>
   <data name="FolderOpenFailed" xml:space="preserve">
-    <value>无法打开该文件夹</value>
+    <value>Unable to open this folder</value>
   </data>
   <data name="Generic" xml:space="preserve">
-    <value>通用</value>
+    <value>General</value>
   </data>
   <data name="HuggingFaceConfiguration" xml:space="preserve">
-    <value>Hugging Face 配置</value>
+    <value>Hugging Face Configuration</value>
   </data>
   <data name="HuggingFaceDownload" xml:space="preserve">
-    <value>Hugging Face 模型下载</value>
+    <value>Hugging Face Model Download</value>
   </data>
   <data name="HuggingFaceSettingDescription" xml:space="preserve">
-    <value>配置 Hugging Face 模型下载所需的令牌，文件夹等</value>
+    <value>Configure the tokens, folders, etc. required for Hugging Face model download</value>
   </data>
   <data name="InvalidModelId" xml:space="preserve">
-    <value>无效的模型 ID</value>
+    <value>Invalid Model ID</value>
   </data>
   <data name="InvalidSavePath" xml:space="preserve">
-    <value>无效的保存路径</value>
+    <value>Invalid save path</value>
   </data>
   <data name="LaunchApp" xml:space="preserve">
-    <value>启动应用</value>
+    <value>Launch Application</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>浅色</value>
+    <value>Light</value>
   </data>
   <data name="Log" xml:space="preserve">
-    <value>日志记录</value>
+    <value>App Log</value>
   </data>
   <data name="LogDescription" xml:space="preserve">
-    <value>查看应用日志或清除日志记录</value>
+    <value>View application log or clear log records</value>
   </data>
   <data name="Mirror" xml:space="preserve">
-    <value>镜像源</value>
+    <value>Mirror</value>
   </data>
   <data name="ModelId" xml:space="preserve">
-    <value>模型 ID</value>
+    <value>Model ID</value>
   </data>
   <data name="ModelIdOrLink" xml:space="preserve">
-    <value>模型 ID 或页面链接</value>
+    <value>Model ID or page link</value>
   </data>
   <data name="ModelIdPlaceholder" xml:space="preserve">
-    <value>作者/模型</value>
+    <value>Model ID or Page Link</value>
   </data>
   <data name="ModelScope" xml:space="preserve">
-    <value>魔搭</value>
+    <value>Model Scope</value>
   </data>
   <data name="ModelScopeConfiguration" xml:space="preserve">
-    <value>魔搭模型配置</value>
+    <value>Model Scope Configuration</value>
   </data>
   <data name="ModelScopeDownload" xml:space="preserve">
-    <value>魔搭模型下载</value>
+    <value>Model Scope Download</value>
   </data>
   <data name="ModelScopeSettingDescription" xml:space="preserve">
-    <value>配置魔搭社区模型下载所需的令牌，文件夹等</value>
+    <value>Configure the tokens, folders, etc. required for Model Scope download</value>
   </data>
   <data name="ModifyName" xml:space="preserve">
-    <value>修改名称</value>
+    <value>Change name</value>
   </data>
   <data name="NeedAddSaveFolder" xml:space="preserve">
-    <value>请添加一个文件夹用来保存模型</value>
+    <value>Please add a folder to save the model</value>
   </data>
   <data name="NextStep" xml:space="preserve">
-    <value>下一步</value>
+    <value>Next</value>
   </data>
   <data name="NoAvailableDownloadItems" xml:space="preserve">
-    <value>没有找到可用的下载项</value>
+    <value>No available download items were found</value>
   </data>
   <data name="NoItemSelected" xml:space="preserve">
-    <value>没有选中条目</value>
+    <value>No items selected</value>
   </data>
   <data name="Official" xml:space="preserve">
-    <value>官方源</value>
+    <value>Official</value>
   </data>
   <data name="OpenFileLocation" xml:space="preserve">
-    <value>打开文件位置</value>
+    <value>Open file location</value>
   </data>
   <data name="OpenFolder" xml:space="preserve">
-    <value>打开文件夹</value>
+    <value>Open folder</value>
   </data>
   <data name="OpenLogFolder" xml:space="preserve">
-    <value>打开日志文件夹</value>
+    <value>Open log folder</value>
   </data>
   <data name="OtherProjects" xml:space="preserve">
-    <value>开发者的其他项目</value>
+    <value>Other projects by developer</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>暂停</value>
+    <value>Pause</value>
   </data>
   <data name="PauseAll" xml:space="preserve">
-    <value>全部暂停</value>
+    <value>Pause All</value>
   </data>
   <data name="PrevStep" xml:space="preserve">
-    <value>上一步</value>
+    <value>Previous</value>
   </data>
   <data name="ProjectHomePage" xml:space="preserve">
-    <value>项目主页</value>
+    <value>Project homepage</value>
   </data>
   <data name="Remove" xml:space="preserve">
-    <value>移除</value>
+    <value>Remove</value>
   </data>
   <data name="RemoveFromDownloadList" xml:space="preserve">
-    <value>从下载列表中移除</value>
+    <value>Remove from Download List</value>
   </data>
   <data name="Repository" xml:space="preserve">
-    <value>开源仓库</value>
+    <value>Open source repository</value>
   </data>
   <data name="Resume" xml:space="preserve">
-    <value>继续</value>
+    <value>Continue</value>
   </data>
   <data name="ResumeAll" xml:space="preserve">
-    <value>全部恢复</value>
+    <value>Resume All</value>
   </data>
   <data name="Retry" xml:space="preserve">
-    <value>重试</value>
+    <value>Retry</value>
   </data>
   <data name="SaveFolderList" xml:space="preserve">
-    <value>存储文件夹列表</value>
+    <value>Storage folder list</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>全选</value>
+    <value>Select all</value>
   </data>
   <data name="SendFeedback" xml:space="preserve">
-    <value>发送反馈</value>
+    <value>Send feedback</value>
   </data>
   <data name="Services" xml:space="preserve">
-    <value>服务</value>
+    <value>Services</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>设置</value>
+    <value>Settings</value>
   </data>
   <data name="SystemDefault" xml:space="preserve">
-    <value>使用系统设置</value>
+    <value>Use system settings</value>
   </data>
   <data name="WelcomeDescription" xml:space="preserve">
-    <value>在开始使用前，请跟随我做一些简单的配置吧！</value>
+    <value>Before you start using, please follow me to do some simple configurations!</value>
   </data>
   <data name="WelcomeTitle" xml:space="preserve">
-    <value>欢迎使用 模型易取</value>
+    <value>Welcome to AI Downloader</value>
   </data>
 </root>

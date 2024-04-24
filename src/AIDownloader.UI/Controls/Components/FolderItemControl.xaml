@@ -11,11 +11,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <controls:SettingsCard
-        AutomationProperties.Name="{x:Bind ViewModel.Name, Mode=OneWay}"
-        Command="{x:Bind ViewModel.OpenFolderCommand, Mode=OneWay}"
-        Description="{x:Bind ViewModel.Path, Mode=OneWay}"
-        IsClickEnabled="True">
+    <controls:SettingsCard AutomationProperties.Name="{x:Bind ViewModel.Name, Mode=OneWay}" Description="{x:Bind ViewModel.Path, Mode=OneWay}">
         <controls:SettingsCard.Header>
             <Grid>
                 <TextBlock
@@ -24,7 +20,8 @@
                     Visibility="{x:Bind ViewModel.IsEditing, Mode=OneWay, Converter={StaticResource BoolToVisibilityReverseConverter}}" />
                 <TextBox
                     x:Name="NameBox"
-                    HorizontalAlignment="Left"
+                    MinWidth="200"
+                    HorizontalAlignment="Stretch"
                     LostFocus="OnNameBoxLostFocus"
                     Text="{x:Bind ViewModel.Name, Mode=OneWay}"
                     Visibility="{x:Bind ViewModel.IsEditing, Mode=OneWay}" />
@@ -38,6 +35,14 @@
                 ToolTipService.ToolTip="{ext:Locale Name=ModifyName}"
                 Visibility="{x:Bind ViewModel.IsEditing, Mode=OneWay, Converter={StaticResource BoolToVisibilityReverseConverter}}">
                 <controls1:FluentIcon FontSize="14" Symbol="Pen" />
+            </Button>
+            <Button
+                AutomationProperties.Name="{ext:Locale Name=OpenFolder}"
+                Command="{x:Bind ViewModel.OpenFolderCommand, Mode=OneWay}"
+                Style="{StaticResource IconButtonStyle}"
+                ToolTipService.ToolTip="{ext:Locale Name=OpenFolder}"
+                Visibility="{x:Bind ViewModel.IsEditing, Mode=OneWay, Converter={StaticResource BoolToVisibilityReverseConverter}}">
+                <controls1:FluentIcon FontSize="14" Symbol="FolderOpenVertical" />
             </Button>
             <Button
                 AutomationProperties.Name="{ext:Locale Name=Remove}"
