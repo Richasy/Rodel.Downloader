@@ -99,6 +99,16 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
         CheckModelScopeSaveFoldersEmpty();
     }
 
+    [RelayCommand]
+    private async Task ImportConfigurationAsync()
+    {
+        var isSuccess = await AppViewModel.Instance.ImportConfigurationAsync();
+        if (isSuccess)
+        {
+            Restart();
+        }
+    }
+
     private void RemoveHuggingFaceSaveFolder(FolderItemViewModel folder)
     {
         HuggingFaceSaveFolders.Remove(folder);

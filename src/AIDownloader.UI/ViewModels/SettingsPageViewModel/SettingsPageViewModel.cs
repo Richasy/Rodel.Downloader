@@ -4,6 +4,7 @@ using System.Text.Json;
 using AIDownloader.UI.Models;
 using AIDownloader.UI.Models.Constants;
 using AIDownloader.UI.Toolkits;
+using Microsoft.Windows.AppLifecycle;
 
 namespace AIDownloader.UI.ViewModels;
 
@@ -79,6 +80,21 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
 
         CheckModelScopeSaveFolderEmpty();
     }
+
+    [RelayCommand]
+    private async Task ImportConfigurationAsync()
+    {
+        var isSuccess = await AppViewModel.Instance.ImportConfigurationAsync();
+        if (isSuccess)
+        {
+            AppInstance.GetCurrent().UnregisterKey();
+            _ = AppInstance.Restart(default);
+        }
+    }
+
+    [RelayCommand]
+    private Task ExportConfigurationAsync()
+        => AppViewModel.Instance.ExportConfigurationAsync();
 
     private void LoadHuggingFaceSaveFolders()
     {

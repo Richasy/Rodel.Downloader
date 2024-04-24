@@ -63,6 +63,28 @@
                         HorizontalAlignment="Left"
                         Content="{ext:Locale Name=SendFeedback}"
                         NavigateUri="https://github.com/Richasy/AIDownloader/issues" />
+                    <StackPanel
+                        Width="1"
+                        Height="16"
+                        Margin="8,0"
+                        VerticalAlignment="Center"
+                        Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                    <HyperlinkButton
+                        Padding="8,4"
+                        HorizontalAlignment="Left"
+                        Command="{x:Bind ViewModel.ImportConfigurationCommand}"
+                        Content="{ext:Locale Name=ImportConfig}" />
+                    <StackPanel
+                        Width="1"
+                        Height="16"
+                        Margin="8,0"
+                        VerticalAlignment="Center"
+                        Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                    <HyperlinkButton
+                        Padding="8,4"
+                        HorizontalAlignment="Left"
+                        Command="{x:Bind ViewModel.ExportConfigurationCommand}"
+                        Content="{ext:Locale Name=ExportConfig}" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

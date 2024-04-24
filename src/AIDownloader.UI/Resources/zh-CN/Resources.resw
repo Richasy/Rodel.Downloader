@@ -195,6 +195,12 @@
   <data name="DownloadProgressTipTemplate" xml:space="preserve">
     <value>共计 {0} 个任务，已完成 {1} 个</value>
   </data>
+  <data name="ExportCompleted" xml:space="preserve">
+    <value>已导出配置</value>
+  </data>
+  <data name="ExportConfig" xml:space="preserve">
+    <value>导出配置</value>
+  </data>
   <data name="FileList" xml:space="preserve">
     <value>文件列表</value>
   </data>
@@ -218,6 +224,15 @@
   </data>
   <data name="HuggingFaceSettingDescription" xml:space="preserve">
     <value>配置 Hugging Face 模型下载所需的令牌，文件夹等</value>
+  </data>
+  <data name="ImportCompleted" xml:space="preserve">
+    <value>已导入</value>
+  </data>
+  <data name="ImportConfig" xml:space="preserve">
+    <value>导入配置</value>
+  </data>
+  <data name="ImportConfigFailed" xml:space="preserve">
+    <value>导入配置时出现异常，请检查配置文件</value>
   </data>
   <data name="InvalidModelId" xml:space="preserve">
     <value>无效的模型 ID</value>

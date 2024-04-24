@@ -2,6 +2,7 @@
 
 using System.Text.Json;
 using AIDownloader.Core;
+using AIDownloader.Core.Models;
 using Spectre.Console;
 
 /// <summary>
@@ -34,7 +35,7 @@ public partial class Program
         }
         else
         {
-            var config = JsonSerializer.Deserialize<Config>(File.ReadAllText(configFile));
+            var config = JsonSerializer.Deserialize<DownloaderConfig>(File.ReadAllText(configFile));
             token = config.ModelScopeToken ?? string.Empty;
 
             folderPath = ChooseSaveFolders(config.ModelScopeSaveFolder, config.ModelScopeBackupFolders);

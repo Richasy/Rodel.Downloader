@@ -66,6 +66,10 @@
                 Visibility="{x:Bind ViewModel.IsFREStep, Mode=OneWay}">
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{ext:Locale Name=WelcomeTitle}" />
                 <TextBlock Style="{StaticResource DescriptionTextStyle}" Text="{ext:Locale Name=WelcomeDescription}" />
+                <HyperlinkButton
+                    HorizontalAlignment="Left"
+                    Command="{x:Bind ViewModel.ImportConfigurationCommand}"
+                    Content="{ext:Locale Name=ImportConfig}" />
 
                 <animations:Implicit.ShowAnimations>
                     <animations:TranslationAnimation
