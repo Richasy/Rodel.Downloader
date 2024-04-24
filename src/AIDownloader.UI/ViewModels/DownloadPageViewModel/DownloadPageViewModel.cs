@@ -23,12 +23,15 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
         _timer = new DispatcherTimer();
         CheckDownloadProgress();
         CheckDownloadEnabled();
+        CheckPauseAllStatus();
         DownloadSpeed = 0;
         HasSpeed = false;
         SelectedSource = SettingsToolkit.ReadLocalSetting(SettingNames.LastDonwloadType, DownloadSource.HuggingFace);
 
         _timer.Interval = TimeSpan.FromSeconds(1);
         _timer.Tick += OnTimerTickAsync;
+
+        AttachIsRunningToAsyncCommand(p => IsPreparingDownload = p, AddDownloadItemsCommand);
     }
 
     /// <summary>
@@ -82,7 +85,7 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
         {
             var task = Task.Run(async () =>
             {
-                var vm = new DownloadItemViewModel(item);
+                var vm = new DownloadItemViewModel(item, RemoveItem, PauseItem, ResumeItem);
                 var fileName = item.FileName;
                 var targetFolder = item.TargetFolder;
                 var link = item.Link;
@@ -118,6 +121,32 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
         await Task.WhenAll(tasks);
         HasDownloadItems = Items.Count > 0;
         _timer.Start();
+    }
+
+    [RelayCommand]
+    private async Task ResumeAllAsync()
+    {
+        await _ariaClient.UnpauseAllAsync();
+        foreach (var item in Items.Where(p => p.IsPaused || p.IsError))
+        {
+            item.Status = DownloadStatus.Fetching;
+        }
+    }
+
+    [RelayCommand]
+    private async Task PauseAllAsync()
+    {
+        await _ariaClient.PauseAllAsync();
+        foreach (var item in Items.Where(p => p.IsDownloading))
+        {
+            item.Status = DownloadStatus.Paused;
+        }
+    }
+
+    private void CheckPauseAllStatus()
+    {
+        CanPauseAll = Items.Any(p => p.IsDownloading);
+        CanResumeAll = Items.Any(p => p.IsPaused || p.IsError);
     }
 
     private async void OnTimerTickAsync(object sender, object e)
@@ -172,6 +201,7 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
                         {
                             var message = $"下载 {i.Name} 时发生错误: {status.ErrorMessage}";
                             Logger.Error(message);
+                            i.ErrorMessage = status.ErrorMessage;
                         }
                     });
                 });
@@ -198,6 +228,7 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
 
         await Task.WhenAll(tasks);
         CheckDownloadProgress();
+        CheckPauseAllStatus();
     }
 
     private void CheckDownloadProgress()
@@ -212,6 +243,35 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
             DownloadProgress = "-/-";
             DownloadProgressTip = string.Empty;
         }
+    }
+
+    private void PauseItem(DownloadItemViewModel item)
+    {
+        Task.Run(async () =>
+        {
+            await _ariaClient.PauseAsync(item.Id);
+        });
+    }
+
+    private void ResumeItem(DownloadItemViewModel item)
+    {
+        Task.Run(async () =>
+        {
+            await _ariaClient.UnpauseAsync(item.Id);
+        });
+    }
+
+    private void RemoveItem(DownloadItemViewModel item)
+    {
+        if (!item.IsCompleted)
+        {
+            Task.Run(async () =>
+            {
+                await _ariaClient.RemoveAsync(item.Id);
+            });
+        }
+
+        Items.Remove(item);
     }
 
     partial void OnSelectedSourceChanged(DownloadSource value)

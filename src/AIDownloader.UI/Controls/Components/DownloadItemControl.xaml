@@ -11,7 +11,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <controls:CardPanel IsEnableCheck="False">
+    <controls:CardPanel Command="{x:Bind ViewModel.OpenCommand, Mode=OneWay}" IsEnableCheck="False">
+        <controls:CardPanel.ContextFlyout>
+            <MenuFlyout>
+                <MenuFlyoutItem Command="{x:Bind ViewModel.CopyLinkCommand, Mode=OneWay}" Text="{ext:Locale Name=CopyLink}">
+                    <MenuFlyoutItem.Icon>
+                        <controls1:FluentIcon Symbol="Copy" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Command="{x:Bind ViewModel.RemoveCommand, Mode=OneWay}" Text="{ext:Locale Name=RemoveFromDownloadList}">
+                    <MenuFlyoutItem.Icon>
+                        <controls1:FluentIcon Foreground="{ThemeResource SystemFillColorCriticalBrush}" Symbol="Dismiss" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+            </MenuFlyout>
+        </controls:CardPanel.ContextFlyout>
         <Grid>
             <Grid Margin="16,12,16,16" ColumnSpacing="12">
                 <Grid.ColumnDefinitions>
@@ -36,26 +50,68 @@
                         TextTrimming="CharacterEllipsis" />
                 </StackPanel>
                 <Grid Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                        Style="{StaticResource CaptionTextBlockStyle}"
-                        Text="{x:Bind ViewModel.Speed, Mode=OneWay, Converter={StaticResource SpeedToStringConverter}}"
-                        Visibility="{x:Bind ViewModel.IsCompleted, Mode=OneWay, Converter={StaticResource BoolToVisibilityReverseConverter}}" />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Spacing="8"
+                        Visibility="{x:Bind ViewModel.IsDownloading, Mode=OneWay}">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            Style="{StaticResource CaptionTextBlockStyle}"
+                            Text="{x:Bind ViewModel.Speed, Mode=OneWay, Converter={StaticResource SpeedToStringConverter}}" />
+                        <Button
+                            VerticalAlignment="Center"
+                            AutomationProperties.Name="{ext:Locale Name=Pause}"
+                            Command="{x:Bind ViewModel.PauseCommand, Mode=OneWay}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTipService.ToolTip="{ext:Locale Name=Pause}">
+                            <controls1:FluentIcon FontSize="14" Symbol="PauseFilled" />
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Spacing="8"
+                        Visibility="{x:Bind ViewModel.IsPaused, Mode=OneWay}">
+                        <Button
+                            VerticalAlignment="Center"
+                            AutomationProperties.Name="{ext:Locale Name=Resume}"
+                            Command="{x:Bind ViewModel.ResumeCommand, Mode=OneWay}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTipService.ToolTip="{ext:Locale Name=Resume}">
+                            <controls1:FluentIcon FontSize="14" Symbol="PlayFilled" />
+                        </Button>
+                    </StackPanel>
+
                     <controls1:FluentIcon
                         Margin="0,0,8,0"
                         VerticalAlignment="Center"
                         FontSize="18"
                         Foreground="{ThemeResource SystemFillColorSuccessBrush}"
                         Symbol="CheckmarkCircle"
+                        ToolTipService.ToolTip="{ext:Locale Name=Completed}"
                         Visibility="{x:Bind ViewModel.IsCompleted, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
-                    <controls1:FluentIcon
-                        Margin="0,0,8,0"
-                        VerticalAlignment="Center"
-                        FontSize="18"
-                        Foreground="{ThemeResource SystemFillColorCriticalBrush}"
-                        Symbol="DismissCircleFilled"
-                        Visibility="{x:Bind ViewModel.IsError, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Spacing="8"
+                        Visibility="{x:Bind ViewModel.IsError, Mode=OneWay}">
+                        <controls1:FluentIcon
+                            Margin="0,0,8,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                            Symbol="DismissCircleFilled"
+                            ToolTipService.ToolTip="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}" />
+                        <Button
+                            VerticalAlignment="Center"
+                            AutomationProperties.Name="{ext:Locale Name=Retry}"
+                            Command="{x:Bind ViewModel.ResumeCommand, Mode=OneWay}"
+                            Style="{StaticResource IconButtonStyle}"
+                            ToolTipService.ToolTip="{ext:Locale Name=Retry}">
+                            <controls1:FluentIcon FontSize="14" Symbol="ArrowSync" />
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </Grid>
             <ProgressBar

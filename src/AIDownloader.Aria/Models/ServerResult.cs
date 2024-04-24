@@ -20,7 +20,7 @@ public class ServerResultServer
     public string CurrentUri { get; set; } = null!;
 
     [JsonPropertyName("downloadSpeed")]
-    public decimal DownloadSpeed { get; set; }
+    public string DownloadSpeed { get; set; }
 
     [JsonPropertyName("uri")]
     public string Uri { get; set; } = null!;

@@ -25,7 +25,7 @@ public class PeerResult
     /// Download speed (byte/sec) that this client obtains from the peer.
     /// </summary>
     [JsonPropertyName("downloadSpeed")]
-    public decimal DownloadSpeed { get; set; }
+    public string DownloadSpeed { get; set; }
 
     /// <summary>
     /// IP address of the peer.
@@ -61,5 +61,5 @@ public class PeerResult
     /// Upload speed(byte/sec) that this client uploads to the peer.
     /// </summary>
     [JsonPropertyName("uploadSpeed")]
-    public decimal UploadSpeed { get; set; }
+    public string UploadSpeed { get; set; }
 }

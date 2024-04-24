@@ -41,6 +41,15 @@ public sealed partial class DownloadPageViewModel
     [ObservableProperty]
     private bool _isCivitaiDownloadEnabled;
 
+    [ObservableProperty]
+    private bool _isPreparingDownload;
+
+    [ObservableProperty]
+    private bool _canPauseAll;
+
+    [ObservableProperty]
+    private bool _canResumeAll;
+
     /// <summary>
     /// 实例.
     /// </summary>

@@ -25,14 +25,26 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button
-                MinWidth="120"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                AutomationProperties.Name="{ext:Locale Name=DownloadModel}"
-                Click="OnDownloadButtonClickAsync"
-                Content="{ext:Locale Name=DownloadModel}"
-                Style="{StaticResource AccentButtonStyle}" />
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button
+                    MinWidth="120"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    AutomationProperties.Name="{ext:Locale Name=DownloadModel}"
+                    Click="OnDownloadButtonClickAsync"
+                    Content="{ext:Locale Name=DownloadModel}"
+                    Style="{StaticResource AccentButtonStyle}" />
+                <HyperlinkButton
+                    VerticalAlignment="Center"
+                    Command="{x:Bind ViewModel.PauseAllCommand}"
+                    Content="{ext:Locale Name=PauseAll}"
+                    Visibility="{x:Bind ViewModel.CanPauseAll, Mode=OneWay}" />
+                <HyperlinkButton
+                    VerticalAlignment="Center"
+                    Command="{x:Bind ViewModel.ResumeAllCommand}"
+                    Content="{ext:Locale Name=ResumeAll}"
+                    Visibility="{x:Bind ViewModel.CanResumeAll, Mode=OneWay}" />
+            </StackPanel>
 
             <StackPanel
                 Grid.Column="1"
@@ -60,11 +72,12 @@
             Background="{ThemeResource LayerFillColorDefaultBrush}">
             <ScrollViewer
                 x:Name="DownloadScrollViewer"
+                Padding="16,0"
                 Style="{StaticResource PageScrollViewerStyle}"
                 Visibility="{x:Bind ViewModel.HasDownloadItems, Mode=OneWay}">
                 <ItemsRepeater Margin="0,8,0,20" ItemsSource="{x:Bind ViewModel.Items}">
                     <ItemsRepeater.Layout>
-                        <StackLayout Spacing="8" />
+                        <StackLayout Spacing="4" />
                     </ItemsRepeater.Layout>
                     <ItemsRepeater.ItemTemplate>
                         <DataTemplate x:DataType="viewmodels:DownloadItemViewModel">
@@ -100,6 +113,24 @@
                         <ToolTip Content="{x:Bind ViewModel.DownloadProgressTip, Mode=OneWay}" IsEnabled="{x:Bind ViewModel.DownloadProgressTip, Mode=OneWay, Converter={StaticResource ObjectToBoolConverter}}" />
                     </ToolTipService.ToolTip>
                 </TextBlock>
+                <StackPanel
+                    Margin="8,0,0,0"
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    Visibility="{x:Bind ViewModel.IsPreparingDownload, Mode=OneWay}">
+                    <ProgressRing
+                        Width="14"
+                        Height="14"
+                        MinWidth="0"
+                        MinHeight="0"
+                        VerticalAlignment="Center"
+                        IsActive="{x:Bind ViewModel.IsPreparingDownload, Mode=OneWay}" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        Text="{ext:Locale Name=AddingDownloadItems}" />
+                </StackPanel>
             </StackPanel>
 
             <StackPanel

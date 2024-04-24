@@ -1402,6 +1402,7 @@ public enum FluentSymbol : int
     Patch = 0xEAD4,
     Patient = 0xEAD6,
     Pause = 0xEAD8,
+    PauseFilled = 0xEAD7,
     PauseCircle = 0xEADA,
     PauseOff = 0xEADC,
     PauseSettings = 0xEADE,

@@ -126,6 +126,9 @@
   <data name="Add" xml:space="preserve">
     <value>添加</value>
   </data>
+  <data name="AddingDownloadItems" xml:space="preserve">
+    <value>正在添加下载项</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>AI 下载器</value>
   </data>
@@ -147,8 +150,17 @@
   <data name="CivitaiDownload" xml:space="preserve">
     <value>Civitai 模型下载</value>
   </data>
+  <data name="Completed" xml:space="preserve">
+    <value>已完成</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>确认</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>已复制</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>复制链接</value>
   </data>
   <data name="DeselectAll" xml:space="preserve">
     <value>取消全选</value>
@@ -222,11 +234,29 @@
   <data name="Official" xml:space="preserve">
     <value>官方源</value>
   </data>
+  <data name="Pause" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="PauseAll" xml:space="preserve">
+    <value>全部暂停</value>
+  </data>
   <data name="PrevStep" xml:space="preserve">
     <value>上一步</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>移除</value>
+  </data>
+  <data name="RemoveFromDownloadList" xml:space="preserve">
+    <value>从下载列表中移除</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>继续</value>
+  </data>
+  <data name="ResumeAll" xml:space="preserve">
+    <value>全部恢复</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>重试</value>
   </data>
   <data name="SaveFolderList" xml:space="preserve">
     <value>存储文件夹列表</value>
