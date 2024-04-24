@@ -24,11 +24,16 @@
             </community:SettingsCard>
         </community:SettingsExpander.Items>
         <community:SettingsExpander.ItemsFooter>
-            <components:FolderListPanel
-                Margin="12,8"
-                AddCommand="{x:Bind ViewModel.AddCivitaiSaveFolderCommand}"
-                IsEmptyShown="{x:Bind ViewModel.IsCivitaiFoldersEmpty, Mode=OneWay}"
-                ItemsSource="{x:Bind ViewModel.CivitaiSaveFolders}" />
+            <Grid
+                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                BorderThickness="0,1,0,0">
+                <components:FolderListPanel
+                    Margin="58,8,44,8"
+                    AddCommand="{x:Bind ViewModel.AddCivitaiSaveFolderCommand}"
+                    IsEmptyShown="{x:Bind ViewModel.IsCivitaiFoldersEmpty, Mode=OneWay}"
+                    ItemsSource="{x:Bind ViewModel.CivitaiSaveFolders}" />
+            </Grid>
         </community:SettingsExpander.ItemsFooter>
     </community:SettingsExpander>
 </local:SettingSectionBase>

@@ -340,6 +340,6 @@
     <value>在开始使用前，请跟随我做一些简单的配置吧！</value>
   </data>
   <data name="WelcomeTitle" xml:space="preserve">
-    <value>欢迎使用 AI 下载器</value>
+    <value>欢迎使用 模型易取</value>
   </data>
 </root>
