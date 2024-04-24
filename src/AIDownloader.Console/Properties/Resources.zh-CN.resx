@@ -162,6 +162,9 @@
   <data name="GetFileList" xml:space="preserve">
     <value>已获取 {0} 的文件列表</value>
   </data>
+  <data name="HuggingFaceNeedToken" xml:space="preserve">
+    <value>使用 Hugging Face 服务需要提供访问令牌</value>
+  </data>
   <data name="HuggingFaceSource" xml:space="preserve">
     <value>请选择 Hugging Face 来源</value>
   </data>
@@ -215,5 +218,8 @@
   </data>
   <data name="SelectSaveFolder" xml:space="preserve">
     <value>请选择一个文件夹保存下载内容</value>
+  </data>
+  <data name="ServiceInputFailed" xml:space="preserve">
+    <value>无效的 service 参数，有效值为 hf | civitai | ms</value>
   </data>
 </root>
