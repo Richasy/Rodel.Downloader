@@ -84,6 +84,7 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
     [RelayCommand]
     private async Task ImportConfigurationAsync()
     {
+        _ = this;
         var isSuccess = await AppViewModel.Instance.ImportConfigurationAsync();
         if (isSuccess)
         {
@@ -94,7 +95,10 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
 
     [RelayCommand]
     private Task ExportConfigurationAsync()
-        => AppViewModel.Instance.ExportConfigurationAsync();
+    {
+        _ = this;
+        return AppViewModel.Instance.ExportConfigurationAsync();
+    }
 
     private void LoadHuggingFaceSaveFolders()
     {

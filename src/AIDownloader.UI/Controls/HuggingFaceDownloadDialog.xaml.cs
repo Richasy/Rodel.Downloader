@@ -28,6 +28,7 @@ public sealed partial class HuggingFaceDownloadDialog : ContentDialog
     public HuggingFaceDownloadDialog(DownloadPageViewModel pageVM)
     {
         InitializeComponent();
+        AppToolkit.ResetControlTheme(this);
         _pageVM = pageVM;
         var type = SettingsToolkit.ReadLocalSetting(SettingNames.HuggingFaceUriType, HuggingFaceUriType.Official);
         TypeSelector.SelectedIndex = (int)type;

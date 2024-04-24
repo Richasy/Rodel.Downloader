@@ -74,10 +74,6 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="nupkg\" />
-  </ItemGroup>
-
   <Target Name="CopyAriaContent" AfterTargets="AfterBuild">
     <ItemGroup>
         <AriaFiles Include="$(SolutionDir)lib\**" />

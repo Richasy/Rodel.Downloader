@@ -26,6 +26,7 @@ public sealed partial class ModelScopeDownloadDialog : ContentDialog
     public ModelScopeDownloadDialog(DownloadPageViewModel pageVM)
     {
         InitializeComponent();
+        AppToolkit.ResetControlTheme(this);
         _pageVM = pageVM;
         var saveFolders = SettingsToolkit.ReadLocalSetting(SettingNames.ModelScopeSaveFolders, "[]");
         var folders = JsonSerializer.Deserialize<List<FolderItem>>(saveFolders);

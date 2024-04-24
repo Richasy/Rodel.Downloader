@@ -29,6 +29,7 @@ public sealed partial class CivitaiDownloadDialog : ContentDialog
     public CivitaiDownloadDialog(DownloadPageViewModel pageVM)
     {
         InitializeComponent();
+        AppToolkit.ResetControlTheme(this);
         _pageVM = pageVM;
         var saveFolders = SettingsToolkit.ReadLocalSetting(SettingNames.CivitaiSaveFolders, "[]");
         var folders = JsonSerializer.Deserialize<List<FolderItem>>(saveFolders);

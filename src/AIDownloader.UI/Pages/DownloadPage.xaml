@@ -61,11 +61,15 @@
                     ToolTipService.ToolTip="{ext:Locale Name=Settings}">
                     <controls:FluentIcon FontSize="16" Symbol="Settings" />
                 </Button>
-                <community:Segmented x:Name="DownloadTypeSelector" SelectionChanged="OnDownloadTypeSelectionChanged">
-                    <community:SegmentedItem Content="Hugging Face" />
-                    <community:SegmentedItem Content="Civitai" />
-                    <community:SegmentedItem Content="{ext:Locale Name=ModelScope}" />
-                </community:Segmented>
+                <ComboBox
+                    x:Name="DownloadTypeSelector"
+                    MinWidth="120"
+                    SelectionChanged="OnDownloadTypeSelectionChanged"
+                    SelectionChangedTrigger="Committed">
+                    <ComboBoxItem Content="Hugging Face" />
+                    <ComboBoxItem Content="Civitai" />
+                    <ComboBoxItem Content="{ext:Locale Name=ModelScope}" />
+                </ComboBox>
             </StackPanel>
         </Grid>
 
