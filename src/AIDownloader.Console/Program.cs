@@ -4,32 +4,54 @@ using Spectre.Console;
 
 ConfigureConsole();
 
-var ignoreConfig = args.Contains("--ignore-config");
-var shouldCleanUp = args.Contains("--clean-up");
+var parseResult = CommandLine.Parser.Default.ParseArguments<Options>(args);
 
-if (shouldCleanUp)
+if (parseResult.Errors.Any())
+{
+    return;
+}
+
+var options = parseResult.Value;
+
+if (options.ShouldCleanUp)
 {
     KillAllAria2Process();
 }
 
-var type = AnsiConsole.Prompt(
+if (options.EditConfig)
+{
+    EditOrCreateConfig();
+    return;
+}
+
+var ignoreConfig = options.IgnoreConfig;
+
+if (options.DisabledInteraction)
+{
+    // Handle arguments.
+    await RunConsoleDownloadAsync(options);
+}
+else
+{
+    var type = AnsiConsole.Prompt(
      new SelectionPrompt<AIType>()
          .Title(GetString("AITypeSelection"))
          .PageSize(10)
          .UseConverter(ConvertAITypeToString)
          .AddChoices(AIType.HuggingFace, AIType.Civitai, AIType.ModelScope));
 
-if (type == AIType.HuggingFace)
-{
-    await RunHuggingFaceDownloadAsync(ignoreConfig);
-}
-else if (type == AIType.Civitai)
-{
-    await RunCivitaiDownloadAsync(ignoreConfig);
-}
-else if (type == AIType.ModelScope)
-{
-    await RunModelScopeDownloadAsync(ignoreConfig);
+    if (type == AIType.HuggingFace)
+    {
+        await RunHuggingFaceDownloadAsync(ignoreConfig);
+    }
+    else if (type == AIType.Civitai)
+    {
+        await RunCivitaiDownloadAsync(ignoreConfig);
+    }
+    else if (type == AIType.ModelScope)
+    {
+        await RunModelScopeDownloadAsync(ignoreConfig);
+    }
 }
 
 string ConvertAITypeToString(AIType type)

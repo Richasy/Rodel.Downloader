@@ -273,6 +273,9 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
         }
 
         Items.Remove(item);
+        HasDownloadItems = Items.Count > 0;
+        CheckDownloadProgress();
+        CheckPauseAllStatus();
     }
 
     partial void OnSelectedSourceChanged(DownloadSource value)

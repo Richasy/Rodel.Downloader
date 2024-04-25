@@ -99,6 +99,16 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
         CheckModelScopeSaveFoldersEmpty();
     }
 
+    [RelayCommand]
+    private async Task ImportConfigurationAsync()
+    {
+        var isSuccess = await AppViewModel.Instance.ImportConfigurationAsync();
+        if (isSuccess)
+        {
+            Restart();
+        }
+    }
+
     private void RemoveHuggingFaceSaveFolder(FolderItemViewModel folder)
     {
         HuggingFaceSaveFolders.Remove(folder);
@@ -147,7 +157,7 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
         IsCivitaiStep = CurrentStep == 2;
         IsModelScopeStep = CurrentStep == 3;
         IsLastStep = CurrentStep == StepCount - 1;
-        IsPreviousStepShown = CurrentStep > 1 && !IsLastStep;
+        IsPreviousStepShown = CurrentStep > 0 && !IsLastStep;
     }
 
     partial void OnCurrentStepChanged(int value)

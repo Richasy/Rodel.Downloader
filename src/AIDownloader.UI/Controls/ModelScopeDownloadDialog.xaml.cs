@@ -26,6 +26,7 @@ public sealed partial class ModelScopeDownloadDialog : ContentDialog
     public ModelScopeDownloadDialog(DownloadPageViewModel pageVM)
     {
         InitializeComponent();
+        AppToolkit.ResetControlTheme(this);
         _pageVM = pageVM;
         var saveFolders = SettingsToolkit.ReadLocalSetting(SettingNames.ModelScopeSaveFolders, "[]");
         var folders = JsonSerializer.Deserialize<List<FolderItem>>(saveFolders);
@@ -35,9 +36,13 @@ public sealed partial class ModelScopeDownloadDialog : ContentDialog
         }
 
         var lastFolder = SettingsToolkit.ReadLocalSetting(SettingNames.ModelScopeLastSaveFolder, string.Empty);
-        if (string.IsNullOrEmpty(lastFolder) || !_folders.Any(p => p.Path.Equals(lastFolder)))
+        if (!string.IsNullOrEmpty(lastFolder) && !_folders.Any(p => p.Path.Equals(lastFolder)))
         {
-            lastFolder = _folders.FirstOrDefault()?.Path;
+            _folders.Add(new FolderItem
+            {
+                Name = Path.GetFileName(lastFolder),
+                Path = lastFolder,
+            });
         }
 
         var selectedFolderItem = _folders.FirstOrDefault(p => p.Path.Equals(lastFolder));

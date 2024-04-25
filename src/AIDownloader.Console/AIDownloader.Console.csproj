@@ -2,12 +2,53 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AriaDependencyRootDir>..\lib\</AriaDependencyRootDir>
+    <PackAsTool>True</PackAsTool>
+    <ToolCommandName>ai-downloader</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    <PackageId>AIDownloader.CLI</PackageId>
+    <Title>AI Downloader</Title>
+    <Version>0.0.2</Version>
+    <Authors>Richasy</Authors>
+    <Product>AIDownloader.CLI</Product>
+    <Description>A simple AI model downloader based on aria2, which can download models from Hugging Face / Civitai / Model Scope faster and more stably.</Description>
+    <Copyright>© 2024 Richasy. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/Richasy/AIDownloader</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Richasy/AIDownloader</RepositoryUrl>
+    <PackageTags>ai;downloader;model;aria2</PackageTags>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup Label="Aria">
+    <Content Include="$(AriaDependencyRootDir)aria2c.exe">
+      <Link>aria2c.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(AriaDependencyRootDir)aria2.conf">
+      <Link>aria2.conf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="Spectre.Console" Version="0.48.0" />
   </ItemGroup>
 
@@ -18,15 +59,6 @@
 
   <ItemGroup>
     <Using Include="System.Console" Static="true" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="ai-downloader.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <Target Name="CopyAriaContent" AfterTargets="AfterBuild">

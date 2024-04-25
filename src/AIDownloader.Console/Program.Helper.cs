@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Resources;
 using System.Text;
+using System.Text.Json;
 using AIDownloader.Aria;
 using AIDownloader.Aria.Models;
 using AIDownloader.Core;
@@ -24,7 +25,7 @@ public partial class Program
 
     private static void ConfigureConsole()
     {
-        OutputEncoding = System.Text.Encoding.UTF8;
+        OutputEncoding = Encoding.UTF8;
         var culture = CultureInfo.CurrentCulture;
         _currentCulture = culture.TwoLetterISOLanguageName == "zh"
            ? new CultureInfo("zh-CN")
@@ -49,7 +50,7 @@ public partial class Program
 
     private static string GetString(string name)
     {
-        _resourceManager ??= new ResourceManager("AIDownloader.Console.Resources.Resource", typeof(Program).Assembly);
+        _resourceManager ??= new ResourceManager("AIDownloader.Console.Properties.Resources", typeof(Program).Assembly);
         return _resourceManager.GetString(name, _currentCulture) ?? name;
     }
 
@@ -93,7 +94,20 @@ public partial class Program
         return folderPath;
     }
 
-    private static string ChooseSaveFolders(string preferFolder, Dictionary<string, string> backupFolders)
+    private static AIType ConvertAITypeFromString(string type)
+    {
+        var t = type.ToLower() switch
+        {
+            "hf" => AIType.HuggingFace,
+            "civitai" => AIType.Civitai,
+            "ms" => AIType.ModelScope,
+            _ => throw new Exception("Invalid AI type."),
+        };
+
+        return t;
+    }
+
+    private static string ChooseSaveFolders(string preferFolder, Dictionary<string, string> backupFolders, bool canAsk = true)
     {
         if (!string.IsNullOrEmpty(preferFolder) && Directory.Exists(preferFolder))
         {
@@ -105,14 +119,21 @@ public partial class Program
         {
             if (backupFolders.Count > 1)
             {
-                var folderIndex = AnsiConsole.Prompt(
+                if (canAsk)
+                {
+                    var folderIndex = AnsiConsole.Prompt(
                        new SelectionPrompt<int>()
                           .Title(GetString("SelectSaveFolder"))
                           .PageSize(10)
                           .MoreChoicesText(GetString("MoreFolderTip"))
                           .UseConverter(ConvertFolderToString)
                           .AddChoices(Enumerable.Range(0, backupFolders.Count)));
-                selectedFolder = backupFolders.ElementAt(folderIndex).Value;
+                    selectedFolder = backupFolders.ElementAt(folderIndex).Value;
+                }
+                else
+                {
+                    selectedFolder = string.Empty;
+                }
             }
             else
             {
@@ -126,12 +147,12 @@ public partial class Program
             }
         }
 
-        if (string.IsNullOrEmpty(selectedFolder))
+        if (string.IsNullOrEmpty(selectedFolder) && canAsk)
         {
             selectedFolder = AskSaveFolderPath();
         }
 
-        if (!Directory.Exists(selectedFolder))
+        if (!string.IsNullOrEmpty(selectedFolder) && !Directory.Exists(selectedFolder))
         {
             AnsiConsole.MarkupLine($"[red]{GetString("FolderNotExist")}[/]");
             selectedFolder = string.Empty;
@@ -184,11 +205,11 @@ public partial class Program
 
     private static async Task TryDownloadFilesAsync(List<DownloadItem> items, string accessToken = "")
     {
-        var processFolder = Path.GetDirectoryName(Environment.ProcessPath);
+        var processFolder = AppDomain.CurrentDomain.BaseDirectory;
         if (_ariaClient == null)
         {
-            var ariaFilePath = Path.Combine(processFolder, "lib", "aria2c.exe");
-            var ariaConfigPath = Path.Combine(processFolder, "lib", "aria2.conf");
+            var ariaFilePath = Path.Combine(processFolder, "aria2c.exe");
+            var ariaConfigPath = Path.Combine(processFolder, "aria2.conf");
             _ariaClient = new AriaClient(ariaFilePath, ariaConfigPath, 9600, retryCount: 3);
             AnsiConsole.MarkupLine($"[gray]{GetString("Aria2cInitialized")}[yellow]9600[/][/]");
         }
@@ -204,7 +225,7 @@ public partial class Program
             .Cropping(VerticalOverflowCropping.Top)
             .StartAsync(async ctx =>
             {
-                var ariaConfigPath = Path.Combine(processFolder, "lib", "aria2.conf");
+                var ariaConfigPath = Path.Combine(processFolder, "aria2.conf");
                 foreach (var item in items)
                 {
                     var options = new Dictionary<string, object>
@@ -293,5 +314,34 @@ public partial class Program
                     await Task.Delay(1000);
                 }
             });
+    }
+
+    private static string GetConfigPath()
+        => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+
+    private static void EditOrCreateConfig()
+    {
+        var configPath = GetConfigPath();
+        if (!File.Exists(configPath))
+        {
+            File.Create(configPath).Close();
+            var config = new DownloaderConfig
+            {
+                HuggingFaceToken = string.Empty,
+                HuggingFaceSaveFolder = string.Empty,
+                HuggingFaceBackupFolders = new Dictionary<string, string>(),
+                HuggingFaceUriType = "official",
+                CivitaiToken = string.Empty,
+                CivitaiSaveFolder = string.Empty,
+                CivitaiBackupFolders = new Dictionary<string, string>(),
+                ModelScopeToken = string.Empty,
+                ModelScopeSaveFolder = string.Empty,
+                ModelScopeBackupFolders = new Dictionary<string, string>(),
+            };
+            var json = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(configPath, json);
+        }
+
+        Process.Start(new ProcessStartInfo(configPath) { UseShellExecute = true });
     }
 }

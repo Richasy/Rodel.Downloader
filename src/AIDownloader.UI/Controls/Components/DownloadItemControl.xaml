@@ -53,7 +53,8 @@
                         Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                         Style="{StaticResource CaptionTextBlockStyle}"
                         Text="{x:Bind ViewModel.SavePath, Mode=OneWay}"
-                        TextTrimming="CharacterEllipsis" />
+                        TextTrimming="CharacterEllipsis"
+                        TextWrapping="NoWrap" />
                 </StackPanel>
                 <Grid Grid.Column="1" VerticalAlignment="Center">
                     <StackPanel

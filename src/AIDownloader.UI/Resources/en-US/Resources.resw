@@ -195,6 +195,12 @@
   <data name="DownloadProgressTipTemplate" xml:space="preserve">
     <value>A total of {0} tasks, {1} completed</value>
   </data>
+  <data name="ExportCompleted" xml:space="preserve">
+    <value>Export completed</value>
+  </data>
+  <data name="ExportConfig" xml:space="preserve">
+    <value>Export config</value>
+  </data>
   <data name="FileList" xml:space="preserve">
     <value>File list</value>
   </data>
@@ -218,6 +224,15 @@
   </data>
   <data name="HuggingFaceSettingDescription" xml:space="preserve">
     <value>Configure the tokens, folders, etc. required for Hugging Face model download</value>
+  </data>
+  <data name="ImportCompleted" xml:space="preserve">
+    <value>Import completed</value>
+  </data>
+  <data name="ImportConfig" xml:space="preserve">
+    <value>Import config</value>
+  </data>
+  <data name="ImportConfigFailed" xml:space="preserve">
+    <value>Failed to import configuration</value>
   </data>
   <data name="InvalidModelId" xml:space="preserve">
     <value>Invalid Model ID</value>

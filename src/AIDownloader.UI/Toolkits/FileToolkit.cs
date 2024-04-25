@@ -39,6 +39,29 @@ public static class FileToolkit
         }
     }
 
+    public static async Task<StorageFile> SaveFileAsync(string extension, object windowInstance)
+    {
+        try
+        {
+            var picker = new FileSavePicker();
+            InitializeWithWindow.Initialize(picker, WindowNative.GetWindowHandle(windowInstance));
+            var exts = extension.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            foreach (var ext in exts)
+            {
+                picker.FileTypeChoices.Add(ext, new List<string> { ext });
+            }
+
+            picker.SuggestedStartLocation = PickerLocationId.Desktop;
+            picker.DefaultFileExtension = exts[0];
+            var file = await picker.PickSaveFileAsync().AsTask();
+            return file;
+        }
+        catch (Exception)
+        {
+            return default;
+        }
+    }
+
     /// <summary>
     /// 选择文件夹.
     /// </summary>

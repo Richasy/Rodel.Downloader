@@ -13,7 +13,7 @@ public partial class Program
 {
     private static async Task RunCivitaiDownloadAsync(bool ignoreConfig = false)
     {
-        var configFile = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "config.json");
+        var configFile = GetConfigPath();
         var isConfigFileExist = File.Exists(configFile);
 
         var modelId = AnsiConsole.Ask<string>(GetString("ModelIdOrLinkInput"));
@@ -55,7 +55,7 @@ public partial class Program
         }
         else
         {
-            var config = JsonSerializer.Deserialize<Config>(File.ReadAllText(configFile));
+            var config = JsonSerializer.Deserialize<DownloaderConfig>(File.ReadAllText(configFile));
             token = string.IsNullOrEmpty(config.CivitaiToken) ? AskCivitaiToken() : config.CivitaiToken;
             folderPath = ChooseSaveFolders(config.CivitaiSaveFolder, config.CivitaiBackupFolders);
             if (string.IsNullOrEmpty(folderPath))
