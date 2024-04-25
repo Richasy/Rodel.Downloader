@@ -38,10 +38,14 @@ public sealed partial class CivitaiDownloadDialog : ContentDialog
             _folders.Add(item);
         }
 
-        var lastFolder = SettingsToolkit.ReadLocalSetting(SettingNames.HuggingFaceLastSaveFolder, string.Empty);
-        if (string.IsNullOrEmpty(lastFolder) || !_folders.Any(p => p.Path.Equals(lastFolder)))
+        var lastFolder = SettingsToolkit.ReadLocalSetting(SettingNames.CivitaiLastSaveFolder, string.Empty);
+        if (!string.IsNullOrEmpty(lastFolder) && !_folders.Any(p => p.Path.Equals(lastFolder)))
         {
-            lastFolder = _folders.FirstOrDefault()?.Path;
+            _folders.Add(new FolderItem
+            {
+                Name = Path.GetFileName(lastFolder),
+                Path = lastFolder,
+            });
         }
 
         var selectedFolderItem = _folders.FirstOrDefault(p => p.Path.Equals(lastFolder));

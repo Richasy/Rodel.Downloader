@@ -11,7 +11,7 @@
     <PackageOutputPath>./nupkg</PackageOutputPath>
     <PackageId>AIDownloader.CLI</PackageId>
     <Title>AI Downloader</Title>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>Richasy</Authors>
     <Product>AIDownloader.CLI</Product>
     <Description>A simple AI model downloader based on aria2, which can download models from Hugging Face / Civitai / Model Scope faster and more stably.</Description>
@@ -45,13 +45,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

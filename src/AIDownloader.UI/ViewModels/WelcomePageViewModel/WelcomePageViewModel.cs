@@ -157,7 +157,7 @@ public sealed partial class WelcomePageViewModel : ViewModelBase
         IsCivitaiStep = CurrentStep == 2;
         IsModelScopeStep = CurrentStep == 3;
         IsLastStep = CurrentStep == StepCount - 1;
-        IsPreviousStepShown = CurrentStep > 1 && !IsLastStep;
+        IsPreviousStepShown = CurrentStep > 0 && !IsLastStep;
     }
 
     partial void OnCurrentStepChanged(int value)

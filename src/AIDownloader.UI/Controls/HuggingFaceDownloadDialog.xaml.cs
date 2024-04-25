@@ -40,9 +40,13 @@ public sealed partial class HuggingFaceDownloadDialog : ContentDialog
         }
 
         var lastFolder = SettingsToolkit.ReadLocalSetting(SettingNames.HuggingFaceLastSaveFolder, string.Empty);
-        if (string.IsNullOrEmpty(lastFolder) || !_folders.Any(p => p.Path.Equals(lastFolder)))
+        if (!string.IsNullOrEmpty(lastFolder) && !_folders.Any(p => p.Path.Equals(lastFolder)))
         {
-            lastFolder = _folders.FirstOrDefault()?.Path;
+            _folders.Add(new FolderItem
+            {
+                Name = Path.GetFileName(lastFolder),
+                Path = lastFolder,
+            });
         }
 
         var selectedFolderItem = _folders.FirstOrDefault(p => p.Path.Equals(lastFolder));

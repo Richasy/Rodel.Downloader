@@ -37,11 +37,13 @@ English · [简体中文](./README.zh-CN.md)
 - [🎛️ Environment Support](#️-environment-support)
 - [🛠️ CLI Instruction Manual](#️-cli-instruction-manual)
     - [`1` Install](#1-install)
-    - [`2` Download Hugging Face Model](#2-download-hugging-face-model)
-    - [`3` Download Model Scope Community Model](#3-download-model-scope-community-model)
-    - [`4` Download Civitai Model](#4-download-civitai-model)
-    - [`5` Resume Download](#5-resume-download)
-    - [`6` Configuration](#6-configuration)
+    - [`2` Interactive Commands](#2-interactive-commands)
+      - [Screenshots of the interactive interface](#screenshots-of-the-interactive-interface)
+    - [`3` Standard Commands](#3-standard-commands)
+      - [Example](#example)
+    - [`4` Configuration and Saving](#4-configuration-and-saving)
+      - [Overview of Access Token Acquisition](#overview-of-access-token-acquisition)
+    - [`5` Resume from Breakpoint](#5-resume-from-breakpoint)
 - [🪄 Application Manual](#-application-manual)
     - [`1` Download and Installation](#1-download-and-installation)
     - [`2` Configuration](#2-configuration)
@@ -111,91 +113,91 @@ Both CLI and APP come with a built-in `1.3.7` **aria2c.exe**, no additional down
 > CLI relies on .NET 8 framework, please make sure that `.NET 8 Desktop Runtime` or `SDK` is installed on your device.
 > You can download `.NET SDK` or `.NET Desktop Runtime` at [Download .NET 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
 
-1. Download the latest `AIDownloader-CLI.zip` from the Release list of the repository.
-2. Unzip the downloaded package to a directory you prefer.
-3. Add the unzipped directory to the system or user's **PATH** environment variable.
-4. Open the command line you are familiar with and enter `ai-downloader`.
+1. Open PowerShell
+2. Enter the command
+   ```powershell
+   dotnet-tool install --global aidownloader.cli
+   ```
+3. After the installation is complete, enter the command `ai-downloader` to enter the interactive command interface
+4. You can also enter the command `ai-downloader --help` to view detailed parameter definitions
 
-#### `2` Download Hugging Face Model
+#### `2` Interactive Commands
 
-> \[!TIP]
->
-> To use this tool to download models from Hugging Face, you need to prepare your access token in advance. The specific acquisition method can be referred to: [User Access Tokens](https://huggingface.co/docs/hub/security-tokens)
+The CLI defaults to an interactive mode to guide you through the download process.
 
-1. choose `Hugging Face`
-2. Enter the model ID you need to download.
-3. Enter the Hugging Face access token.
-4. Choose the source of Hugging Face models, you can choose from the official source or the mirror site in China.
-5. Enter the folder to store the model.
+After installation, you can simply enter `ai-downloader` to access the interactive interface.
 
-> \[!TIP]
->
-> The model ID format is like: `author/model`, for example, if you want to download the Llama 3 8B model, the model ID you need to enter is: `meta-llama/Meta-Llama-3-8B`. The application accesses the Hugging Face API to get the model download list based on this ID and your token.
+The basic download steps are as follows:
 
-> \[!WARNING]
->
-> The term "save folder" refers to the parent folder where the model is stored. The application will create a subfolder with the same name as the model within this folder to serve as the directory for storing the model files.
-> 
-> For example, you specified `C:\MyFolder` as the save folder, then after you download the Llama 3 8B model, the actual model file path is `C:\MyFolder\Meta-Llama-3-8B`.
+1. Choose the model hosting service. Currently, `Hugging Face / HF-Mirror`, `Civitai`, and `Model Scope` are supported.
+2. Enter the model ID you want to download. This model ID is usually provided by the hosting service.
+3. The CLI will search for the repository and download file list corresponding to the model ID. Once found, it will be listed and you can freely choose which files to download.
+4. Start downloading. The CLI will provide progress tips. You can wait for the download to complete or press `Ctrl` + `C` at any time to interrupt the download.
 
-If everything is fine, you can now get the file list from the model repository. Please select the files you need to download according to the command line prompts (all selected by default).
+##### Screenshots of the interactive interface
 
-Then... hit `Enter` and wait for the download.
+*The following image uses the `LLM-Research/Phi-3-mini-128k-instruct` model from the Model Scope community as an example*
 
-*During the download process, you can press `Ctrl` + `C` at any time to stop the download.*
+![Before download](./assets/cli-en-beforedownload.png)
 
-#### `3` Download Model Scope Community Model
+![Download progress](./assets/cli-en-downloading.png)
 
-[Model Scope](https://www.modelscope.cn/) is an emerging model community in China, which is comparable to Hugging Face, hence its download method is basically the same as Hugging Face.
+#### `3` Standard Commands
 
-> \[!TIP]
->
-> The access token for Model Scope is not mandatory, but if you need to access protected model repositories, you need to provide an [access token](https://www.modelscope.cn/my/myaccesstoken).
+The CLI also accepts another mode of operation, which is the regular parameter call.
 
-#### `4` Download Civitai Model
+When you need to use parameter calls, you must first disable the interactive mode, which is `-n` or `--no-interaction`.
 
-> \[!TIP]
->
-> Similar to Hugging Face, Civitai also needs an access token (*but this is not mandatory, which is only needed when accessing some models that require authorized downloads.*) For information on how to obtain an access token, refer to the document: [Civitai's Guide to Downloading via API](https://education.civitai.com/civitais-guide-to-downloading-via-api/)
+After that, you need to provide the specified parameters.
 
-1. Select **Civitai**.
-2. Enter the model ID (number) or the link to the model page (the application will extract the model ID).
-3. Enter the token, optional, press enter to skip.
-4. Enter the folder where you need to save.
+```
+  --ignore-config         (Default: false) Ignore the local configuration and use the default process for interaction.
 
-> \[!WARNING]
->
-> Unlike Hugging Face, Civitai usually downloads a single model file, so there is no need to create a new subfolder. Therefore, the application will directly download the model to the specified directory.
+  --clean-up              (Default: false) Kill all aria2c processes before starting the download.
 
-Once the above configuration is ready, the application will attempt to retrieve the version list of the specified model.
+  --edit-config           (Default: false) Edit the configuration file.
 
-If the number of versions is more than 1, then you will see a version list, from which you can choose the model version you need to download.
+  -n, --no-interaction    (Default: false) Disable interaction and use the command-line parameters.
 
-If the number of downloadable files for the specified version is more than 1, then you will see a file list, select the files you need to download (all are selected by default).
+  -m, --model-id          The model ID to download.
 
-Next, press `Enter` and wait for the download to complete!
+  -s, --service           (Default: hf) The service to download the model from. Support hf | civitai | ms
 
-#### `5` Resume Download
+  --use-hf-mirror         (Default: false) Use the hf-mirror (https://hf-mirror.com/) for downloading. Only available
+                          when service is hf.
 
-The application is based on aria2, so it has the ability to resume interrupted downloads. The management and recovery of download progress are controlled by aria2.
+  -t, --token             (Default: ) The token to use for authentication.
 
-If for some reason, you interrupt the download.
+  -d, --save-dir          (Default: ) The directory to save the model to.
 
-Recovery is also easy, just run it again.
+  -i, --include           (Default: ) The files to include in the download.
 
-Make sure your model ID and save path are the same as before.
+  -e, --exclude           (Default: ) The files to exclude in the download.
 
-> \[!TIP]
->
-> The foundation of resuming a broken download is that you still retain the file downloaded last time, as well as the binary file with the suffix `.aria2` in the same directory, which saves your download progress.
-> 
-> If the corresponding file is deleted, you need to download it again.
+  --help                  Display this help screen.
 
-#### `6` Configuration
+  --version               Display version information.
+```
 
-Repeating input each time can be rather cumbersome. CLI supports the use of configuration files to fix optional parameters, simplifying the input each time it is called.
+##### Example
 
-You can create a config.json file in the CLI directory and paste the following code into the file, modifying the properties.
+Download the `microsoft/Phi-3-mini-4k-instruct` model from Hugging Face:
+
+```powershell
+ai-downloader -n -m "microsoft/Phi-3-mini-4k-instruct" -s hf --token "hf-xxxxxxxx" -d "C:\Models"
+```
+
+#### `4` Configuration and Saving
+
+Repeated input can be quite troublesome. The CLI supports using a configuration file to fix optional parameters, simplifying input each time it is called.
+
+Enter the following command in the command line:
+
+```powershell
+ai-downloader --edit-config
+```
+
+The application will call the default editor to open the configuration file `config.json` (if it does not exist, create a new one), the specific parameters are as follows:
 
 ```json
 {
@@ -223,18 +225,50 @@ You can create a config.json file in the CLI directory and paste the following c
 }
 ```
 
-1. `*_token`  
-   This is the access token for the corresponding service. In this context, `hf` refers to Hugging Face, while `ms` refers to Model Scope.
-2. `*_save_folder` and `*_backup_folders`  
-   These are a pair of mutually exclusive attributes.  
-   - If the model you download will only be saved in a certain folder, then fill in `*_save_folder`, and the CLI will download the model of the corresponding service to this folder.
-   - If you have multiple optional locations, such as downloading the model required for SD-WebUI (checkpoint, lora...), you can fill in the corresponding path into `*_backup_folders`, where the `key` is the readable name of the folder path, and the `value` is its absolute path. When running the CLI, you can choose from the defined folder list.
+1. `*_token`
+   This is the access token for the corresponding service. Here, `hf` stands for Hugging Face, and `ms` stands for Model Scope.
+2. `*_save_folder` and `*_backup_folders`
+   These are a pair of mutually exclusive properties, and the application prefers to use `*_save_folder`.
+   - If the model you download will only be saved in a specific folder, fill in `*_save_folder`, and the CLI will download the model of the corresponding service to this folder.
+   - If you have multiple optional locations, such as downloading the models required for SD-WebUI (check point, lora...), you can fill in the corresponding paths into `*_backup_folders`, where `key` is the readable name of the folder path, and `value` is its absolute path. When running the CLI, you can choose from the defined folder list.
+   
+   > \[!WARNING]
+   >
+   > The "save folder" means the parent folder for storing the model. For `Hugging Face` and `Model Scope`, the application will create a subfolder with the same name as the model in this folder as the directory for storing model files.
+   >
+   > For example, if you specify `C:\MyFolder` as the save folder, then after you download the Llama 3 8B model, the actual model file folder path is `C:\MyFolder\Meta-Llama-3-8B`.
+   >
+   > **But for `Civitai`, since it is usually a single file download, the application will not create a same-name subfolder, but directly download the model file to the specified storage directory.**
+
+##### Overview of Access Token Acquisition
+
+|||
+|-|-|
+|Hugging Face| [User Access Tokens](https://huggingface.co/docs/hub/security-tokens) |
+|Civitai | [Civitai's Guide to Downloading via API](https://education.civitai.com/civitais-guide-to-downloading-via-api/) |
+|Model Scope|[Access Token](https://www.modelscope.cn/my/myaccesstoken), `Model Scope Personal Center -> Access Token`|
+
+#### `5` Resume from Breakpoint
+
+The application is based on aria2, so it has the ability to resume from breakpoints. The management and recovery of download progress is controlled by aria2.
+
+If for some reason, you interrupt the download.
+
+Recovery is also simple, just enter the same parameters as the last call.
+
+Make sure your `model ID`, `save path`, and `hosting service` are the same as before.
+
+> \[!TIP]
+>
+> The basis for resuming from a breakpoint is that you still have the files from the last download, and the binary files with the suffix `.aria2` in the same directory, which save your download progress.
+> 
+> If the corresponding files are deleted, you need to download again.
 
 ## 🪄 Application Manual
 
 #### `1` Download and Installation
 
-Strongly recommend installing from the Microsoft App Store, which can be automatically updated later.
+You can directly download and install it from the Microsoft Store, and it can be automatically updated afterwards.
 
 <p align="left">
   <a title="Get it from Microsoft Store" href="https://www.microsoft.com/store/apps/9PJDBLQ239JB?launch=true&mode=full" target="_blank">
@@ -246,20 +280,38 @@ Strongly recommend installing from the Microsoft App Store, which can be automat
   </a>
 </p>
 
-You can also manually install using sideloading:
-
-1. Open system settings, select `System` -> `For Developers` in turn, turn on `Developer Mode`. Scroll to the bottom of the page, expand the `PowerShell` block, and turn on the `Change Execution Policy...` option
-2. Open the [Release](https://github.com/Richasy/AIDownloader/releases) page
-3. Find the application package to download in the **Assets** of the latest version. The naming format is: `AIDownloader_{version}_{arch}.zip`
-4. After downloading the application package and decompressing it, right-click on the `install.ps1` script in the folder and select `Run with PowerShell`.
-
 #### `2` Configuration
 
 The first time you start the application, the application will guide you to do some configurations, including filling in the tokens of services such as `Hugging Face`, `Civitai`, `Model Scope` and the corresponding service save folders, etc.
 
-If you don't need the corresponding service, just click `Next` to skip the configuration.
+<details>
+<summary><kbd>Screenshot</kbd></summary>
+
+![](./assets/ui-en-hfconfig.png)
+
+</details>
+
+> \[!TIP]
+>
+> If you don't need the corresponding service, just click `Next` to skip the configuration.
+
+If you have previously used CLI and set up your own [configuration file](#4-configuration-and-saving), then you can directly import the configuration at this step.
+
+<details>
+<summary><kbd>Screenshot</kbd></summary>
+
+![](./assets/ui-en-config.png)
+
+</details>
 
 All initial configurations can be changed later on the application settings page.
+
+<details>
+<summary><kbd>Screenshot</kbd></summary>
+
+![](./assets/ui-en-settings.png)
+
+</details>
 
 #### `3` Download Model
 
@@ -267,18 +319,39 @@ After opening the application, you can switch different model hosting services i
 
 Click the `Download Model` button to pop up the download dialog box of the corresponding service.
 
+<details>
+<summary><kbd>Screenshot</kbd></summary>
+
+![](./assets/ui-en-download.png)
+
+</details>
+
 Follow the prompts to enter the model's Id and select the save folder. You can also click `Select Others` to temporarily select a folder for storage.
 
 Afterwards, you can view the file list of the corresponding repository, select the files you need to download, and click download.
 
+<details>
+<summary><kbd>Screenshot</kbd></summary>
+
+![](./assets/ui-en-fileselection.png)
+
+</details>
+
 The application will add download tasks one by one, and you can observe the download progress and download speed in real time on the interface.
+
+<details>
+<summary><kbd>Screenshot</kbd></summary>
+
+![](./assets/ui-en-downloading.png)
+
+</details>
 
 You can pause or resume a task at any time.
 
 > \[!WARNING]
 >
 > Unlike regular downloaders, the application does not keep your history.
-
+>
 > If you close a downloading task for some reason, don't worry, you can still resume the download progress, but you need to recreate the same download task (the same service, the same model ID, the same save path).
 > 
 > On this point, the application does have a record, when you create a download task again, the application will use your last download configuration.
