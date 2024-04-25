@@ -62,7 +62,7 @@
                         Padding="8,4"
                         HorizontalAlignment="Left"
                         Content="{ext:Locale Name=SendFeedback}"
-                        NavigateUri="https://github.com/Richasy/Rodel/issues" />
+                        NavigateUri="https://github.com/Richasy/Rodel.Downloader/issues" />
                     <StackPanel
                         Width="1"
                         Height="16"

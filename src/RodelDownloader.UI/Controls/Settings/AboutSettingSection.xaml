@@ -21,7 +21,7 @@
                     <HyperlinkButton
                         HorizontalAlignment="Left"
                         Content="{ext:Locale Name=ProjectHomePage}"
-                        NavigateUri="https://github.com/Richasy/Rodel" />
+                        NavigateUri="https://github.com/Richasy/Rodel.Downloader" />
                     <HyperlinkButton
                         HorizontalAlignment="Left"
                         Click="OnOtherProjectsClick"
