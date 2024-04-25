@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "RodelDownloader.Console": {
+      "commandName": "Project"
+    }
+  }
+}

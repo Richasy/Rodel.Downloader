@@ -4,9 +4,9 @@
 
 <img height="160" src="./assets/logo.png">
 
-<h1 align="center">AI Downloader</h1>
+<h1 align="center">Rodel Downloader</h1>
 
-A dedicated downloader for downloading AI model files, which can stably and reliably download your favorite models from Hugging Face and Civitai. It supports both command line and UI, and is currently only available on Windows.
+A dedicated downloader for downloading AI model files, which can stably and reliably download your favorite models from [Hugging Face](https://huggingface.co), [Model Scope](https://www.modelscope.cn) and [Civitai](https://civitai.com). It supports both command line and UI, and is currently only available on Windows.
 
 English · [简体中文](./README.zh-CN.md)
 
@@ -116,16 +116,16 @@ Both CLI and APP come with a built-in `1.3.7` **aria2c.exe**, no additional down
 1. Open PowerShell
 2. Enter the command
    ```powershell
-   dotnet-tool install --global aidownloader.cli
+   dotnet-tool install --global Rodel.cli
    ```
-3. After the installation is complete, enter the command `ai-downloader` to enter the interactive command interface
-4. You can also enter the command `ai-downloader --help` to view detailed parameter definitions
+3. After the installation is complete, enter the command `rodel` to enter the interactive command interface
+4. You can also enter the command `rodel --help` to view detailed parameter definitions
 
 #### `2` Interactive Commands
 
 The CLI defaults to an interactive mode to guide you through the download process.
 
-After installation, you can simply enter `ai-downloader` to access the interactive interface.
+After installation, you can simply enter `rodel` to access the interactive interface.
 
 The basic download steps are as follows:
 
@@ -184,7 +184,7 @@ After that, you need to provide the specified parameters.
 Download the `microsoft/Phi-3-mini-4k-instruct` model from Hugging Face:
 
 ```powershell
-ai-downloader -n -m "microsoft/Phi-3-mini-4k-instruct" -s hf --token "hf-xxxxxxxx" -d "C:\Models"
+rodel -n -m "microsoft/Phi-3-mini-4k-instruct" -s hf --token "hf-xxxxxxxx" -d "C:\Models"
 ```
 
 #### `4` Configuration and Saving
@@ -194,7 +194,7 @@ Repeated input can be quite troublesome. The CLI supports using a configuration 
 Enter the following command in the command line:
 
 ```powershell
-ai-downloader --edit-config
+rodel --edit-config
 ```
 
 The application will call the default editor to open the configuration file `config.json` (if it does not exist, create a new one), the specific parameters are as follows:
@@ -369,17 +369,17 @@ You can pause or resume a task at any time.
 - [Model Scope](https://www.modelscope.cn)
 
 <!-- LINK GROUP -->
-[github-contributors-link]: https://github.com/Richasy/AIDownloader/graphs/contributors
-[github-contributors-shield]: https://img.shields.io/github/contributors/Richasy/AIDownloader?color=c4f042&labelColor=black&style=flat-square
-[github-forks-link]: https://github.com/Richasy/AIDownloader/network/members
-[github-forks-shield]: https://img.shields.io/github/forks/Richasy/AIDownloader?color=8ae8ff&labelColor=black&style=flat-square
-[github-issues-link]: https://github.com/Richasy/AIDownloader/issues
-[github-issues-shield]: https://img.shields.io/github/issues/Richasy/AIDownloader?color=ff80eb&labelColor=black&style=flat-square
-[github-license-link]: https://github.com/Richasy/AIDownloader/blob/main/LICENSE
-[github-license-shield]: https://img.shields.io/github/license/Richasy/AIDownloader?color=white&labelColor=black&style=flat-square
-[github-release-link]: https://github.com/Richasy/AIDownloader/releases
-[github-release-shield]: https://img.shields.io/github/v/release/Richasy/AIDownloader?color=369eff&labelColor=black&logo=github&style=flat-square
-[github-releasedate-link]: https://github.com/Richasy/AIDownloader/releases
-[github-releasedate-shield]: https://img.shields.io/github/release-date/Richasy/AIDownloader?labelColor=black&style=flat-square
-[github-stars-link]: https://github.com/Richasy/AIDownloader/network/stargazers
-[github-stars-shield]: https://img.shields.io/github/stars/Richasy/AIDownloader?color=ffcb47&labelColor=black&style=flat-square
+[github-contributors-link]: https://github.com/Richasy/Rodel/graphs/contributors
+[github-contributors-shield]: https://img.shields.io/github/contributors/Richasy/Rodel?color=c4f042&labelColor=black&style=flat-square
+[github-forks-link]: https://github.com/Richasy/Rodel/network/members
+[github-forks-shield]: https://img.shields.io/github/forks/Richasy/Rodel?color=8ae8ff&labelColor=black&style=flat-square
+[github-issues-link]: https://github.com/Richasy/Rodel/issues
+[github-issues-shield]: https://img.shields.io/github/issues/Richasy/Rodel?color=ff80eb&labelColor=black&style=flat-square
+[github-license-link]: https://github.com/Richasy/Rodel/blob/main/LICENSE
+[github-license-shield]: https://img.shields.io/github/license/Richasy/Rodel?color=white&labelColor=black&style=flat-square
+[github-release-link]: https://github.com/Richasy/Rodel/releases
+[github-release-shield]: https://img.shields.io/github/v/release/Richasy/Rodel?color=369eff&labelColor=black&logo=github&style=flat-square
+[github-releasedate-link]: https://github.com/Richasy/Rodel/releases
+[github-releasedate-shield]: https://img.shields.io/github/release-date/Richasy/Rodel?labelColor=black&style=flat-square
+[github-stars-link]: https://github.com/Richasy/Rodel/network/stargazers
+[github-stars-shield]: https://img.shields.io/github/stars/Richasy/Rodel?color=ffcb47&labelColor=black&style=flat-square

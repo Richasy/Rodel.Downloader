@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RodelDownloader.UI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "RodelDownloader.UI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -4,9 +4,9 @@
 
 <img height="160" src="./assets/logo.png">
 
-<h1 align="center">模型易取</h1>
+<h1 align="center">小幻模型</h1>
 
-一个专用的AI模型文件下载器，可以稳定可靠地从 [Hugging Face](https://huggingface.co) 和 [Civitai](https://civitai.com) 中下载你喜欢的模型。它支持命令行和用户界面，目前只在 Windows 上可用。
+一个专用的AI模型文件下载器，可以稳定可靠地从 [Hugging Face](https://huggingface.co)，[Model Scope](https://www.modelscope.cn) 和 [Civitai](https://civitai.com) 中下载你喜欢的模型。它支持命令行和用户界面，目前只在 Windows 上可用。
 
 [English](./README.md) · 简体中文
 
@@ -116,16 +116,16 @@
 1. 打开 PowerShell
 2. 输入命令
    ```powershell
-   dotnet-tool install --global aidownloader.cli
+   dotnet-tool install --global Rodel.cli
    ```
-3. 安装完成后，输入命令 `ai-downloader` 进入交互式命令界面
-4. 你也可以输入命令 `ai-downloader --help` 查看详细的参数定义
+3. 安装完成后，输入命令 `rodel` 进入交互式命令界面
+4. 你也可以输入命令 `rodel --help` 查看详细的参数定义
 
 #### `2` 交互式命令
 
 CLI 默认采用交互的形式引导你完成下载。
 
-在安装完成后，你可以简单地输入 `ai-downloader` 进入交互式界面。
+在安装完成后，你可以简单地输入 `rodel` 进入交互式界面。
 
 基本的下载步骤如下：
 
@@ -183,7 +183,7 @@ CLI 也接受另一种操作模式，即常规的参数调用。
 下载 hugging face 中的 `microsoft/Phi-3-mini-4k-instruct` 模型：
 
 ```powershell
-ai-downloader -n -m "microsoft/Phi-3-mini-4k-instruct" -s hf --token "hf-xxxxxxxx" -d "C:\Models"
+rodel -n -m "microsoft/Phi-3-mini-4k-instruct" -s hf --token "hf-xxxxxxxx" -d "C:\Models"
 ```
 
 #### `4` 配置及保存
@@ -193,7 +193,7 @@ ai-downloader -n -m "microsoft/Phi-3-mini-4k-instruct" -s hf --token "hf-xxxxxxx
 在命令行中输入以下命令：
 
 ```powershell
-ai-downloader --edit-config
+rodel --edit-config
 ```
 
 应用会调用默认的编辑器打开配置文件 `config.json`（如果不存在，则新建一个），具体参数如下：
@@ -368,17 +368,17 @@ ai-downloader --edit-config
 - [魔搭](https://www.modelscope.cn)
 
 <!-- LINK GROUP -->
-[github-contributors-link]: https://github.com/Richasy/AIDownloader/graphs/contributors
-[github-contributors-shield]: https://img.shields.io/github/contributors/Richasy/AIDownloader?color=c4f042&labelColor=black&style=flat-square
-[github-forks-link]: https://github.com/Richasy/AIDownloader/network/members
-[github-forks-shield]: https://img.shields.io/github/forks/Richasy/AIDownloader?color=8ae8ff&labelColor=black&style=flat-square
-[github-issues-link]: https://github.com/Richasy/AIDownloader/issues
-[github-issues-shield]: https://img.shields.io/github/issues/Richasy/AIDownloader?color=ff80eb&labelColor=black&style=flat-square
-[github-license-link]: https://github.com/Richasy/AIDownloader/blob/main/LICENSE
-[github-license-shield]: https://img.shields.io/github/license/Richasy/AIDownloader?color=white&labelColor=black&style=flat-square
-[github-release-link]: https://github.com/Richasy/AIDownloader/releases
-[github-release-shield]: https://img.shields.io/github/v/release/Richasy/AIDownloader?color=369eff&labelColor=black&logo=github&style=flat-square
-[github-releasedate-link]: https://github.com/Richasy/AIDownloader/releases
-[github-releasedate-shield]: https://img.shields.io/github/release-date/Richasy/AIDownloader?labelColor=black&style=flat-square
-[github-stars-link]: https://github.com/Richasy/AIDownloader/network/stargazers
-[github-stars-shield]: https://img.shields.io/github/stars/Richasy/AIDownloader?color=ffcb47&labelColor=black&style=flat-square
+[github-contributors-link]: https://github.com/Richasy/Rodel/graphs/contributors
+[github-contributors-shield]: https://img.shields.io/github/contributors/Richasy/Rodel?color=c4f042&labelColor=black&style=flat-square
+[github-forks-link]: https://github.com/Richasy/Rodel/network/members
+[github-forks-shield]: https://img.shields.io/github/forks/Richasy/Rodel?color=8ae8ff&labelColor=black&style=flat-square
+[github-issues-link]: https://github.com/Richasy/Rodel/issues
+[github-issues-shield]: https://img.shields.io/github/issues/Richasy/Rodel?color=ff80eb&labelColor=black&style=flat-square
+[github-license-link]: https://github.com/Richasy/Rodel/blob/main/LICENSE
+[github-license-shield]: https://img.shields.io/github/license/Richasy/Rodel?color=white&labelColor=black&style=flat-square
+[github-release-link]: https://github.com/Richasy/Rodel/releases
+[github-release-shield]: https://img.shields.io/github/v/release/Richasy/Rodel?color=369eff&labelColor=black&logo=github&style=flat-square
+[github-releasedate-link]: https://github.com/Richasy/Rodel/releases
+[github-releasedate-shield]: https://img.shields.io/github/release-date/Richasy/Rodel?labelColor=black&style=flat-square
+[github-stars-link]: https://github.com/Richasy/Rodel/network/stargazers
+[github-stars-shield]: https://img.shields.io/github/stars/Richasy/Rodel?color=ffcb47&labelColor=black&style=flat-square
