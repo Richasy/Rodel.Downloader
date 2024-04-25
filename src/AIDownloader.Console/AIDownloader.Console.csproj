@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <None Remove="Assets\logo.png" />
+    <None Remove="Assets\README.md" />
   </ItemGroup>
 
   <ItemGroup Label="Aria">
@@ -42,6 +43,10 @@
 
   <ItemGroup>
     <Content Include="Assets\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Content>
+    <Content Include="Assets\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </Content>
