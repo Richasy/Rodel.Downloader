@@ -12,14 +12,14 @@
    ```powershell
    dotnet-tool install --global RodelDownloader.cli
    ```
-3. After the installation is complete, enter the command `ai-downloader` to enter the interactive command interface
-4. You can also enter the command `ai-downloader --help` to view detailed parameter definitions
+3. After the installation is complete, enter the command `rodel` to enter the interactive command interface
+4. You can also enter the command `rodel --help` to view detailed parameter definitions
 
 ## `2` Interactive Commands
 
 The CLI defaults to an interactive mode to guide you through the download process.
 
-After installation, you can simply enter `ai-downloader` to access the interactive interface.
+After installation, you can simply enter `rodel` to access the interactive interface.
 
 The basic download steps are as follows:
 
@@ -70,7 +70,7 @@ After that, you need to provide the specified parameters.
 Download the `microsoft/Phi-3-mini-4k-instruct` model from Hugging Face:
 
 ```powershell
-ai-downloader -n -m "microsoft/Phi-3-mini-4k-instruct" -s hf --token "hf-xxxxxxxx" -d "C:\Models"
+rodel -n -m "microsoft/Phi-3-mini-4k-instruct" -s hf --token "hf-xxxxxxxx" -d "C:\Models"
 ```
 
 ## `4` Configuration and Saving
@@ -80,7 +80,7 @@ Repeated input can be quite troublesome. The CLI supports using a configuration 
 Enter the following command in the command line:
 
 ```powershell
-ai-downloader --edit-config
+rodel --edit-config
 ```
 
 The application will call the default editor to open the configuration file `config.json` (if it does not exist, create a new one), the specific parameters are as follows:
