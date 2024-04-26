@@ -11,15 +11,15 @@
     <PackageOutputPath>./nupkg</PackageOutputPath>
     <PackageId>RodelDownloader.CLI</PackageId>
     <Title>Rodel Downloader</Title>
-    <Version>0.0.1</Version>
+    <Version>1.2404.1.0</Version>
     <Authors>Richasy</Authors>
     <Product>RodelDownloader.CLI</Product>
     <Description>A simple AI model downloader based on aria2, which can download models from Hugging Face / Civitai / Model Scope faster and more stably.</Description>
     <Copyright>© 2024 Richasy. All rights reserved.</Copyright>
-    <PackageProjectUrl>https://github.com/Richasy/Rodel</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Richasy/Rodel.Downloader</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/Richasy/Rodel</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Richasy/Rodel.Downloader</RepositoryUrl>
     <PackageTags>ai;downloader;model;aria2;rodel</PackageTags>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>

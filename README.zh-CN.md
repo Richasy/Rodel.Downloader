@@ -116,7 +116,7 @@
 1. 打开 PowerShell
 2. 输入命令
    ```powershell
-   dotnet-tool install --global RodelDownloader.CLI
+   dotnet tool install --global RodelDownloader.CLI
    ```
 3. 安装完成后，输入命令 `rodel-downloader` 进入交互式命令界面
 4. 你也可以输入命令 `rodel-downloader --help` 查看详细的参数定义

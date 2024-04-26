@@ -116,7 +116,7 @@ Both CLI and APP come with a built-in `1.3.7` **aria2c.exe**, no additional down
 1. Open PowerShell
 2. Enter the command
    ```powershell
-   dotnet-tool install --global RodelDownloader.CLI
+   dotnet tool install --global RodelDownloader.CLI
    ```
 3. After the installation is complete, enter the command `rodel-downloader` to enter the interactive command interface
 4. You can also enter the command `rodel-downloader --help` to view detailed parameter definitions
