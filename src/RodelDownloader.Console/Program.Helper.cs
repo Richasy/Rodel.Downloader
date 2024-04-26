@@ -82,12 +82,25 @@ public partial class Program
     private static string AskSaveFolderPath()
     {
         var folderPath = AnsiConsole.Ask<string>(GetString("FolderPickerTip"));
-        if (string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath))
+        if (string.IsNullOrEmpty(folderPath))
         {
             AnsiConsole.MarkupLine($"[red]{GetString("NoSelectedFolder")}[/]");
         }
         else
         {
+            if (!Directory.Exists(folderPath))
+            {
+                try
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                catch (Exception ex)
+                {
+                    AnsiConsole.WriteException(ex);
+                    return string.Empty;
+                }
+            }
+
             AnsiConsole.MarkupLine($"{GetString("SelectedFolder")}[green]{folderPath}[/]");
         }
 
