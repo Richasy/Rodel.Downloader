@@ -175,7 +175,7 @@
     <value>Copy link</value>
   </data>
   <data name="CopyrightTemplate" xml:space="preserve">
-    <value>© {0} Richasy. All rights reserved.</value>
+    <value>{0} Richasy. All rights reserved.</value>
   </data>
   <data name="DarkTheme" xml:space="preserve">
     <value>Dark</value>
