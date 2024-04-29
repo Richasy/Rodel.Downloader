@@ -24,7 +24,7 @@ English · [简体中文](./README.zh-CN.md)
 
 > \[!WARNING]
 >
-> The application is developed based on .NET 8, it is not a cross-platform application, and is currently only available on **Windows**. For users below Windows 10 19043, please use the command line instead of the UI.
+> The application is developed based on .NET 8, it is not a cross-platform application, and is currently only available on **Windows**. For users below Windows 10 19041, please use the command line instead of the UI.
 
 <details>
 <summary><kbd>Table of contents</kbd></summary>
@@ -69,7 +69,7 @@ Both the command line and UI have simple localization support (supporting `en-US
 
 > \[!TIP]
 >
-> The UI is based on the Windows App SDK, which requires your system version to be Windows 10 19043 and above. It is highly recommended to download and install from the Microsoft Store.
+> The UI is based on the Windows App SDK, which requires your system version to be Windows 10 19041 and above. It is highly recommended to download and install from the Microsoft Store.
 
 <p align="left">
   <a title="Get it from Microsoft Store" href="https://www.microsoft.com/store/apps/9PJDBLQ239JB?launch=true&mode=full" target="_blank">
@@ -102,7 +102,7 @@ Both CLI and APP come with a built-in `1.3.7` **aria2c.exe**, no additional down
 |-|-|
 |Framework|.NET 8|
 |UI Framework|Windows App SDK 1.5|
-|System Requirements|`CLI`: Windows 7 and above, `APP`: Windows 10 19043 and above|
+|System Requirements|`CLI`: Windows 7 and above, `APP`: Windows 10 19041 and above|
 
 ## 🛠️ CLI Instruction Manual
 

@@ -24,7 +24,7 @@
 
 > \[!WARNING]
 >
-> 该应用程序是基于 .NET 8 开发的，它不是一个跨平台的应用程序，目前只在 **Windows** 上可用。对于Windows 10 19043 以下的用户，请使用命令行，而不是用户界面。
+> 该应用程序是基于 .NET 8 开发的，它不是一个跨平台的应用程序，目前只在 **Windows** 上可用。对于Windows 10 19041 以下的用户，请使用命令行，而不是用户界面。
 
 <details>
 <summary><kbd>目录</kbd></summary>
@@ -69,7 +69,7 @@
 
 > \[!TIP]
 >
-> 用户界面基于 Windows App SDK，要求你的系统版本为 Windows 10 19043 及以上。强烈建议从 Microsoft Store 下载和安装。
+> 用户界面基于 Windows App SDK，要求你的系统版本为 Windows 10 19041 及以上。强烈建议从 Microsoft Store 下载和安装。
 
 <p align="left">
   <a title="从 Microsoft Store 中获取" href="https://www.microsoft.com/store/apps/9PJDBLQ239JB?launch=true&mode=full" target="_blank">
@@ -102,7 +102,7 @@
 |-|-|
 |开发框架|.NET 8|
 |UI 框架|Windows App SDK 1.5|
-|系统要求|`CLI`: Windows 7 及以上, `APP`: Windows 10 19043 及以上|
+|系统要求|`CLI`: Windows 7 及以上, `APP`: Windows 10 19041 及以上|
 
 ## 🛠️ 命令行说明书
 
