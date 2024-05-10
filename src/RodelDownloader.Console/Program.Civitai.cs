@@ -115,12 +115,8 @@ public partial class Program
 
     private static string AskCivitaiToken()
     {
-        var optionalStr = GetString("Optional");
-        var token = AnsiConsole.Ask<string>(GetString("CivitaiToken"), optionalStr);
-        if (token == optionalStr)
-        {
-            token = string.Empty;
-        }
+        var token = AnsiConsole.Prompt(new TextPrompt<string>($"{GetString("CivitaiTokenTip")} [green]({GetString("Optional")})[/]: ")
+            .AllowEmpty());
 
         return token;
     }
@@ -129,7 +125,7 @@ public partial class Program
     {
         var sb = new StringBuilder();
         sb.AppendLine($"[bold]{item.Name}[/]");
-        sb.AppendLine($"[grey]{item.Description.Replace("[", "{").Replace("]", "}").Replace("\n", string.Empty)[..18]}[/]");
+        sb.AppendLine($"[grey]{item.Description.EscapeMarkup()[..18]}[/]");
         return sb.ToString();
     }
 }
