@@ -139,7 +139,7 @@
     <value>Select the file you want to download</value>
   </data>
   <data name="CivitaiToken" xml:space="preserve">
-    <value>Please enter the Civitai access token:</value>
+    <value>Please enter the Civitai access token</value>
   </data>
   <data name="DownloadCompleted" xml:space="preserve">
     <value>All files are downloaded</value>

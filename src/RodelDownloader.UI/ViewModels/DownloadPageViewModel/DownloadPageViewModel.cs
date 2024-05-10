@@ -76,7 +76,7 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
     [RelayCommand]
     private async Task AddDownloadItemsAsync(List<DownloadItem> items)
     {
-        var availableItems = items.Where(item => !Items.Any(p => p.SavePath == Path.Combine(item.TargetFolder, item.FileName))).ToList();
+        var availableItems = items.Where(item => !DownloadingItems.Any(p => p.SavePath == Path.Combine(item.TargetFolder, item.FileName))).ToList();
         var tasks = new List<Task>();
         var ariaConfigPath = Path.Combine(Package.Current.InstalledPath, "aria2.conf");
         var token = SelectedSource == DownloadSource.HuggingFace
@@ -113,14 +113,15 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
                 _dispatcherQueue.TryEnqueue(() =>
                 {
                     vm.Id = id;
-                    Items.Add(vm);
+                    DownloadingItems.Add(vm);
                 });
             });
             tasks.Add(task);
         }
 
         await Task.WhenAll(tasks);
-        HasDownloadItems = Items.Count > 0;
+        CheckDownloadingItems();
+        CheckDownloadedItems();
         _timer.Start();
     }
 
@@ -128,7 +129,7 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
     private async Task ResumeAllAsync()
     {
         await _ariaClient.UnpauseAllAsync();
-        foreach (var item in Items.Where(p => p.IsPaused || p.IsError))
+        foreach (var item in DownloadingItems.Where(p => p.IsPaused || p.IsError))
         {
             item.Status = DownloadStatus.Fetching;
         }
@@ -138,7 +139,7 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
     private async Task PauseAllAsync()
     {
         await _ariaClient.PauseAllAsync();
-        foreach (var item in Items.Where(p => p.IsDownloading))
+        foreach (var item in DownloadingItems.Where(p => p.IsDownloading))
         {
             item.Status = DownloadStatus.Paused;
         }
@@ -146,13 +147,13 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
 
     private void CheckPauseAllStatus()
     {
-        CanPauseAll = Items.Any(p => p.IsDownloading);
-        CanResumeAll = Items.Any(p => p.IsPaused || p.IsError);
+        CanPauseAll = DownloadingItems.Any(p => p.IsDownloading);
+        CanResumeAll = DownloadingItems.Any(p => p.IsPaused || p.IsError);
     }
 
     private async void OnTimerTickAsync(object sender, object e)
     {
-        var isAllCompleted = Items.All(p => p.IsCompleted);
+        var isAllCompleted = DownloadingItems.All(p => p.IsCompleted);
         if (isAllCompleted)
         {
             _timer.Stop();
@@ -161,7 +162,7 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
         }
 
         var tasks = new List<Task>();
-        foreach (var item in Items)
+        foreach (var item in DownloadingItems)
         {
             if (item.IsDownloading || item.IsFetching)
             {
@@ -195,7 +196,8 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
 
                         if (i.IsCompleted || i.IsError)
                         {
-                            Items.Move(Items.IndexOf(i), Items.Count - 1);
+                            DownloadingItems.Remove(i);
+                            DownloadedItems.Insert(0, i);
                         }
 
                         if (i.IsError)
@@ -229,6 +231,7 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
 
         await Task.WhenAll(tasks);
         CheckDownloadProgress();
+        CheckDownloadedItems();
         CheckPauseAllStatus();
     }
 
@@ -236,8 +239,8 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
     {
         if (HasDownloadItems)
         {
-            DownloadProgress = $"{Items.Count(p => p.IsCompleted)}/{Items.Count}";
-            DownloadProgressTip = string.Format(ResourceToolkit.GetLocalizedString(StringNames.DownloadProgressTipTemplate), Items.Count, Items.Count(p => p.IsCompleted));
+            DownloadProgress = $"{DownloadedItems.Count}/{DownloadingItems.Count + DownloadedItems.Count}";
+            DownloadProgressTip = string.Format(ResourceToolkit.GetLocalizedString(StringNames.DownloadProgressTipTemplate), DownloadingItems.Count, DownloadingItems.Count(p => p.IsCompleted));
         }
         else
         {
@@ -245,6 +248,12 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
             DownloadProgressTip = string.Empty;
         }
     }
+
+    private void CheckDownloadingItems()
+        => HasDownloadItems = DownloadingItems.Count > 0 || DownloadedItems.Count > 0;
+
+    private void CheckDownloadedItems()
+        => HasDownloadedItems = DownloadedItems.Count > 0;
 
     private void PauseItem(DownloadItemViewModel item)
     {
@@ -256,6 +265,12 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
 
     private void ResumeItem(DownloadItemViewModel item)
     {
+        if (DownloadedItems.Contains(item))
+        {
+            DownloadedItems.Remove(item);
+            DownloadingItems.Add(item);
+        }
+
         Task.Run(async () =>
         {
             await _ariaClient.UnpauseAsync(item.Id);
@@ -272,8 +287,10 @@ public sealed partial class DownloadPageViewModel : ViewModelBase
             });
         }
 
-        Items.Remove(item);
-        HasDownloadItems = Items.Count > 0;
+        DownloadingItems.Remove(item);
+        DownloadedItems.Remove(item);
+        CheckDownloadingItems();
+        CheckDownloadedItems();
         CheckDownloadProgress();
         CheckPauseAllStatus();
     }

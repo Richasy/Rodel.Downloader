@@ -183,6 +183,9 @@
   <data name="DeselectAll" xml:space="preserve">
     <value>Deselect all</value>
   </data>
+  <data name="Downloaded" xml:space="preserve">
+    <value>Downloaded</value>
+  </data>
   <data name="DownloadListEmptyDescription" xml:space="preserve">
     <value>Which model would you like to download this time?</value>
   </data>

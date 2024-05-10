@@ -139,7 +139,7 @@
     <value>选择要下载的文件</value>
   </data>
   <data name="CivitaiToken" xml:space="preserve">
-    <value>请输入 Civitai 访问令牌：</value>
+    <value>请输入 Civitai 访问令牌</value>
   </data>
   <data name="DownloadCompleted" xml:space="preserve">
     <value>所有文件下载完成</value>

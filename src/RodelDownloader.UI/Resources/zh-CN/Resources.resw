@@ -183,6 +183,9 @@
   <data name="DeselectAll" xml:space="preserve">
     <value>取消全选</value>
   </data>
+  <data name="Downloaded" xml:space="preserve">
+    <value>已下载</value>
+  </data>
   <data name="DownloadListEmptyDescription" xml:space="preserve">
     <value>这次想下载哪个模型？</value>
   </data>

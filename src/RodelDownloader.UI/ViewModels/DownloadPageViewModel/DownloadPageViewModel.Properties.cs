@@ -42,6 +42,9 @@ public sealed partial class DownloadPageViewModel
     private bool _isPreparingDownload;
 
     [ObservableProperty]
+    private bool _hasDownloadedItems;
+
+    [ObservableProperty]
     private bool _canPauseAll;
 
     [ObservableProperty]
@@ -55,5 +58,10 @@ public sealed partial class DownloadPageViewModel
     /// <summary>
     /// 下载列表.
     /// </summary>
-    public ObservableCollection<DownloadItemViewModel> Items { get; } = new();
+    public ObservableCollection<DownloadItemViewModel> DownloadingItems { get; } = new();
+
+    /// <summary>
+    /// 已下载列表.
+    /// </summary>
+    public ObservableCollection<DownloadItemViewModel> DownloadedItems { get; } = new();
 }
